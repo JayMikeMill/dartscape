@@ -1,0 +1,573 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/FragDefault"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:isScrollContainer="true"
+    android:orientation="vertical"
+    android:padding="0dp"
+    android:splitMotionEvents="false"
+    app:layout_scrollEffect="none">
+
+
+    <ScrollView
+        android:id="@+id/svSettings"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="5"
+        android:fadeScrollbars="true"
+        android:fillViewport="false"
+        android:scrollbarAlwaysDrawHorizontalTrack="true"
+        android:scrollbarSize="2dp"
+        android:scrollbarThumbVertical="@drawable/drw_scroll_thumb"
+        android:scrollbars="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/lSettingsContent"
+                android:layout_width="match_parent"
+                android:layout_height="1000dp"
+                android:orientation="vertical"
+                android:splitMotionEvents="false">
+
+                <LinearLayout
+                    android:id="@+id/lSettingsDartscapePro"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginBottom="@dimen/control_padding"
+                    android:layout_weight=".8"
+                    android:orientation="vertical"
+                    android:soundEffectsEnabled="false"
+                    android:splitMotionEvents="true">
+
+                    <com.gworks.dartscape.ui.MultiView
+                        style="@style/MultiViewHeader"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginBottom="@dimen/control_padding"
+                        android:layout_weight=".35"
+                        android:gravity="right"
+                        android:text="@string/purchase_dartscape_pro" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_weight=".45"
+                        android:orientation="vertical">
+
+                        <com.gworks.dartscape.ui.MultiView
+                            android:id="@+id/btnSettingsDartscapePro"
+                            style="@style/MultiViewDefault"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:text="@string/dartscape_pro"
+                            app:toggleButton="false" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginBottom="@dimen/frag_padding"
+                    android:layout_weight="1.5"
+                    android:orientation="vertical"
+                    android:soundEffectsEnabled="false"
+                    android:splitMotionEvents="false">
+
+                    <com.gworks.dartscape.ui.MultiView
+                        style="@style/MultiViewHeader"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginBottom="@dimen/control_padding"
+                        android:layout_weight=".35"
+                        android:text="@string/sound" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_marginBottom="@dimen/control_padding"
+                        android:layout_weight=".75"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <com.gworks.dartscape.ui.MultiView
+                            android:id="@+id/mvSettingsVolumeIcon"
+                            style="@style/MultiViewLabel"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight=".4"
+                            android:background="@android:color/transparent"
+                            android:foreground="@null"
+                            custom:icon1="@drawable/ic_volume_high" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <com.gworks.dartscape.ui.MultiView
+                                android:id="@+id/mvSettingsVolume"
+                                style="@style/MultiViewLabel"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="2"
+                                android:text="@string/volume" />
+
+                            <SeekBar
+                                android:id="@+id/seekSettingsVolume"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="2"
+                                android:max="100"
+                                android:progress="100"
+                                android:progressDrawable="@drawable/drw_seek_bar"
+                                android:thumb="@drawable/drw_seek_thumb" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_weight=".35"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal"
+                            android:splitMotionEvents="false">
+
+                            <com.gworks.dartscape.ui.MultiView
+                                android:id="@+id/btnSettingsPlayWinnerSound"
+                                style="@style/MultiViewDefault"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight=".5"
+                                android:text="@string/winner_sound"
+                                app:toggleButton="true"
+                                custom:text2="WIN: OFF" />
+
+                            <Space
+                                android:layout_width="@dimen/control_padding"
+                                android:layout_height="match_parent" />
+
+                            <com.gworks.dartscape.ui.MultiView
+                                android:id="@+id/btnSettingsPlayBustSound"
+                                style="@style/MultiViewDefault"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight=".5"
+                                android:text="@string/bust_sound"
+                                app:toggleButton="true"
+                                custom:text2="BUST: OFF" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginBottom="@dimen/frag_padding"
+                    android:layout_weight="1.25"
+                    android:orientation="vertical"
+                    android:soundEffectsEnabled="false"
+                    android:splitMotionEvents="true">
+
+                    <com.gworks.dartscape.ui.MultiView
+                        android:id="@+id/labSettingsBotSpeed"
+                        style="@style/MultiViewHeader"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginBottom="@dimen/control_padding"
+                        android:layout_weight=".35"
+                        android:gravity="right"
+                        android:text="@string/bot_throw_speed" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_weight=".9"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <com.gworks.dartscape.ui.MultiView
+                            android:id="@+id/mvSettingsBotIcon"
+                            style="@style/MultiViewLabel"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight=".4"
+                            android:background="@android:color/transparent"
+                            android:foreground="@null"
+                            app:icon1="@drawable/ic_bot" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <com.gworks.dartscape.ui.MultiView
+                                android:id="@+id/mvSettingsBotSpeedLabel"
+                                style="@style/MultiViewLabel"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:text="@string/seconds" />
+
+                            <SeekBar
+                                android:id="@+id/seekSettingsBotSpeed"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:max="2900"
+                                android:progress="100"
+                                android:progressDrawable="@drawable/drw_seek_bar"
+                                android:thumb="@drawable/drw_seek_thumb" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginBottom="@dimen/control_padding"
+                    android:layout_weight=".8"
+                    android:orientation="vertical"
+                    android:soundEffectsEnabled="false"
+                    android:splitMotionEvents="true">
+
+                    <com.gworks.dartscape.ui.MultiView
+                        style="@style/MultiViewHeader"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginBottom="@dimen/control_padding"
+                        android:layout_weight=".35"
+                        android:gravity="right"
+                        android:text="@string/new_game_order" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_weight=".45"
+                        android:orientation="vertical">
+
+                        <view
+                            android:id="@+id/spinSettingsTurnOrder"
+                            style="@style/SpinnerDefault"
+                            class="com.gworks.dartscape.ui.SuperSpinner"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            tools:listitem="@layout/item_spinner" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginBottom="@dimen/control_padding"
+                    android:layout_weight="1.2"
+                    android:orientation="vertical"
+                    android:splitMotionEvents="false">
+
+                    <com.gworks.dartscape.ui.MultiView
+                        android:id="@+id/labSettingsInGameOpts"
+                        style="@style/MultiViewHeader"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginBottom="@dimen/control_padding"
+                        android:layout_weight=".35"
+                        android:text="@string/in_game_options" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_weight=".425"
+                        android:orientation="horizontal"
+                        android:splitMotionEvents="false">
+
+                        <com.gworks.dartscape.ui.MultiView
+                            android:id="@+id/btnSettingsShowWins"
+                            style="@style/MultiViewDefault"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:text="@string/show_wins"
+                            app:toggleButton="true" />
+
+                        <Space
+                            android:layout_width="@dimen/control_padding"
+                            android:layout_height="match_parent" />
+
+                        <com.gworks.dartscape.ui.MultiView
+                            android:id="@+id/btnSettingsShowAvgs"
+                            style="@style/MultiViewDefault"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:text="@string/show_avg"
+                            app:toggleButton="true"
+                            custom:text2="HIDE AVG." />
+
+                    </LinearLayout>
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/control_padding" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_weight=".425"
+                        android:orientation="horizontal"
+                        android:splitMotionEvents="false">
+
+                        <com.gworks.dartscape.ui.MultiView
+                            android:id="@+id/btnSettingsShowCurPlayer"
+                            style="@style/MultiViewDefault"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:text="@string/show_game_info"
+                            app:toggleButton="true" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/lSettingsTheme"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginBottom="@dimen/control_padding"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:soundEffectsEnabled="false"
+                    android:splitMotionEvents="true">
+
+                    <com.gworks.dartscape.ui.MultiView
+                        android:id="@+id/labSettingsTheme"
+                        style="@style/MultiViewHeader"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginBottom="@dimen/control_padding"
+                        android:layout_weight=".35"
+                        android:text="@string/dartscape_theme" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_weight=".65"
+                        android:orientation="horizontal">
+
+                        <view
+                            android:id="@+id/spinSettingsTheme"
+                            style="@style/SpinnerDefault"
+                            class="com.gworks.dartscape.ui.ThemeSpinner"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            tools:listitem="@layout/item_spinner" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginBottom="@dimen/control_padding"
+                    android:layout_weight=".8"
+                    android:orientation="vertical"
+                    android:soundEffectsEnabled="false"
+                    android:splitMotionEvents="true">
+
+                    <com.gworks.dartscape.ui.MultiView
+                        style="@style/MultiViewHeader"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginBottom="@dimen/control_padding"
+                        android:layout_weight=".35"
+                        android:text="@string/other_settings" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_weight=".45"
+                        android:orientation="horizontal"
+                        android:splitMotionEvents="false">
+
+                        <com.gworks.dartscape.ui.MultiView
+                            android:id="@+id/btnSettingsShadows"
+                            style="@style/MultiViewDefault"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:text="@string/show_shadows"
+                            app:toggleButton="true" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1.2"
+                    android:orientation="vertical"
+                    android:soundEffectsEnabled="false"
+                    android:splitMotionEvents="true">
+
+                    <com.gworks.dartscape.ui.MultiView
+                        android:id="@+id/labSettingsData"
+                        style="@style/MultiViewHeader"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginBottom="@dimen/control_padding"
+                        android:layout_weight=".35"
+                        android:text="@string/player_data" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_marginBottom="6dp"
+                        android:layout_weight=".9"
+                        android:orientation="horizontal"
+                        android:splitMotionEvents="false">
+
+                        <com.gworks.dartscape.ui.MultiView
+                            android:id="@+id/btnSettingsBackupData"
+                            style="@style/MultiViewDefault"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="bottom"
+                            android:text="@string/back_up"
+                            app:icon1="@drawable/ic_upload" />
+
+                        <Space
+                            android:layout_width="@dimen/control_padding"
+                            android:layout_height="match_parent" />
+
+                        <com.gworks.dartscape.ui.MultiView
+                            android:id="@+id/btnSettingsRestoreData"
+                            style="@style/MultiViewDefault"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="bottom"
+                            android:text="@string/restore"
+                            custom:icon1="@drawable/ic_download" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginBottom="@dimen/control_padding"
+                    android:layout_weight=".8"
+                    android:orientation="vertical"
+                    android:soundEffectsEnabled="false"
+                    android:splitMotionEvents="true">
+
+                    <com.gworks.dartscape.ui.MultiView
+                        style="@style/MultiViewHeader"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginBottom="@dimen/control_padding"
+                        android:layout_weight=".35"
+                        android:gravity="right"
+                        android:text="ABOUT DARTSCAPE" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_weight=".45"
+                        android:orientation="vertical">
+
+                        <com.gworks.dartscape.ui.MultiView
+                            android:id="@+id/btnSettingsAbout"
+                            style="@style/MultiViewDefault"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/about" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="?attr/colorAccent"
+        android:orientation="horizontal"/>
+
+    <LinearLayout
+        android:id="@+id/linearLayout5"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight=".6"
+        android:orientation="horizontal">
+
+        <com.gworks.dartscape.ui.MultiView
+            android:id="@+id/btnSettingsSave"
+            style="@style/MultiViewTransparent"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="?attr/colorButtonNormal"
+            android:gravity="left"
+            android:text="@string/save_settings"
+            custom:icon1="@drawable/ic_floppy_disc" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

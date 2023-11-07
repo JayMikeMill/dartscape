@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <attr name="bg_bordered" format="reference" />
+
+    <declare-styleable name="CricketButton">
+
+    </declare-styleable>
+
+    <declare-styleable name="PlayerRecycleView">
+
+    </declare-styleable>
+
+
+    <declare-styleable name="MultiView" parent="Widget.AppCompat.Button">
+        <attr name="icon1" format="reference" />
+        <attr name="icon2" format="reference" />
+        <attr name="icon3" format="reference" />
+        <attr name="icon4" format="reference" />
+
+        <attr name="iconColorTint" format="color" />
+
+        <attr name="text2" format="string" />
+        <attr name="text3" format="string" />
+        <attr name="text4" format="string" />
+
+        <attr name="outlineText" format="boolean" />
+
+        <attr name="textSizeRatio" format="float" />
+        <attr name="toggleButton" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="IconSpinner">
+
+    </declare-styleable>
+</resources>

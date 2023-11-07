@@ -1,0 +1,145 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.Dartscape" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowEnableSplitTouch">false</item>
+        <item name="android:splitMotionEvents">false</item>
+        <item name="colorPrimary">@color/colorPrimaryChalk</item>
+        <item name="colorPrimaryVariant">@color/colorTitleChalk</item>
+        <item name="colorSecondary">@color/colorHeaderChalk</item>
+        <item name="titleTextColor">@color/colorTextChalk</item>
+        <item name="colorPrimaryDark">@color/colorTextShadowChalk</item>
+        <item name="colorAccent">@color/colorAccentChalk</item>
+        <item name="colorButtonNormal">@color/colorButtonChalk</item>
+    </style>
+
+    <style name="AppTheme.Chalk" parent="Theme.Dartscape">
+        <item name="colorPrimary">@color/colorPrimaryChalk</item>
+        <item name="colorPrimaryVariant">@color/colorTitleChalk</item>
+        <item name="colorSecondary">@color/colorHeaderChalk</item>
+        <item name="titleTextColor">@color/colorTextChalk</item>
+        <item name="colorPrimaryDark">@color/colorTextShadowChalk</item>
+        <item name="colorAccent">@color/colorAccentChalk</item>
+        <item name="colorButtonNormal">@color/colorButtonChalk</item>
+    </style>
+
+    <style name="AppTheme.Moonlight" parent="Theme.Dartscape">
+        <item name="colorPrimary">@color/colorPrimaryMoonlight</item>
+        <item name="colorPrimaryVariant">@color/colorTitleMoonlight</item>
+        <item name="colorSecondary">@color/colorHeaderMoonlight</item>
+        <item name="titleTextColor">@color/colorTextMoonlight</item>
+        <item name="colorPrimaryDark">@color/colorTextShadowMoonlight</item>
+        <item name="colorAccent">@color/colorAccentMoonlight</item>
+        <item name="colorButtonNormal">@color/colorButtonMoonlight</item>
+    </style>
+
+    <style name="AppTheme.NightTime" parent="Theme.Dartscape">
+        <item name="colorPrimary">@color/colorPrimaryNightTime</item>
+        <item name="colorPrimaryVariant">@color/colorTitleNightTime</item>
+        <item name="colorSecondary">@color/colorHeaderNightTime</item>
+        <item name="titleTextColor">@color/colorTextNightTime</item>
+        <item name="colorPrimaryDark">@color/colorTextShadowNightTime</item>
+        <item name="colorAccent">@color/colorAccentNightTime</item>
+        <item name="colorButtonNormal">@color/colorButtonNightTime</item>
+    </style>
+
+    <style name="AppTheme.RoyalBlood" parent="Theme.Dartscape">
+        <item name="colorPrimary">@color/colorPrimaryRoyalBlood</item>
+        <item name="colorPrimaryVariant">@color/colorTitleRoyalBlood</item>
+        <item name="colorSecondary">@color/colorHeaderRoyalBlood</item>
+        <item name="titleTextColor">@color/colorTextRoyalBlood</item>
+        <item name="colorPrimaryDark">@color/colorTextShadowRoyalBlood</item>
+        <item name="colorAccent">@color/colorAccentRoyalBlood</item>
+        <item name="colorButtonNormal">@color/colorButtonRoyalBlood</item>
+    </style>
+
+    <style name="AppTheme.InkPad" parent="Theme.Dartscape">
+        <item name="colorPrimary">@color/colorPrimaryInkPad</item>
+        <item name="colorPrimaryVariant">@color/colorTitleInkPad</item>
+        <item name="colorSecondary">@color/colorHeaderInkPad</item>
+        <item name="titleTextColor">@color/colorTextInkPad</item>
+        <item name="colorPrimaryDark">@color/colorTextShadowInkPad</item>
+        <item name="colorAccent">@color/colorAccentInkPad</item>
+        <item name="colorButtonNormal">@color/colorButtonInkPad</item>
+    </style>
+
+    <style name="AppTheme.SummerTime" parent="Theme.Dartscape">
+        <item name="colorPrimary">@color/colorPrimarySummerTime</item>
+        <item name="colorPrimaryVariant">@color/colorTitleSummerTime</item>
+        <item name="colorSecondary">@color/colorHeaderSummerTime</item>
+        <item name="titleTextColor">@color/colorTextSummerTime</item>
+        <item name="colorPrimaryDark">@color/colorTextShadowSummerTime</item>
+        <item name="colorAccent">@color/colorAccentSummerTime</item>
+        <item name="colorButtonNormal">@color/colorButtonSummerTime</item>
+    </style>
+
+    <style name="AppTheme.BlueSkies" parent="Theme.Dartscape">
+        <item name="colorPrimary">@color/colorPrimaryBlueSkies</item>
+        <item name="colorPrimaryVariant">@color/colorTitleBlueSkies</item>
+        <item name="colorSecondary">@color/colorHeaderBlueSkies</item>
+        <item name="titleTextColor">@color/colorTextBlueSkies</item>
+        <item name="colorPrimaryDark">@color/colorTextShadowBlueSkies</item>
+        <item name="colorAccent">@color/colorAccentBlueSkies</item>
+        <item name="colorButtonNormal">@color/colorButtonBlueSkies</item>
+    </style>
+
+    <style name="AppTheme.TheForest" parent="Theme.Dartscape">
+        <item name="colorPrimary">@color/colorPrimaryTheForest</item>
+        <item name="colorPrimaryVariant">@color/colorTitleTheForest</item>
+        <item name="colorSecondary">@color/colorHeaderTheForest</item>
+        <item name="titleTextColor">@color/colorTextTheForest</item>
+        <item name="colorPrimaryDark">@color/colorTextShadowTheForest</item>
+        <item name="colorAccent">@color/colorAccentTheForest</item>
+        <item name="colorButtonNormal">@color/colorButtonTheForest</item>
+    </style>
+
+    <style name="AppTheme.BlackCherry" parent="Theme.Dartscape">
+        <item name="colorPrimary">@color/colorPrimaryBlackCherry</item>
+        <item name="colorPrimaryVariant">@color/colorTitleBlackCherry</item>
+        <item name="colorSecondary">@color/colorHeaderBlackCherry</item>
+        <item name="titleTextColor">@color/colorTextBlackCherry</item>
+        <item name="colorPrimaryDark">@color/colorTextShadowBlackCherry</item>
+        <item name="colorAccent">@color/colorAccentBlackCherry</item>
+        <item name="colorButtonNormal">@color/colorButtonBlackCherry</item>
+    </style>
+
+    <style name="AppTheme.MidnightBlues" parent="Theme.Dartscape">
+        <item name="colorPrimary">@color/colorPrimaryMidnightBlues</item>
+        <item name="colorPrimaryVariant">@color/colorTitleMidnightBlues</item>
+        <item name="colorSecondary">@color/colorHeaderMidnightBlues</item>
+        <item name="titleTextColor">@color/colorTextMidnightBlues</item>
+        <item name="colorPrimaryDark">@color/colorTextShadowMidnightBlues</item>
+        <item name="colorAccent">@color/colorAccentMidnightBlues</item>
+        <item name="colorButtonNormal">@color/colorButtonMidnightBlues</item>
+    </style>
+
+
+    <style name="AppTheme.CottonCandy" parent="Theme.Dartscape">
+        <item name="colorPrimary">@color/colorPrimaryCottonCandy</item>
+        <item name="colorPrimaryVariant">@color/colorTitleCottonCandy</item>
+        <item name="colorSecondary">@color/colorHeaderCottonCandy</item>
+        <item name="titleTextColor">@color/colorTextCottonCandy</item>
+        <item name="colorPrimaryDark">@color/colorTextShadowCottonCandy</item>
+        <item name="colorAccent">@color/colorAccentCottonCandy</item>
+        <item name="colorButtonNormal">@color/colorButtonCottonCandy</item>
+    </style>
+
+    <style name="AppTheme.BlackAndYellow" parent="Theme.Dartscape">
+        <item name="colorPrimary">@color/colorPrimaryBlackAndYellow</item>
+        <item name="colorPrimaryVariant">@color/colorTitleBlackAndYellow</item>
+        <item name="colorSecondary">@color/colorHeaderBlackAndYellow</item>
+        <item name="titleTextColor">@color/colorTextBlackAndYellow</item>
+        <item name="colorPrimaryDark">@color/colorTextShadowBlackAndYellow</item>
+        <item name="colorAccent">@color/colorAccentBlackAndYellow</item>
+        <item name="colorButtonNormal">@color/colorButtonBlackAndYellow</item>
+    </style>
+
+    <style name="AppTheme.NeonLights" parent="Theme.Dartscape">
+        <item name="colorPrimary">@color/colorPrimaryNeonLights</item>
+        <item name="colorPrimaryVariant">@color/colorTitleNeonLights</item>
+        <item name="colorSecondary">@color/colorHeaderNeonLights</item>
+        <item name="titleTextColor">@color/colorTextNeonLights</item>
+        <item name="colorPrimaryDark">@color/colorTextShadowNeonLights</item>
+        <item name="colorAccent">@color/colorAccentNeonLights</item>
+        <item name="colorButtonNormal">@color/colorButtonNeonLights</item>
+    </style>
+</resources>

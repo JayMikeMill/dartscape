@@ -1,0 +1,7 @@
+[packages]
+com.gworks.dartscape = raa
+
+[localazy]
+allStringsUploaded = true
+showWelcomeMessage = false
+

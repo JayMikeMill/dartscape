@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/FragDefault"
+    android:padding="0dp"
+    android:splitMotionEvents="false">
+
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:splitMotionEvents="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.5"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight=".5"
+                android:background="?attr/colorButtonNormal"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        custom:layout_constraintDimensionRatio="1:1"
+                        custom:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tvStatsPlayerGame"
+                        style="@style/TextViewCommon"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="6"
+                        android:padding="4dp"
+                        android:text="CRICKET, NORMAL"
+                        tools:layout_conversion_absoluteHeight="40dp"
+                        tools:layout_conversion_absoluteWidth="320dp" />
+
+                    <view
+                        style="@style/IconButtonBorder"
+                        class="com.gworks.dartscape.ui.MultiView"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@android:color/transparent"
+                        android:paddingTop="8dp"
+                        android:visibility="invisible"
+                        custom:layout_constraintBottom_toBottomOf="parent"
+                        custom:layout_constraintDimensionRatio="1:1"
+                        custom:layout_constraintTop_toTopOf="parent" />
+
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="?attr/colorAccent"
+                    custom:srcCompat="?attr/colorAccent" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight=".5"
+                android:background="?attr/colorButtonNormal"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:padding="4dp"
+                        custom:layout_constraintDimensionRatio="1:1"
+                        custom:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tvStatsPlayerDate"
+                        style="@style/TextViewCommon"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="6"
+                        android:padding="4dp"
+                        android:text="DARTSCAPE"
+                        tools:layout_conversion_absoluteHeight="40dp"
+                        tools:layout_conversion_absoluteWidth="320dp" />
+
+                    <view
+                        style="@style/IconButtonBorder"
+                        class="com.gworks.dartscape.ui.MultiView"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@android:color/transparent"
+                        android:paddingTop="8dp"
+                        android:visibility="invisible"
+                        custom:layout_constraintBottom_toBottomOf="parent"
+                        custom:layout_constraintDimensionRatio="1:1"
+                        custom:layout_constraintTop_toTopOf="parent" />
+
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="?attr/colorAccent"
+                    custom:srcCompat="?attr/colorAccent" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <com.gworks.dartscape.ui.StatsPlayerRecycleView
+            android:id="@+id/rvPlayerStats"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginLeft="@dimen/frag_padding"
+            android:layout_marginTop="@dimen/frag_padding"
+            android:layout_marginRight="@dimen/frag_padding"
+            android:layout_marginBottom="@dimen/control_padding"
+            android:layout_weight="8"
+            android:background="@drawable/drw_control_bg"
+            android:padding="2dp"
+            tools:listitem="@layout/item_recycle_stats_player">
+
+        </com.gworks.dartscape.ui.StatsPlayerRecycleView>
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

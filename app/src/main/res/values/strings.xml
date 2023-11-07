@@ -1,0 +1,335 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">Dartscape</string>
+    <string name="name">NAME</string>
+    <string name="wins">WINS</string>
+    <string name="team">TEAM</string>
+    <string name="player">PLAYER</string>
+    <string name="players">PLAYERS</string>
+    <string name="player_1">PLAYER 1</string>
+    <string name="player_2">PLAYER 2</string>
+    <string name="player_3">PLAYER 3</string>
+    <string name="player_4">PLAYER 4</string>
+    <string name="_0">0</string>
+    <string name="_20">20</string>
+    <string name="_19">19</string>
+    <string name="_18">18</string>
+    <string name="_17">17</string>
+    <string name="_16">16</string>
+    <string name="_15">15</string>
+    <string name="bull">BULL</string>
+
+
+    <string name="undo">UNDO</string>
+    <string name="dart_games">DART GAMES</string>
+    <string name="slot">SLOT</string>
+    <string name="quit">QUIT</string>
+    <string name="new_game">NEW GAME</string>
+    <string name="new_set">NEW SET</string>
+    <string name="end_turn">END\nTURN</string>
+    <string name="pause_bot">PAUSE\nBOT</string>
+    <string name="resume_bot">RESUME\nBOT</string>
+    <string name="show_result">SHOW\nRESULT</string>
+
+    #
+    # GAME RESULTS
+    #
+
+    <string name="start">START</string>
+    <string name="and">AND</string>
+    <string name="won">WON</string>
+
+    <string name="_throw">THROW</string>
+    <string name="round">ROUND</string>
+    <string name="game">GAME</string>
+    <string name="leg">LEG</string>
+    <string name="legs">LEGS</string>
+    <string name="set">SET</string>
+    <string name="sets">SETS</string>
+    <string name="match">MATCH</string>
+    <string name="race">RACE</string>
+    <string name="won_the">WON THE</string>
+    <string name="play">PLAY</string>
+    <string name="again">AGAIN</string>
+    <string name="next">NEXT</string>
+
+    <string name="bust">BUST</string>
+    <string name="kill">KILL</string>
+    <string name="cap">CAP</string>
+    <string name="miss">MISS</string>
+    <string name="fatality">FATALITY</string>
+
+    #
+    # STATS
+    #
+
+    <string name="games_played">GAMES PLAYED</string>
+    <string name="total_wins">TOTAL WINS</string>
+    <string name="total_losses">TOTAL LOSSES</string>
+    <string name="win_average">WIN AVERAGE %</string>
+    <string name="total_throws">TOTAL THROWS</string>
+    <string name="total_outs">TOTAL OUTS</string>
+
+    <string name="hit">HIT</string>
+    <string name="hits">HITS</string>
+    <string name="hit_avg">HIT AVG.</string>
+    <string name="mark_avg">MARK AVG.</string>
+    <string name="score">SCORE</string>
+    <string name="score_avg">SCORE AVG.</string>
+    <string name="best_marks">BEST MARKS</string>
+    <string name="best_score">BEST SCORE</string>
+
+    <string name="score_180s">SCORE 180s</string>
+    <string name="score_140_179">SCORE 140–179</string>
+    <string name="score_100_139">SCORE 100–139</string>
+    <string name="score_60_99">SCORE 60–99</string>
+
+    <string name="bullseyes">BULLSEYES</string>
+    <string name="double_bullseyes">DOUBLE BULLS</string>
+    <string name="single_bullseyes">SINGLE BULLS</string>
+
+    <string name="hit_triples">HIT TRIPLES</string>
+    <string name="hit_doubles">HIT DOUBLES</string>
+    <string name="hit_singles">HIT SINGLES</string>
+
+    <string name="best_num">BEST \#</string>
+    <string name="worst_num">WORST \#</string>
+
+    <string name="best_out">BEST OUT</string>
+    <string name="cricket_high">CRICKET HIGH</string>
+    <string name="shanghai_high">SHANGHAI HIGH</string>
+    <string name="baseball_high">BASEBALL HIGH</string>
+    <string name="shanghais">SHANGHAIS</string>
+    <string name="kills">KILLS</string>
+
+    <string name="best_inning">BEST INNING</string>
+    <string name="bases_per_inning">BASES/INNING</string>
+    <string name="runs_per_inning">RUNS/INNING</string>
+    <string name="home_runs">HOME RUNS</string>
+    <string name="grand_slams">GRAND SLAMS</string>
+
+    <string name="best_game">BEST GAME</string>
+    <string name="total_score">TOTAL SCORE</string>
+    #
+    # GAME TYPES
+    #
+
+    <string name="all_games">ALL GAMES</string>
+    <string name="all_modes">ALL MODES</string>
+    <string name="all_variants">ALL VARIANTS</string>
+
+    <string name="_01_games">01 GAMES</string>
+
+    <string name="_301">301</string>
+    <string name="_501">501</string>
+    <string name="_701">701</string>
+    <string name="_901">901</string>
+    <string name="_1001">1001</string>
+    <string name="_1201">1201</string>
+    <string name="_1501">1501</string>
+
+    <string name="straight_in">STRAIGHT IN</string>
+    <string name="straight_out">STRAIGHT OUT</string>
+    <string name="double_in">DOUBLE IN</string>
+    <string name="double_out">DOUBLE OUT</string>
+    <string name="triple_in">TRIPLE IN</string>
+    <string name="triple_out">TRIPLE OUT</string>
+    <string name="master_in">MASTER IN</string>
+    <string name="master_out">MASTER OUT</string>
+
+    <string name="cricket">CRICKET</string>
+    <string name="normal">NORMAL</string>
+    <string name="cut_throat">CUT-THROAT</string>
+
+    <string name="turns">TURNS</string>
+    <string name="open">OPEN</string>
+
+    <string name="shanghai">SHANGHAI</string>
+
+    <string name="killer">KILLER</string>
+    <string name="one_killer">ONE KILLER</string>
+    <string name="killers">KILLERS</string>
+
+    <string name="baseball">BASEBALL</string>
+    <string name="inning">INNING</string>
+    <string name="out">OUT</string>
+    <string name="outs">OUTS</string>
+    <string name="base">BASE</string>
+    <string name="on_base">ON BASE</string>
+    <string name="single">SINGLE</string>
+    <string name="_double">DOUBLE</string>
+    <string name="triple">TRIPLE</string>
+    <string name="home_run">HOME RUN</string>
+    <string name="homer">HOMER</string>
+    <string name="runner">RUNNER</string>
+    <string name="run">RUN</string>
+    <string name="runs">RUNS</string>
+    <string name="hr">HR</string>
+    <string name="grand">GRAND</string>
+    <string name="slam">SLAM</string>
+    #
+    # STATS SCREEN
+    #
+
+    <string name="all_time">ALL TIME</string>
+    <string name="last_hour">LAST HOUR</string>
+    <string name="last_day">LAST DAY</string>
+    <string name="last_week">LAST WEEK</string>
+    <string name="last_month">LAST MONTH</string>
+    <string name="last_year">LAST YEAR</string>
+
+    #
+    # HELP SCREEN
+    #
+
+    <string name="how_to_score">HOW TO SCORE</string>
+    <string name="help_to_enter_a_score">TO ENTER A SCORE JUST\nTAP THE BUTTONS OR GAME.</string>
+    <string name="scroll_down_for_more">↓↓↓ SCROLL DOWN FOR MORE ↓↓↓</string>
+    <string name="tips">TIPS</string>
+    <string name="dartscape_game_menu">DARTSCAPE GAME MENU</string>
+    <string name="legs_and_sets">LEGS AND SETS</string>
+
+    <string name="help_how_to_score">TAP ONCE FOR A <font fgcolor='#FF44FF44'>SINGLE</font>\nDOUBLE TAP FOR A <font fgcolor='#FF66AAFF'>DOUBLE</font>\nPRESS AND HOLD FOR A <font fgcolor='#FFFFBB00'>TRIPLE</font>\nTRY IT BELOW!</string>
+
+    <string name="help_tip_chapters">TAP THE BUTTON NEAR THE TOP OF THE SCREEN TO JUMP TO DIFFERENT SECTIONS OF THIS HELP SCREEN.</string>
+    <string name="help_tip_add_players">ADD NEW PLAYERS AND CHANGE PLAYERS NAMES BY CLICKING THE \"PLAYERS\" BUTTON IN THE BOTTOM LEFT OF THE GAME MENU SCREEN.</string>
+    <string name="help_tip_back_arrow">PRESS THE BACK ARROW ← AT THE TOP LEFT OF THE SCREEN TO RETURN TO THE PREVIOUS SCREEN OR BACK TO THE GAME.</string>
+    <string name="help_tip_auto_save">AN ONGOING GAME OR MATCH WILL BE AUTOMATICALLY SAVED WHEN THE APP IS CLOSED SO YOU CAN RETURN TO IT LATER.</string>
+    <string name="help_tip_stats_individual">TO SEE A PLAYER\'S INDIVIDUAL STATS IN THE STAT SCREEN, CLICK ON THE PLAYER\'S NAME. COMPARE STATS WITH THE BUTTON ABOVE THE PLAYERS LIST.</string>
+
+    <string name="help_game_menu_items">DART GAMES\nGAME VARIANT\n1ST GAME OPTION\n2ND GAME OPTION\nLEGS (SEE BELOW)\nSETS\\LEG-RACE\nPLAYER TYPE\nPLAYER\'S NAME\nBOT\\COMPUTER\nBOT DIFFICULTY\nTEAM OPTION\nTEAMMATE\'S NAME\nCLOSE PLAYER SLOT\nRETURN TO GAME\nSTART GAME\\MATCH\nVIEW\\EDIT PLAYERS\nVIEW PLAYER STATS\nDARTSCAPE SETTINGS\nTHIS SCREEN</string>
+
+    <string name="help_legs_and_sets">IN THE GAME OF DARTS, A \"<font fgcolor='#FF44FF44'>LEG</font>\" IS A SINGLE GAME IN A \"<font fgcolor='#FFFFBB00'>MATCH</font>\". IN A \"<font fgcolor='#FF66AAFF'>LEG RACE</font>\" THERE IS A SET NUMBER OF LEGS A PLAYER MUST WIN IN ORDER TO TO WIN THE <font fgcolor='#FFFFBB00'>MATCH</font>. FOR EXAMPLE, IN A LEG RACE TO 5 LEGS, THE FIRST PLAYER TO WIN 5 LEGS (5 GAMES) WINS THE <font fgcolor='#FFFFBB00'>MATCH</font>.\nA \"<font fgcolor='#FF44FF44'>SET</font>\" IS A NUMBER OF LEGS. TO WIN A <font fgcolor='#FF44FF44'>SET</font> A PLAYER MUST WIN THE <font fgcolor='#FF66AAFF'>BEST OF</font> THE SET NUMBER OF LEGS. FOR EXAMPLE, IF THE NUMBER OF LEGS IN A SET IS 5, THE FIRST PLAYER TO WIN 3 LEGS WINS THE SET. THIS IS THE SAME FOR MULTIPLE SETS. IF THERE ARE 3 SETS IN A <font fgcolor='#FFFFBB00'>MATCH</font>, THE FIRST PLAYER TO WIN 2 SETS WINS THE <font fgcolor='#FFFFBB00'>MATCH</font>.</string>
+
+    <string name="help_game_the_object">THE OBJECT</string>
+    <string name="help_game_scoring">SCORING</string>
+    <string name="help_game_variants">VARIANTS</string>
+
+    <string name="help_x01_object">THE GAME PLAY STARTS WITH A SCORE OF 301, 501, 701, 901, ETC… THE OBJECT IS TO GET YOUR SCORE TO EXACTLY ZERO BY THROWING ROUNDS OF THREE DARTS AND SUBTRACTING THE SUM OF THOSE THROWS FROM YOUR CURRENT SCORE.</string>
+    <string name="help_x01_scoring">TO START SCORING THE PLAYER MUST MEET THE GAME \"<font fgcolor='#FF66AAFF'>IN</font>\" VARIANT REQUIREMENT (SEE BELOW). ALL NUMBERS ARE IN PLAY INCLUDING BULLSEYE. THE PLAYER CAN HIT A <font fgcolor='#FF44FF44'>SINGLE</font>, <font fgcolor='#FF66AAFF'>DOUBLE</font> OR <font fgcolor='#FFFFBB00'>TRIPLE</font> OF ANY NUMBER. THE NUMBER IS THEN MULTIPLIED AND SUBTRACTED FROM THEIR SCORE. TO WIN, THE PLAYER\'S SCORE MUST REACH EXACTLY ZERO AND MEET THE GAME \"<font fgcolor='#FF66AAFF'>OUT</font>\" VARIANT REQUIREMENT (SEE BELOW). IF THE PLAYER\'S SCORE GOES BELOW ZERO, THE PLAYER\'S TURN ENDS AND THEIR SCORE RETURNS TO WHAT IT WAS AT THE BEGINNING OF THEIR TURN. THIS IS CALLED A <font fgcolor='#FFFF6969'>BUST</font>. A GOOD STRATEGY IS TO AIM FOR THE HIGHEST SCORING NUMBER (<font fgcolor='#FFFFBB00'>TRIPLE 20</font>) UNTIL THE PLAYER IS IN SCORING RANGE TO WIN.</string>
+    <string name="help_x01_variants"><font fgcolor='#FF66AAFF'>STARTING SCORES</font>\n301, 501, 701, 901,\n1001, 1201, 1301, 1501\n\n<font fgcolor='#FF66AAFF'>STRAIGHT IN\\OUT</font>\n<font fgcolor='#FF44FF44'>ANY NUMBER</font> CAN BE HIT.\n\n<font fgcolor='#FF66AAFF'>DOUBLE IN\\OUT</font>\nONLY <font fgcolor='#FF66AAFF'>DOUBLES</font> CAN BE HIT\n\n<font fgcolor='#FF66AAFF'>TRIPLE IN\\OUT</font>\nONLY <font fgcolor='#FFFFBB00'>TRIPLES</font> CAN BE HIT.\n\n<font fgcolor='#FF66AAFF' >MASTER IN\\OUT</font>\n<font fgcolor='#FF66AAFF'>DOUBLES</font>, <font fgcolor='#FFFFBB00'>TRIPLES</font> OR <font fgcolor='#FFFF6969'>BULLSEYES</font>\nCAN BE HIT.</string>
+
+    <string name="help_cricket_object">THE OBJECT OF CRICKET IS TO HAVE THE HIGHEST SCORE AND \"<font fgcolor='#FFFF6969'>CLOSE OUT</font>\” NUMBERS 15 THROUGH 20 AND THE <font fgcolor='#FFFF6969'>BULLSEYE</font>.</string>
+    <string name="help_cricket_scoring">TO SCORE, THE PLAYER MUST HIT ANY OF THE ACTIVE NUMBERS (15 THROUGH 20 OR THE <font fgcolor='#FFFF6969'>BULLSEYE</font>). THE PLAYER CAN HIT A <font fgcolor='#FF44FF44'>SINGLE</font>, <font fgcolor='#FF66AAFF'>DOUBLE</font> OR <font fgcolor='#FFFFBB00'>TRIPLE</font> OF ANY NUMBER. WHEN THE PLAYER HITS A NUMBER THEY GET A MARK ON THAT NUMBER REPRESENTED BY A SLASH \"<font fgcolor='#FFFFFFFF'> / </font>\" ON THE SCORE SHEET. WHEN A PLAYER GETS THEIR THIRD MARK ON A NUMBER, THEY \"<font fgcolor='#FFFF6969'>CLOSE</font>\" IT. THIS IS REPRESENTED BY A CIRCLE \"<font fgcolor='#FFFFFFFF'>〇</font>\" ON THE SCORE SHEET. ONCE A PLAYER <font fgcolor='#FFFF6969'>CLOSES</font> A NUMBER THEY CAN BEGIN TO START SCORING ON THAT NUMBER. FOR EXAMPLE, IF A PLAYER HITS A TRIPLE 20 AND A DOUBLE 20, THEY WOULD CLOSES THE NUMBER AND SCORE ON THE DOUBLE 20 (40 POINTS). WHEN ALL PLAYERS CLOSE A NUMBER THE NUMBER BECOMES <font fgcolor='#FFFF6969'>INACTIVE</font>. <font fgcolor='#FFFF6969'>INACTIVE</font> NUMBERS CAN NO LONGER BE HIT TO SCORE.</string>
+    <string name="help_cricket_variants"><font fgcolor='#FF66AAFF'>CUT-THROAT</font>\nIN THE CUT-THROAT VARIATION OF CRICKET THE OBJECT IS TO HAVE THE <font fgcolor='#FFFF6969'>LEAST</font> SCORE AND CLOSE ALL NUMBERS (15 – 20 AND <font fgcolor='#FFFF6969'>THE BULLSEYE</font>). WHEN A PLAYER SCORES ON A NUMBER, ALL OTHER PLAYERS WHO <font fgcolor='#FFFF6969'>DO NOT</font> HAVE THAT NUMBER <font fgcolor='#FFFF6969'>CLOSED</font> WILL ACCUMULATE THE SCORE. IF ANOTHER PLAYER HAS ALREADY CLOSED THAT NUMBER, THEIR SCORE IS <font fgcolor='#FFFF6969'>UNAFFECTED</font>.\n\n<font fgcolor='#FF66AAFF'>SCORE CAP</font>\nA SCORE CAP CAN BE ADDED TO THE GAME TO PREVENT PLAYERS FROM ACCUMULATING VERY HIGH SCORES, FORCING THEM TO MOVE ON TO OTHER NUMBERS. PLAYERS CAN ONLY SCORE UP TO THE SCORE CAP PLUS THE LOWEST SCORING PLAYER\'S SCORE. FOR EXAMPLE, IF THE SCORE CAP IS SET TO 100 AND PLAYER 1 HAS A SCORE OF 134, AND PLAYER 2 HAS A SCORE OF 19, PLAYER 1 CAN ONLY SCORE UP TO 119 POINT BEFORE HE MUST MOVE ON.\n\n<font fgcolor='#FF66AAFF'>OPEN/TURN SCORING</font>\nOPEN SCORING MODE LETS PLAYERS KEEP SCORE WITHOUT HITTING \"NEXT TURN\". THE DOWNSIDE TO THIS IS THAT STATS WILL NOT BE TRACKED.</string>
+
+    <string name="help_shanghai_object">THE OBJECT OF SHANGHAI IS HIT A <font fgcolor='#FFED83FF'>SHANGHAI</font> OR TO HAVE THE HIGHEST SCORE AT THE END OF THE GAME.</string>
+    <string name="help_shanghai_scoring">TO  SCORE THE PLAYER MUST HIT  THE ACTIVE NUMBER. THE ACTIVE NUMBER CHANGES EACH ROUND, COUNTING UP OR DOWN. THE PLAYER CAN HIT A <font fgcolor='#FF44FF44'>SINGLE</font>, <font fgcolor='#FF66AAFF'>DOUBLE</font> OR <font fgcolor='#FFFFBB00'>TRIPLE</font> OF THAT NUMBER. THAT NUMBER IS THEN MULTIPLIED AND ADDED TO THEIR SCORE. IF THE PLAYER HITS A <font fgcolor='#FFED83FF'>SHANGHAI</font> THEN THEY INSTANTLY WIN THE GAME. A <font fgcolor='#FFED83FF'>SHANGHAI</font> IS WHEN A PLAYER HITS A <font fgcolor='#FF44FF44'>SINGLE</font>, <font fgcolor='#FF66AAFF'>DOUBLE</font> AND <font fgcolor='#FFFFBB00'>TRIPLE</font> OF THE ACTIVE NUMBER IN THE SAME ROUND. WHEN THE LAST NUMBER IS FINISHED THE GAME ENDS AND THE PLAYER WITH THE HIGHEST SCORE WINS. IF THERE IS A TIE, THE PLAYER WITH THE MOST <font fgcolor='#FFFFBB00'>TRIPLES</font> WINS. IF THEIR <font fgcolor='#FFFFBB00'>TRIPLES</font> ARE TIED, THE PLAYER WITH THE MOST <font fgcolor='#FF66AAFF'>DOUBLES</font> WINS. IF THESE ARE TIED, THE PLAYER WHO THREW FIRST IN ORDER WINS.</string>
+    <string name="help_shanghai_variants"><font fgcolor='#FF66AAFF'>STARTING NUMBER</font>\nTHE NUMBER THE GAME WILL BEGIN AT.\n\n<font fgcolor='#FF66AAFF'>ENDING NUMBER</font>\nTHE NUMBER THE GAME WILL END AT. IF THE ENDING NUMBER IS LOWER THAN THE STARTING NUMBER THE GAME NUMBERS WILL COUNT DOWN INSTEAD OF UP.</string>
+
+    <string name="help_baseball_object">THE OBJECT OF BASEBALL IS TO HAVE THE MOST <font fgcolor='#FF44FF44'>RUNS</font> AT THE END OF THE GAME.</string>
+    <string name="help_baseball_scoring">IN BASEBALL THERE ARE A NUMBER OF <font fgcolor='#FF66AAFF'>INNINGS</font>, WHICH ARE LIKE ROUNDS. EACH INNING, THE PLAYER MUST THROW AT THE NUMBER WHICH CORRESPONDS TO THE INNING. FOR INSTANCE, DURING THE 1ST INNING, THE PLAYERS THROW AT THE 1, 2ND INNING, THE 2, AND SO ON. A PLAYER CAN SCORE ON A <font fgcolor='#FF44FF44'>SINGLE</font>, <font fgcolor='#FF66AAFF'>DOUBLE</font> OR <font fgcolor='#FFFFBB00'>TRIPLE</font> OF THAT NUMBER. THE PLAYER CAN ALSO SCORE ON THE <font fgcolor='#FF44FF44'>SINGLE BULLSEYE</font>  (THE <font fgcolor='#FF44FF44'>GREEN</font> AREA OF THE BULLSEYE). IF A PLAYER SCORES A SINGLE, IT IS LIKE A SINGLE IN BASEBALL, ALL RUNNERS ON BASE ADVANCE 1 BASE AND THEY GET A RUNNER ON 1ST BASE. THE SAME GOES FOR DOUBLES AND TRIPLE. THE SINGLE BULLSEYE COUNTS AS A HOME RUN, WHERE ALL RUNNERS ADVANCE TO THE <font fgcolor='#FFFFBB00'>HOME PLATE</font>. WHEN A RUNNER ADVANCES THE THE HOME PLATE, THE PLAYER GETS A <font fgcolor='#FF44FF44'>RUN</font>, REPRESENTED BY THEIR SCORE. IF A PLAYER DOES NOT HIT ANY PART OF THE ACTIVE NUMBER, OR THEY HIT THE <font fgcolor='#FF66AAFF'>DOUBLE BULLSEYE</font> (THE <font fgcolor='#FFFF6969'>RED</font> AREA OF THE BULLSEYE), THE THROW IS COUNTED AS AN <font fgcolor='#FFFF6969'>OUT</font>. AFTER THE PLAYER GETS 3 <font fgcolor='#FFFF6969'>OUTS</font>, THEIR TURN IS OVER AND THE NEXT PLAYER BEGINS. AFTER THE LAST TURN OF THE LAST INNING, THE PLAYER WITH THE MOST RUNS WINS. IF THERE IS A TIE, THE GAME CONTINUES TO THE NEXT INNINGS UNTIL THERE IS A WINNER.</string>
+    <string name="help_baseball_variants"><font fgcolor='#FF66AAFF'>INNINGS</font>\nTHE NUMBER OF INNINGS IN A GAME.\n\n<font fgcolor='#FF66AAFF'>CHALLENGE</font>\nTO MAKE THE GAME MORE CHALLENGING MAKE A DOUBLE = A SINGLE, A TRIPLE = A DOUBLE, A SINGLE BULLSEYE = A TRIPLE, AND A DOUBLE BULLSEYE = HOME RUN.</string>
+
+    <string name="help_killer_object">THE OBJECT OF KILLER IS TO <font fgcolor='#FFFF6969'>ELIMINATE</font> ALL OTHER PLAYERS BY <font fgcolor='#FFFF6969'>KILLING</font> ALL THEIR LIVES.</string>
+    <string name="help_killer_scoring">THE GAME BEGINS WITH EACH PLAYER THROWING WITH THEIR NON-DOMINANT HAND. WHATEVER NUMBER THEY HIT BECOMES THEIR NUMBER FOR THE DURATION OF THE GAME. TO BEGIN <font fgcolor='#FFFF6969'>KILLING</font> OTHER PLAYERS, THE PLAYER MUST FIRST HIT THE <font fgcolor='#FF66AAFF'>DOUBLE</font> OF THEIR OWN NUMBER. WHEN THIS HAPPENS THE PLAYER THEN BECOMES A <font fgcolor='#FFFF6969'>KILLER</font> (BY TAPPING THEIR \"<font fgcolor='#FFFF6969'>KILLER</font>\" BUTTON). NOW THE PLAYER CAN BEGIN AIMING AT AND HITTING THE <font fgcolor='#FF66AAFF'>DOUBLES</font> OF OTHER PLAYER\'S NUMBERS. WHEN A PLAYER IS A <font fgcolor='#FFFF6969'>KILLER</font> AND HITS A <font fgcolor='#FF66AAFF'>DOUBLE</font> OF ANOTHER PLAYER\'S NUMBER, THE PLAYER WITH THE HIT NUMBER LOSES ONE LIFE (BY THE <font fgcolor='#FFFF6969'>KILLER</font> TAPPING THE OTHER PLAYERS \"<font fgcolor='#FFFF6969'>KILL</font>\" BUTTON. NOTE: MAKE SURE THE CORRECT \"<font fgcolor='#FFFF6969'>KILLER</font>\" BUTTON IS SELECTED TO KEEPS STATS CORRECT).  WHEN A PLAYER RUNS OUT OF LIVES THEY ARE <font fgcolor='#FFFF6969'>ELIMINATED</font>. THE LAST PLAYER TO NOT BE <font fgcolor='#FFFF6969'>ELIMINATED</font> WINS.</string>
+    <string name="help_killer_variants"><font fgcolor='#FF66AAFF'>KILLERS</font>\nTHIS IS THE NORMAL GAME VARIANT WHERE MULTIPLE PLAYERS CAN BECOME KILLERS.\n\n<font fgcolor='#FF66AAFF'>ONE KILLER</font>\nIN THIS GAME VARIANT ONLY ONE PLAYER CAN BE THE <font fgcolor='#FFFF6969'>KILLER</font> AT A TIME. WHEN ANOTHER PLAYER HITS THIER NUMBER, THEY BECOME <font fgcolor='#FFFF6969'>THE KILLER</font> AND THE PREVIOUS <font fgcolor='#FFFF6969'>KILLER</font> LOSES THEIR <font fgcolor='#FFFF6969'>KILLER</font> STATUS.\n\n<font fgcolor='#FF66AAFF'>OTHER VARIANTS</font>\nIF HITTING <font fgcolor='#FF66AAFF'>DOUBLES</font> SEEMS HARD, IT CAN BE CHANGED TO HITTING OTHER PARTS OF THE NUMBER LIKE THE INNER OR OUTER SECTION OF THE <font fgcolor='#FF44FF44'>SINGLE</font>, OR THE <font fgcolor='#FFFFBB00'>TRIPLE</font>.</string>
+
+    #
+    # SETTINGS SCREEN
+    #
+
+    <string name="sound">SOUND</string>
+    <string name="volume">VOLUME</string>
+    <string name="winner_sound">WINNER SOUND</string>
+    <string name="bust_sound">BUST SOUND</string>
+    <string name="bot_throw_speed">BOT THROW SPEED</string>
+    <string name="seconds">SECONDS</string>
+    <string name="new_game_order">NEW GAME ORDER</string>
+    <string name="in_game_options">IN GAME OPTIONS</string>
+    <string name="show_wins">SHOW WINS</string>
+    <string name="show_avg">SHOW AVG.</string>
+    <string name="show_game_info">SHOW PLAYER/GAME INFO</string>
+    <string name="dartscape_theme">DARTSCAPE THEME</string>
+    <string name="other_settings">OTHER SETTINGS</string>
+    <string name="show_shadows">SHOW SHADOWS</string>
+
+    <string name="player_data">PLAYER DATA</string>
+    <string name="restore">RESTORE</string>
+    <string name="back_up">BACK UP</string>
+    <string name="save_settings">SAVE\nSETTINGS</string>
+
+    #
+    #
+    #
+    <string name="ok">OK</string>
+    <string name="no">NO</string>
+    <string name="yes">YES</string>
+    <string name="off">OFF</string>
+    <string name="success">SUCCESS</string>
+    <string name="confirm">CONFIRM</string>
+    <string name="error">ERROR</string>
+    <string name="cancel" tools:ignore="ButtonCase">CANCEL</string>
+    <string name="delete">DELETE</string>
+    <string name="save">SAVE</string>
+    <string name="edit">EDIT</string>
+    <string name="thank_you">THANK YOU</string>
+
+    <string name="invalid_settings">INVALID SETTINGS</string>
+    <string name="game_in_play">GAME IN PLAY</string>
+    <string name="player_limit">PLAYER LIMIT</string>
+    <string name="pro_only">PRO ONLY</string>
+    <string name="no_name">NO NAME</string>
+    <string name="game_data_was_saved">GAME DATA WAS SAVED</string>
+    <string name="game_data_was_restored">GAME DATA WAS RESTORED</string>
+
+    # Buy Pro Dialog
+    <string name="buy_pro_purchase_to_unlock">PURCHASE THE PRO VERSION OF DARTSCAPE TO UNLOCK:</string>
+    <string name="buy_pro_perks">* REMOVE AD BANNER \n * ADD UNLIMITED PLAYERS \n* ALL BOT LEVELS (HARD+) \n* ADJUST BOT SPEED\n* DARTSCAPE THEMES\n* IN GAME OPTIONS\n* SAVE\\RESTORE DATA\n* THE JOY OF HELPING\nA SMALL DEVELOPER! 😁\n\n(YOU CAN PURCHASE LATER THROUGH THE SETTINGS SCREEN)\n\nHAVE FUN!</string>
+    <string name="buy_now">BUY\nNOW</string>
+    <string name="buy_pro">BUY PRO</string>
+    <string name="maybe_later">MAYBE\nLATER</string>
+    <string name="maybe_later2">MAYBE LATER</string>
+    <string name="dialog_purchased_pro">THANK YOU FOR PURCHASING DARTSCAPE PRO! ALL FEATURES ARE NOW UNLOCKED!</string>
+
+    <string name="dialog_no_bots_open_mode">Bots not allowed in open scoring mode.</string>
+    <string name="dialog_no_bots_killer_mode">Bots not allowed in Killer game mode.</string>
+    <string name="dialog_killer_mode_2_player">Killer game mode requires at least 2 players.</string>
+    <string name="dialog_must_have_1_player">Must have at least one player.</string>
+    <string name="dialog_unique_players">Players must be unique. Choose or create new players.</string>
+    <string name="dialog_game_will_be_lost">THE CURRENT GAME WILL BE LOST. ARE YOU SURE?</string>
+    <string name="dialog_cant_edit_players">Cannot edit players during game. End current game and edit players?</string>
+    <string name="dialog_free_player_limit">Purchase the Pro version of Dartscape to add more than \# players.</string>
+    <string name="dialog_themes_pro_only">Purchase the Pro version of Dartscape to change the app\'s theme.</string>
+    <string name="dialog_restore_data">Are you sure you want to restore game data? All current players and stats will be lost.</string>
+    <string name="dialog_file_error">FILE NOT VALID. MUST BE DARTSCAPE FILE.</string>
+    <string name="dialog_no_name">Player must have a name.</string>
+    <string name="dialog_buy_pro_error">    COULD NOT CONTINUE WITH PURCHASE. MAKE SURE YOU ARE CONNECTED TO INTERNET AND THE GOOGLE PLAY STORE TRY AGAIN.</string>
+    <string name="purchase_dartscape_pro">PURCHASE DARTSCAPE PRO</string>
+    <string name="dartscape_pro">DARTSCAPE PRO</string>
+    <string name="add">ADD</string>
+    <string name="return_to_game">RETURN\nTO GAME</string>
+    <string name="start_game">START/nGAME</string>
+    <string name="stats">STATS</string>
+    <string name="settings">SETTINGS</string>
+    <string name="help">HELP</string>
+    <string name="dartscape">DARTSCAPE</string>
+    <string name="games">GAMES</string>
+    <string name="life">LIFE</string>
+    <string name="lives">LIVES</string>
+    <string name="end">END</string>
+    <string name="innings">INNINGS</string>
+
+    <string name="about">ABOUT</string>
+    <string name="contact_link">gworksforyou@gmail.com</string>
+    <string name="copyright">copyright © 2023, all rights reserved.\nG WORKS</string>
+    <string name="contact_info">---\nFEEL FREE TO EMAIL WITH FEEDBACK OR REQUEST FEATURES AND THEMES!</string>
+
+    #
+    # THEME NAMES
+    #
+
+    <string name="chalk_board">CHALK BOARD</string>
+    <string name="moonlight">MOONLIGHT</string>
+    <string name="night_time">NIGHT TIME</string>
+    <string name="royal_blood">ROYAL BLOOD</string>
+    <string name="ink_pad">INK PAD</string>
+    <string name="summer_time">SUMMER TIME</string>
+    <string name="blue_skies">BLUE SKIES</string>
+    <string name="the_forest">THE FOREST</string>
+    <string name="black_cherry">BLACK CHERRY</string>
+    <string name="midnight_blues">MIDNIGHT BLUES</string>
+    <string name="cotton_candy">COTTON CANDY</string>
+    <string name="black_and_yellow">BLACK AND YELLOW</string>
+    <string name="neon_lights">NEON LIGHTS</string>
+    <string name="playstore_url">market://details?id=com.gworks.dartscape</string>
+</resources>

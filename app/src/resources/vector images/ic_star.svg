@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+
+<svg
+   width="800px"
+   height="800px"
+   viewBox="0 0 24 24"
+   version="1.1"
+   id="svg9"
+   sodipodi:docname="ic_star.svg"
+   inkscape:version="1.2.2 (732a01da63, 2022-12-09)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs13" />
+  <sodipodi:namedview
+     id="namedview11"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="false"
+     inkscape:zoom="0.70268736"
+     inkscape:cx="414.83598"
+     inkscape:cy="621.18664"
+     inkscape:window-width="1920"
+     inkscape:window-height="991"
+     inkscape:window-x="-10"
+     inkscape:window-y="-10"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg9" />
+  <title
+     id="title2">star_fill</title>
+  <path
+     d="m 17.994717,6.1350549 c 0.243016,-0.4281427 0.84577,-0.4281427 1.088734,0 l 1.408607,2.4818394 2.735366,0.6078603 c 0.47187,0.1048596 0.658139,0.6931083 0.336452,1.0625854 l -1.864803,2.141723 0.281925,2.857509 c 0.04863,0.492931 -0.438962,0.856513 -0.880795,0.656724 L 18.53911,14.785108 15.977997,15.943296 C 15.53618,16.143085 15.048566,15.779503 15.097203,15.286572 L 15.379132,12.429063 13.514354,10.28734 C 13.192658,9.9178629 13.378911,9.3296138 13.850787,9.2247546 l 2.735346,-0.6078603 z"
+     id="路径-0"
+     fill="#09244b"
+     style="fill:#f1ff0c;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.305878;stroke-dasharray:none;stroke-opacity:1" />
+  <path
+     d="m 4.9227868,6.0952703 c 0.2430158,-0.4281427 0.8457692,-0.4281427 1.088734,0 L 7.4201268,8.5771098 10.155494,9.18497 c 0.47187,0.1048597 0.658139,0.6931089 0.336453,1.062585 l -1.8648043,2.141723 0.281924,2.857509 c 0.04863,0.492931 -0.438961,0.856513 -0.8807947,0.656725 L 5.4671793,14.745324 2.9060661,15.903512 C 2.4642495,16.1033 1.9766349,15.739718 2.0252723,15.246787 L 2.307201,12.389278 0.44242286,10.247555 C 0.12072736,9.8780789 0.30698016,9.2898292 0.77885586,9.18497 L 3.5142022,8.5771098 Z"
+     id="路径-0-5"
+     fill="#09244b"
+     style="fill:#f1ff0c;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.305878;stroke-dasharray:none;stroke-opacity:1" />
+  <path
+     d="m 10.753034,6.6048346 c 0.327134,-0.576341 1.138524,-0.576341 1.46559,0 L 14.114807,9.9457439 17.797,10.76401 c 0.635204,0.141155 0.885947,0.933021 0.452912,1.43039 l -2.51029,2.883064 0.37951,3.846611 c 0.06547,0.663556 -0.590904,1.152989 -1.185674,0.884045 L 11.485863,18.249034 8.0382402,19.80812 C 7.4434912,20.077064 6.7870927,19.587631 6.8525667,18.924075 L 7.232082,15.077464 4.7218263,12.1944 C 4.2887774,11.697031 4.539501,10.905165 5.1747123,10.76401 L 8.8568767,9.9457439 Z"
+     id="路径-0-8"
+     fill="#09244b"
+     style="fill:#f1ff0c;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.411756;stroke-dasharray:none;stroke-opacity:1" />
+</svg>

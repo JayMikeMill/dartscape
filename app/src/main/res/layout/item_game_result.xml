@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_weight="1"
+    android:background="@drawable/drw_header_bg"
+    android:orientation="vertical"
+    android:padding="@dimen/control_padding">
+
+    <com.gworks.dartscape.ui.MultiView
+        style="@style/MultiViewLabel"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="JASON" />
+
+    <com.gworks.dartscape.ui.MultiView
+        style="@style/MultiViewLabel"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="CHAZ" />
+
+    <com.gworks.dartscape.ui.MultiView
+        style="@style/MultiViewLabel"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="STATS" />
+
+    <com.gworks.dartscape.ui.MultiView
+        style="@style/MultiViewLabel"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="RYAN" />
+
+    <com.gworks.dartscape.ui.MultiView
+        style="@style/MultiViewLabel"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="ASHELY" />
+
+    <com.gworks.dartscape.ui.MultiView
+        android:id="@+id/multiView"
+        style="@style/MultiViewLabel"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="ASHELY" />
+
+    <com.gworks.dartscape.ui.MultiView
+        android:id="@+id/multiView2"
+        style="@style/MultiViewLabel"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="ASHELY" />
+</LinearLayout>

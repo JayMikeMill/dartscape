@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/FragDefault"
+    android:splitMotionEvents="false">
+
+
+    <LinearLayout
+        android:id="@+id/linearLayout7"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:splitMotionEvents="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:splitMotionEvents="false">
+
+            <view
+                android:id="@+id/spinStatsGame"
+                style="@style/SpinnerDefault"
+                class="com.gworks.dartscape.ui.SuperSpinner"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                tools:listitem="@layout/item_spinner" />
+
+            <Space
+                android:id="@+id/spaceStats1"
+                android:layout_width="@dimen/control_padding"
+                android:layout_height="match_parent" />
+
+            <view
+                android:id="@+id/spinStatsGameMode"
+                style="@style/SpinnerDefault"
+                class="com.gworks.dartscape.ui.SuperSpinner"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                tools:listitem="@layout/item_spinner" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lStatsGameVariants"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/control_padding"
+            android:layout_weight="1"
+            android:splitMotionEvents="false">
+
+            <view
+                android:id="@+id/spinStatsGameVariant"
+                style="@style/SpinnerDefault"
+                class="com.gworks.dartscape.ui.SuperSpinner"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:visibility="visible"
+                tools:listitem="@layout/item_spinner" />
+
+            <Space
+                android:id="@+id/spaceStats2"
+                android:layout_width="@dimen/control_padding"
+                android:layout_height="match_parent" />
+
+            <view
+                android:id="@+id/spinStatsGameVariant2"
+                style="@style/SpinnerDefault"
+                class="com.gworks.dartscape.ui.SuperSpinner"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                tools:listitem="@layout/item_spinner" />
+
+        </LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/control_padding" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:splitMotionEvents="false">
+
+            <view
+                android:id="@+id/spinStatsStartTime"
+                style="@style/SpinnerDefault"
+                class="com.gworks.dartscape.ui.SuperSpinner"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                tools:listitem="@layout/item_spinner" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/control_padding"
+            android:layout_weight="8"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight=".1"
+                android:orientation="horizontal">
+
+                <view
+                    android:id="@+id/spinStatsStat1"
+                    style="@style/SpinnerDefault"
+                    class="com.gworks.dartscape.ui.SuperSpinner"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight=".5"
+                    tools:listitem="@layout/item_spinner" />
+
+            </LinearLayout>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/control_padding" />
+
+            <com.gworks.dartscape.ui.StatsAllRecycleView
+                android:id="@+id/rvAllStats"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="@drawable/drw_control_bg"
+                android:padding="2dp"
+                tools:listitem="@layout/item_recycle_stats">
+
+            </com.gworks.dartscape.ui.StatsAllRecycleView>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

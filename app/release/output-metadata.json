@@ -1,0 +1,20 @@
+{
+  "version": 3,
+  "artifactType": {
+    "type": "APK",
+    "kind": "Directory"
+  },
+  "applicationId": "com.gworks.dartscape",
+  "variantName": "release",
+  "elements": [
+    {
+      "type": "SINGLE",
+      "filters": [],
+      "attributes": [],
+      "versionCode": 102,
+      "versionName": "v0.2.0 Build: 256",
+      "outputFile": "Dartscape-v0.2.0-release.apk"
+    }
+  ],
+  "elementType": "File"
+}

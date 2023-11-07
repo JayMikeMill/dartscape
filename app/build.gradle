@@ -1,0 +1,93 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace 'com.gworks.dartscape'
+    compileSdk 34
+
+    defaultConfig {
+        minSdkVersion 22
+        targetSdkVersion 34
+        applicationId "com.gworks.dartscape"
+        vectorDrawables.useSupportLibrary = true
+        multiDexEnabled true
+        signingConfig signingConfigs.debug
+    }
+
+    def versionPropsFile = file('version.properties')
+    Properties versionProps = new Properties()
+    if (!versionPropsFile.exists()) {
+        versionProps['VERSION_PATCH']  = "0"
+        versionProps['VERSION_NUMBER'] = "5"
+        versionProps['VERSION_BUILD']  = "-1" // I set it to minus one so the first build is 0 which isn't super important.
+        versionProps.store(versionPropsFile.newWriter(), null)
+    }
+
+    def versionIncrement = 0
+    def runTasks = gradle.startParameter.taskNames
+    if (runTasks.toString().contains('bundleRelease') ||
+        runTasks.toString().contains('bundleReleaseTest')) {
+        versionIncrement = 1
+    }
+
+    def mVersionName = ""
+    def mFileName = ""
+    if (versionPropsFile.canRead()) {
+        versionProps.load(new FileInputStream(versionPropsFile))
+
+        versionProps['VERSION_PATCH']  = (versionProps['VERSION_PATCH'].toInteger() + versionIncrement).toString()
+        versionProps['VERSION_NUMBER'] = (versionProps['VERSION_NUMBER'].toInteger() + versionIncrement).toString()
+        versionProps['VERSION_BUILD']  = (versionProps['VERSION_BUILD'].toInteger() + versionIncrement).toString()
+
+        versionProps.store(versionPropsFile.newWriter(), null)
+
+        // 1: change major and minor version here
+        mVersionName = "v0.2.9.${versionProps['VERSION_PATCH']}"
+        // 2: change AppName for your app name
+        mFileName = "Dartscape-${mVersionName}"
+
+        defaultConfig {
+            versionCode versionProps['VERSION_NUMBER'].toInteger()
+            versionName "${mVersionName} Build: ${versionProps['VERSION_BUILD']}"
+            setProperty("archivesBaseName", mFileName)
+            applicationId "com.gworks.dartscape"
+        }
+    } else {
+        throw new FileNotFoundException("Could not read version.properties!")
+    }
+
+    tasks.withType(JavaCompile){
+        options.compilerArgs <<"-Xlint:deprecation"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+    }
+}
+
+dependencies {
+    // Use this for Support Library
+    implementation 'com.google.code.gson:gson:2.10.1'
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.25'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.10.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+
+    implementation 'com.google.guava:guava:32.0.1-jre'
+    implementation 'com.android.support:multidex:1.0.3'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+
+    implementation 'com.google.android.play:core:1.10.3'
+    implementation 'com.google.android.play:core-ktx:1.8.1'
+    implementation "com.android.billingclient:billing:6.0.1"
+
+    implementation 'com.google.android.gms:play-services-ads:22.5.0'
+}

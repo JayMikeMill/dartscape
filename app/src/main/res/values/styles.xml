@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="FragDefault">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@drawable/drw_primary_bg</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:padding">@dimen/frag_padding</item>
+        <item name="android:splitMotionEvents">false</item>
+    </style>
+
+    <style name="ButtonDefault" parent="Widget.AppCompat.Button.Borderless">
+        <item name="android:background">@drawable/drw_control_bg</item>
+        <item name="android:foreground">?android:attr/selectableItemBackground</item>
+        <item name="backgroundTint">@android:color/transparent</item>
+        <item name="backgroundTintMode">add</item>
+        <item name="android:fontFamily">@font/lilita_one</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:textColor">?attr/titleTextColor</item>
+        <item name="android:textStyle">bold</item>
+        <item name="autoSizeTextType">uniform</item>
+        <item name="android:maxLines">2</item>
+        <item name="android:padding">6dp</item>
+        <item name="android:shadowColor">?attr/colorPrimaryDark</item>
+        <item name="android:shadowDx">0</item>
+        <item name="android:shadowDy">0</item>
+        <item name="android:shadowRadius">15</item>
+    </style>
+
+    <style name="MultiViewDefault" parent="ButtonDefault">
+        <item name="android:foreground">@null</item>
+        <item name="android:textColor">?attr/titleTextColor</item>
+        <item name="android:textStyle">bold</item>
+        <item name="autoSizeTextType">uniform</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:gravity">center</item>
+        <item name="toggleButton">false</item>
+        <item name="iconColorTint">@android:color/transparent</item>
+    </style>
+
+    <style name="MultiViewTransparent" parent="MultiViewDefault">
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+
+    <style name="MultiViewLabel" parent="MultiViewDefault">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:clickable">false</item>
+    </style>
+
+    <style name="MultiViewHeader" parent="MultiViewLabel">
+        <item name="android:background">?attr/colorSecondary</item>
+    </style>
+
+    <style name="SpinnerDefault" parent="Widget.AppCompat.Spinner.DropDown">
+        <item name="android:spinnerMode">dropdown</item>
+        <item name="android:popupBackground">@drawable/drw_dropdown_bg</item>
+        <item name="android:dropDownWidth">match_parent</item>
+        <item name="android:dropDownHeight">match_parent</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:foreground">?android:attr/selectableItemBackground</item>
+    </style>
+
+    <style name="IconButtonBorder" parent="Widget.AppCompat.Button.Borderless">
+        <item name="android:background">@drawable/drw_control_bg</item>
+        <item name="android:foreground">?android:attr/selectableItemBackground</item>
+        <item name="backgroundTint">@android:color/transparent</item>
+        <item name="backgroundTintMode">add</item>
+        <item name="android:insetBottom">0dp</item>
+    </style>
+
+    <style name="TextViewCommon" parent="Widget.AppCompat.TextView.SpinnerItem">
+        <item name="android:gravity">center</item>
+        <item name="android:fontFamily">@font/lilita_one</item>
+        <item name="android:textColor">?attr/titleTextColor</item>
+        <item name="android:textStyle">bold</item>
+        <item name="autoSizeTextType">uniform</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:shadowColor">?attr/colorPrimaryDark</item>
+        <item name="android:shadowDx">0</item>
+        <item name="android:shadowDy">0</item>
+        <item name="android:shadowRadius">15</item>
+    </style>
+
+    <style name="TextViewPoints" parent="TextViewCommon">
+        <item name="fontFamily">@font/lilita_one</item>
+    </style>
+
+    <style name="PopupScoreAnimation">
+        <item name="android:windowEnterAnimation">@anim/slide_up</item>
+    </style>
+
+    <style name="PopupScoreBounce">
+        <item name="android:windowEnterAnimation">@anim/popup_scale_in</item>
+    </style>
+
+    <style name="DialogFullScreenNoBorder">
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowAnimationStyle">@null</item>
+        <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:background">"@drawable/bg_unbordered"</item>
+    </style>
+
+    <style name="DialogBordered">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowTitleStyle">@null</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:background">"@drawable/bg_bordered_dialog"</item>
+    </style>
+
+    <style name="SplashDialogAnimation">
+        <item name="android:windowEnterAnimation">@anim/no_animation</item>
+        <item name="android:windowExitAnimation">@anim/long_fade_out</item>
+    </style>
+
+    <style name="SplashDialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name = "android:windowContentOverlay" >@null</item >
+        <item name="android:windowAnimationStyle">@style/SplashDialogAnimation</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
+    </style>
+
+    <style name="full_screen_dialog">
+
+    </style>
+
+</resources>

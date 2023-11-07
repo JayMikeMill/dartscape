@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/colorPrimary"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight=".2"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/control_padding"
+        android:paddingRight="@dimen/control_padding">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent=".05" />
+
+            <TextView
+                android:id="@+id/tvGameResultsWinner"
+                style="@style/TextViewCommon"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".7"
+                android:fontFamily="@font/lilita_one"
+                android:maxLines="4"
+                android:text="PLAYER 1\nWON"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/guideline"
+                app:layout_constraintStart_toStartOf="@+id/guideline3"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent=".6" />
+
+            <ImageView
+                android:id="@+id/ivGameResultTrophy"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/guideline2"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_trophy" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent=".95" />
+
+            <pl.droidsonroids.gif.GifImageView
+                android:id="@+id/ivWinnerConfetti"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/img_confetti"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/guideline2"
+                app:layout_constraintStart_toStartOf="@id/guideline"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="?attr/colorAccent" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight=".075"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvGameResultGameMode"
+            style="@style/TextViewCommon"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight=".075"
+            android:fontFamily="@font/lilita_one"
+            android:maxLines="2"
+            android:padding="8dp"
+            android:text="301 - DOUBLE IN - STRAIGHT OUT\nBEST OF 3 LEGS - 3 SETS"
+            app:layout_constraintEnd_toStartOf="@+id/ivGameResultTrophy"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight=".6"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/control_padding"
+        android:paddingRight="@dimen/control_padding"
+        android:paddingBottom="@dimen/control_padding">
+
+        <LinearLayout
+            android:id="@+id/lDiagGameResultStats"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight=".6"
+            android:background="@drawable/drw_control_bg"
+            android:padding="2dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.095"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="?attr/colorAccent"
+            android:orientation="horizontal" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.09615384615"
+            android:background="?attr/colorButtonNormal"
+            android:orientation="horizontal">
+
+            <view
+                android:id="@+id/btnDiagGameResultBack"
+                style="@style/MultiViewTransparent"
+                class="com.gworks.dartscape.ui.MultiView"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:paddingTop="4dp"
+                android:text="TO\nGAME"
+                app:iconColorTint="?attr/titleTextColor"
+                custom:icon1="@drawable/ic_arrow_left" />
+
+            <view
+                android:id="@+id/btnDiagGameResultNewGame"
+                style="@style/MultiViewTransparent"
+                class="com.gworks.dartscape.ui.MultiView"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="left"
+                android:paddingTop="8dp"
+                android:text="NEW\nGAME"
+                app:iconColorTint="?attr/titleTextColor"
+                custom:icon1="@drawable/ic_plus_sign" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

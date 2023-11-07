@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="colorSingle">#FF44FF44</color>
+    <color name="colorDouble">#FF66AAFF</color>
+    <color name="colorTriple">#FFFFBB00</color>
+
+    <!-- THEME - CHALK BOARD -->
+    <color name="colorPrimaryChalk">#005503</color>
+    <color name="colorTitleChalk">#002701</color>
+    <color name="colorHeaderChalk">#003E02</color>
+    <color name="colorTextChalk">#FFFFFF</color>
+    <color name="colorTextShadowChalk">#000000</color>
+    <color name="colorAccentChalk">#CCCCCC</color>
+    <color name="colorButtonChalk">#003E02</color>
+
+    <!-- THEME - MOONLIGHT -->
+    <color name="colorPrimaryMoonlight">#FF393939</color>
+    <color name="colorTitleMoonlight">#77000000</color>
+    <color name="colorHeaderMoonlight">#33000000</color>
+    <color name="colorTextMoonlight">#FFFFFFFF</color>
+    <color name="colorTextShadowMoonlight">#22FFFFFF</color>
+    <color name="colorAccentMoonlight">#FF6E6E6E</color>
+    <color name="colorButtonMoonlight">#55000000</color>>
+
+    <!-- THEME - BLACK ON WHITE -->
+    <color name="colorPrimaryNightTime">#000000</color>
+    <color name="colorTitleNightTime">#292929</color>
+    <color name="colorHeaderNightTime">#191919</color>
+    <color name="colorTextNightTime">#FFFFFFFF</color>
+    <color name="colorTextShadowNightTime">#00000000</color>
+    <color name="colorAccentNightTime">#FFFFFFFF</color>
+    <color name="colorButtonNightTime">#FF000000</color>
+
+    <!-- THEME - PENCIL AND PAPER -->
+    <color name="colorPrimaryRoyalBlood">#730000</color>
+    <color name="colorTitleRoyalBlood">#390000</color>
+    <color name="colorHeaderRoyalBlood">#590006</color>
+    <color name="colorTextRoyalBlood">#FFBD00</color>
+    <color name="colorTextShadowRoyalBlood">#000000</color>
+    <color name="colorAccentRoyalBlood">#FFBD00</color>
+    <color name="colorButtonRoyalBlood">#730000</color>
+
+    <!-- THEME - BLACK ON WHITE -->
+    <color name="colorPrimaryInkPad">#FFFFFFFF</color>
+    <color name="colorTitleInkPad">#CFCFCF</color>
+    <color name="colorHeaderInkPad">#E6E6E6</color>
+    <color name="colorTextInkPad">#000000</color>
+    <color name="colorTextShadowInkPad">#00000000</color>
+    <color name="colorAccentInkPad">#000000</color>
+    <color name="colorButtonInkPad">#EDEDED</color>
+
+    <!-- THEME - BLACK ON WHITE -->
+    <color name="colorPrimarySummerTime">#FFE843</color>
+    <color name="colorTitleSummerTime">#FFAB43</color>
+    <color name="colorHeaderSummerTime">#FFD143</color>
+    <color name="colorTextSummerTime">#B63C47</color>
+    <color name="colorTextShadowSummerTime">#88FFFF4C</color>
+    <color name="colorAccentSummerTime">#FF7443</color>
+    <color name="colorButtonSummerTime">#DDC93A</color>
+
+    <!-- THEME - BLUE SKIES -->
+    <color name="colorPrimaryBlueSkies">#4699A5</color>
+    <color name="colorTitleBlueSkies">#71B9CD</color>
+    <color name="colorHeaderBlueSkies">#5FABB6</color>
+    <color name="colorTextBlueSkies">#EFF9FD</color>
+    <color name="colorTextShadowBlueSkies">#DD888888</color>
+    <color name="colorAccentBlueSkies">#FFFFFF</color>
+    <color name="colorButtonBlueSkies">#78AEB3</color>
+
+    <!-- THEME - FOREST -->
+    <color name="colorPrimaryTheForest">#213311</color>
+    <color name="colorTitleTheForest">#5A5136</color>
+    <color name="colorHeaderTheForest">#25591F</color>
+    <color name="colorTextTheForest">#BCCC5C</color>
+    <color name="colorTextShadowTheForest">#FF000000</color>
+    <color name="colorAccentTheForest">#72601B</color>
+    <color name="colorButtonTheForest">#203B04</color>
+
+    <!-- THEME - BLACK CHERRY -->
+    <color name="colorPrimaryBlackCherry">#252525</color>
+    <color name="colorTitleBlackCherry">#000000</color>
+    <color name="colorHeaderBlackCherry">#151515</color>
+    <color name="colorTextBlackCherry">#CC1515</color>
+    <color name="colorTextShadowBlackCherry">#FF000000</color>
+    <color name="colorAccentBlackCherry">#000000</color>
+    <color name="colorButtonBlackCherry">#1B1B1B</color>
+
+    <!-- THEME - MIDNIGHT BLUES -->
+    <color name="colorPrimaryMidnightBlues">#000000</color>
+    <color name="colorTitleMidnightBlues">#000D2C</color>
+    <color name="colorHeaderMidnightBlues">#00185E</color>
+    <color name="colorTextMidnightBlues">#116FE1</color>
+    <color name="colorTextShadowMidnightBlues">#00000000</color>
+    <color name="colorAccentMidnightBlues">#002C50</color>
+    <color name="colorButtonMidnightBlues">#000000</color>
+
+
+    <!-- THEME - FRUITY -->
+    <color name="colorPrimaryCottonCandy">#3C699A</color>
+    <color name="colorTitleCottonCandy">#325C88</color>
+    <color name="colorHeaderCottonCandy">#4278B3</color>
+    <color name="colorTextCottonCandy">#FF88DC</color>
+    <color name="colorTextShadowCottonCandy">#00000000</color>
+    <color name="colorAccentCottonCandy">#f27bcf</color>
+    <color name="colorButtonCottonCandy">#477CB6</color>
+
+    <!-- THEME - BLACK AND YELLOW -->
+    <color name="colorPrimaryBlackAndYellow">#000000</color>
+    <color name="colorTitleBlackAndYellow">#0E0D00</color>
+    <color name="colorHeaderBlackAndYellow">#1C1708</color>
+    <color name="colorTextBlackAndYellow">#eeba2c</color>
+    <color name="colorTextShadowBlackAndYellow">#00000000</color>
+    <color name="colorAccentBlackAndYellow">#eeba2c</color>
+    <color name="colorButtonBlackAndYellow">#000000</color>
+
+    <!-- THEME - NEON LIGHTS -->
+    <color name="colorPrimaryNeonLights">#000000</color>
+    <color name="colorTitleNeonLights">#0E0E0E</color>
+    <color name="colorHeaderNeonLights">#1B1B1B</color>
+    <color name="colorTextNeonLights">#10FF00</color>
+    <color name="colorTextShadowNeonLights">#9981F678</color>
+    <color name="colorAccentNeonLights">#C02BFF</color>
+    <color name="colorButtonNeonLights">#000000</color>
+
+    <color name="purple_200">#4F00B1</color>
+    <color name="purple_500">#001693</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#C5FFF9</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="dividerColor">#2C802F</color>
+    <color name="backroundColor">#8BC34A</color>
+
+</resources>
