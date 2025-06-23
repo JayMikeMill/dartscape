@@ -1,6 +1,5 @@
 package com.gworks.dartscape.fragments;
 
-import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.view.View;
@@ -8,14 +7,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
 import com.gworks.dartscape.R;
 import com.gworks.dartscape.data.GameData;
 import com.gworks.dartscape.data.GameFlags;
@@ -28,8 +23,9 @@ import com.gworks.dartscape.util.UserPrefs;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
-public class FragManager extends Fragment {
+public class FragManager  {
 
     private TitleBar mTitleBar;
 
@@ -128,19 +124,19 @@ public class FragManager extends Fragment {
         mIsFinishedLoading = false;
         showSplash();
 
-        new Handler(Looper.myLooper()).postDelayed(this::initFrags, mSplashTime - 800);
+        new Handler(Objects.requireNonNull(Looper.myLooper())).postDelayed(this::initFrags, mSplashTime - 800);
 
         return this;
     }
 
-    public boolean isFinishedLoading() {
-        return mIsFinishedLoading;
+    public boolean isLoading() {
+        return !mIsFinishedLoading;
     }
 
     private void initFrags() {
         // pre load all fragments for quick showing
         // add to app frag manager
-        stack(this);
+        //stack(this);
 
         if(isFragmentManagerActive()) {
             mActivity.getSupportFragmentManager().executePendingTransactions();
@@ -163,15 +159,15 @@ public class FragManager extends Fragment {
 
         // only on fist app run
         if (UserPrefs.isFirstRun()) {
-            new Handler(Looper.myLooper()).postDelayed(() ->
+            new Handler(Objects.requireNonNull(Looper.myLooper())).postDelayed(() ->
                     show(mFragHelp, TRANS_ANIM_LONG_FADE_OUT), TRANSITION_TIME);
 
             // show byy pro dialog on first run
-            new Handler(Looper.myLooper()).postDelayed(() -> {
+            new Handler(Objects.requireNonNull(Looper.myLooper())).postDelayed(() -> {
                 if (!UserPrefs.getOwnsPro()) Helper.activation().showBuyProDialog();
             }, 2000);
 
-            new Handler(Looper.myLooper()).postDelayed(() ->
+            new Handler(Objects.requireNonNull(Looper.myLooper())).postDelayed(() ->
                     Helper.dialogs().showRating(), 240000);
         }
 
@@ -206,7 +202,7 @@ public class FragManager extends Fragment {
             mSplashIsShown = true;
 
             // show splash for
-            mSplashHandler = new Handler(Looper.myLooper());
+            mSplashHandler = new Handler(Objects.requireNonNull(Looper.myLooper()));
             mSplashHandler.postDelayed(this::showSplash, mSplashTime);
 
             return;
@@ -226,7 +222,7 @@ public class FragManager extends Fragment {
      * @return The currently showing fragment
      */
     public Fragment showing() {
-        if (mFragList.size() < 1) return mFragHome;
+        if (mFragList.isEmpty()) return mFragHome;
         return mFragList.get(mFragList.size() - 1);
     }
 
@@ -296,7 +292,7 @@ public class FragManager extends Fragment {
             mTitleBar.setBackButtonActive(mFragList.size() > 1);
 
             mIsTransitioning = true;
-            new Handler(Looper.myLooper()).postDelayed(() -> {
+            new Handler(Objects.requireNonNull(Looper.myLooper())).postDelayed(() -> {
                 mTitleBar.setTitleText(getFragTitle(getIdFromFrag(fragment)));
                 mTitleBar.setWindowIcon(getFragWindowIcon(getIdFromFrag(fragment)));
                 mIsTransitioning = false;
@@ -374,17 +370,6 @@ public class FragManager extends Fragment {
         return 0;
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-       // new Handler(Looper.myLooper()).postDelayed(this::measureFragments, SPLASH_TIME);
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
-    }
 
     // pre measure fragments for quick access
     public void measureFragments() {
@@ -396,7 +381,7 @@ public class FragManager extends Fragment {
     }
 
     public void goBack() {
-        if(!isFinishedLoading() || mIsTransitioning) return;
+        if(isLoading() || mIsTransitioning) return;
 
         if(showing().equals(getFragFromId(FragManager.FragId.FRAG_GAME))) {
             mFragHome.syncGameDataOnShow();
@@ -444,7 +429,7 @@ public class FragManager extends Fragment {
         }
 
         public void setBackButtonActive(boolean active) {
-            new Handler(Looper.myLooper()).postDelayed(() -> {
+            new Handler(Objects.requireNonNull(Looper.myLooper())).postDelayed(() -> {
                 btnBack.setVisibility(active ? View.VISIBLE : View.INVISIBLE);
             }, TRANSITION_TIME);
         }
