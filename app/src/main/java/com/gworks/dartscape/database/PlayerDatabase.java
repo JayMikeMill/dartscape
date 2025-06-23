@@ -65,6 +65,45 @@ public class PlayerDatabase {
     private static final String COLUMN_GAME_THROWS = "game_throws";
 
 
+    private static final String TABLE_PLAYER_STATS = "player_stats";
+    private static final String COLUMN_GAME_ID              = "game_id";
+    private static final String COLUMN_GAME_TIME            = "game_time";
+    private static final String COLUMN_TOTAL_THROWS         = "total_throws";
+    private static final String COLUMN_TOTAL_SCORE          = "total_score";
+    private static final String COLUMN_HITS                 = "hits";
+    private static final String COLUMN_MARKS                = "marks";
+
+    private static final String COLUMN_BEST_OUT             = "best_out";
+    private static final String COLUMN_HIGH_SCORE_GAME      = "high_score_game";
+    private static final String COLUMN_HIGH_SCORE_ROUND     = "high_score_round";
+    private static final String COLUMN_HIGH_SCORE_CRICKET   = "high_score_cricket";
+    private static final String COLUMN_HIGH_SCORE_SHANGHAI  = "high_score_shanghai";
+    private static final String COLUMN_HIGH_SCORE_BASEBALL  = "high_score_baseball";
+
+    private static final String COLUMN_SCORE_60_99          = "score_60_99";
+    private static final String COLUMN_SCORE_100_139        = "score_100_139";
+    private static final String COLUMN_SCORE_140_179        = "score_140_179";
+    private static final String COLUMN_SCORE_180S           = "score_180s";
+
+    private static final String COLUMN_DUB_BULLS            = "dub_bulls";
+    private static final String COLUMN_SINGLE_BULLS         = "single_bulls";
+    private static final String COLUMN_TRIPLES              = "triples";
+    private static final String COLUMN_DOUBLES              = "doubles";
+    private static final String COLUMN_SINGLES              = "singles";
+
+    private static final String COLUMN_SHANGHAIS            = "shanghais";
+    private static final String COLUMN_KILLS                = "kills";
+
+    private static final String COLUMN_BASEBALL_INNINGS     = "baseball_innings";
+    private static final String COLUMN_BASEBALL_BEST_INNING = "baseball_best_inning";
+    private static final String COLUMN_BASEBALL_RUNS        = "baseball_runs";
+    private static final String COLUMN_BASEBALL_BASES       = "baseball_bases";
+    private static final String COLUMN_GRAND_SLAMS          = "grand_slams";
+    private static final String COLUMN_HOME_RUNS            = "home_runs";
+
+    private static final String COLUMN_BEST_NUMBER          = "best_number";
+    private static final String COLUMN_WORST_NUMBER         = "worst_number";
+
     /** helper class for sqlite */
     private DBHelper mHelper;
 

@@ -65,7 +65,7 @@ public class UserPrefs {
 
     public static boolean getOwnsPro() {
         if (BuildConfig.DEBUG) {
-            return mPrefs.getBoolean(PREF_BOOL_OWNS_PRO, false);
+            return true; //return mPrefs.getBoolean(PREF_BOOL_OWNS_PRO, false);
         } else {
             return mPrefs.getBoolean(PREF_BOOL_OWNS_PRO, false);
         }

@@ -116,11 +116,12 @@ public class DartScapeActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+        super.onBackPressed();
         frags().goBack();
     }
 
     private void backupGameData() {
-        if (!frags().isFinishedLoading()) return;
+        if (frags().isLoading()) return;
 
         if (gameData().isGameGoing())
             UserPrefs.backupGameData(gameData());
