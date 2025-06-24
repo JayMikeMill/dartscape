@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.SeekBar;
@@ -214,7 +215,7 @@ public class SettingsFragment extends Fragment implements SeekBar.OnSeekBarChang
     }
 
     private void resizeContentList() {
-        mLayContent.setLayoutParams(new LinearLayout.LayoutParams
+        mLayContent.setLayoutParams(new FrameLayout.LayoutParams
                 (MATCH_PARENT, (int)(Helper.getWindowHeight()* SCROLL_SETTING_TO_WINDOW_HEIGHT)));
     }
 

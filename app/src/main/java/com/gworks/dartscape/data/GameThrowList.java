@@ -23,12 +23,6 @@ public class GameThrowList {
         init();
     }
 
-    /** construct from a string representing a list of game throws */
-    public GameThrowList(long gameTime, GameFlagSet gameMode, boolean win, String throwList) {
-        init();
-        initFromString(gameTime, gameMode, win, throwList);
-    }
-
     /** initializes game throw list */
     public void init() {
         mGameThrows = new ArrayList<>();
@@ -39,41 +33,6 @@ public class GameThrowList {
         mGameThrows = new ArrayList<>();
     }
 
-    /** clears all throws from game throw list */
-    public void append(GameThrowList gameThrows) {
-        for (int i = 0; i < gameThrows.size(); i++) {
-            add(gameThrows.get(i));
-        }
-    }
-
-    /** initialize throw list from a strings. (e.g. "[number, multi, score]" - "[12, 2, 24][10, 3, 30]") */
-    public void initFromString(long gameTime, GameFlagSet gameMode, boolean win, String throwList) {
-
-        if(throwList.isEmpty()) return;
-
-        String[] strThrowSet = throwList.substring(1, throwList.length() - 1)
-                .replace("][", ", ").split(", ");
-
-        for (int j = 0; j <= strThrowSet.length - 3; j += 3) {
-            mGameThrows.add(new GameThrow
-                    (gameTime, gameMode, win, -1,
-                            Integer.parseInt(strThrowSet[j]),
-                            Integer.parseInt(strThrowSet[j + 1]),
-                            Integer.parseInt(strThrowSet[j + 2])));
-        }
-    }
-
-    /** retrieve a string representing items in this throw list
-     *  (e.g. "[number, multi, score]" - "[12, 2, 24][10, 3, 30]") */
-    public String getThrowsString() {
-        StringBuilder strGameThrows = new StringBuilder();
-        for(int i = 0; i < mGameThrows.size(); i++)
-                strGameThrows.append("[").append(mGameThrows.get(i).getNumber())
-                        .append(", ").append(mGameThrows.get(i).getMulti()).append(", ")
-                        .append(mGameThrows.get(i).getScore()).append("]");
-
-        return strGameThrows.toString();
-    }
 
     /** get a sub-list of only throw by certain player at index */
     public GameThrowList getPlayerThrowList(int index) {

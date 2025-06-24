@@ -7,7 +7,6 @@ import android.content.SharedPreferences;
 
 import com.google.gson.Gson;
 import com.gworks.dartscape.BuildConfig;
-import com.gworks.dartscape.R;
 import com.gworks.dartscape.data.GameData;
 import com.gworks.dartscape.data.GameFlags;
 

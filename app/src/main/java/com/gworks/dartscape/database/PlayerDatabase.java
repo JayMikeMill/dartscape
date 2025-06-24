@@ -30,9 +30,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
-import java.sql.Date;
-import java.sql.Time;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -56,34 +53,30 @@ public class PlayerDatabase {
     private static final String TABLE_PLAYERS = "players";
     private static final String COLUMN_ID = "_id";
     private static final String COLUMN_NAME = "name";
-
     private static final String TABLE_PLAYER_DATA = "player_data";
-    private static final String COLUMN_PLAYER_ID = "player_id";
-    private static final String COLUMN_TIME = "game_time";
-    private static final String COLUMN_GAME_MODE = "game_mode";
-    private static final String COLUMN_WIN_LOSS = "win_loss";
     private static final String COLUMN_GAME_THROWS = "game_throws";
 
 
-    private static final String TABLE_PLAYER_STATS = "player_stats";
+    private static final String TABLE_GAMES        = "games";
+    private static final String COLUMN_GAME_MODE   = "game_mode";
+    private static final String COLUMN_GAME_TIME = "game_time";
+
+    private static final String TABLE_STATS = "stats";
+
     private static final String COLUMN_GAME_ID              = "game_id";
-    private static final String COLUMN_GAME_TIME            = "game_time";
-    private static final String COLUMN_TOTAL_THROWS         = "total_throws";
-    private static final String COLUMN_TOTAL_SCORE          = "total_score";
+    private static final String COLUMN_PLAYER_ID            = "player_id";
+    private static final String COLUMN_WIN_LOSS             = "win_loss";
+
+    private static final String COLUMN_THROWS               = "throws";
     private static final String COLUMN_HITS                 = "hits";
     private static final String COLUMN_MARKS                = "marks";
 
-    private static final String COLUMN_BEST_OUT             = "best_out";
-    private static final String COLUMN_HIGH_SCORE_GAME      = "high_score_game";
-    private static final String COLUMN_HIGH_SCORE_ROUND     = "high_score_round";
-    private static final String COLUMN_HIGH_SCORE_CRICKET   = "high_score_cricket";
-    private static final String COLUMN_HIGH_SCORE_SHANGHAI  = "high_score_shanghai";
-    private static final String COLUMN_HIGH_SCORE_BASEBALL  = "high_score_baseball";
-
-    private static final String COLUMN_SCORE_60_99          = "score_60_99";
-    private static final String COLUMN_SCORE_100_139        = "score_100_139";
-    private static final String COLUMN_SCORE_140_179        = "score_140_179";
+    private static final String COLUMN_SCORE                = "score";
     private static final String COLUMN_SCORE_180S           = "score_180s";
+    private static final String COLUMN_SCORE_140            = "score_140s";
+    private static final String COLUMN_SCORE_100            = "score_100s";
+    private static final String COLUMN_SCORE_60             = "score_60s";
+    private static final String COLUMN_HIGH_ROUND           = "highest_round";
 
     private static final String COLUMN_DUB_BULLS            = "dub_bulls";
     private static final String COLUMN_SINGLE_BULLS         = "single_bulls";
@@ -91,7 +84,9 @@ public class PlayerDatabase {
     private static final String COLUMN_DOUBLES              = "doubles";
     private static final String COLUMN_SINGLES              = "singles";
 
-    private static final String COLUMN_SHANGHAIS            = "shanghais";
+    private static final String COLUMN_01_OUT               = "x01_out";
+
+    private static final String COLUMN_SHANGHAIED           = "shanghaied";
     private static final String COLUMN_KILLS                = "kills";
 
     private static final String COLUMN_BASEBALL_INNINGS     = "baseball_innings";
@@ -111,7 +106,7 @@ public class PlayerDatabase {
     private SQLiteDatabase mDatabase;
 
     /** the timestamp of the last saved game */
-    private String mLastSavedGameTime;
+    private int mLastGameId;
 
     /** the application context */
     private final Context mContext;
@@ -169,19 +164,28 @@ public class PlayerDatabase {
 
     /** open the database and return handle */
     public SQLiteDatabase openDB() throws SQLException {
-        mHelper = new DBHelper(mContext);
-        mDatabase = mHelper.getWritableDatabase();
+        if(mDatabase == null) {
+            mHelper = new DBHelper(mContext);
+            mDatabase = mHelper.getWritableDatabase();
+        }
+
         return mDatabase;
     }
 
     /** close the database and return handle */
     public void closeDB() {
+        if(mDatabase == null) return;
+
         mHelper.close();
         mDatabase = null;
     }
 
     /** Execute SQL command and catch and return any errors */
+
+
     private int execSQL(String sql) {
+        boolean dbOpened = mDatabase == null;
+
         try {
             openDB().execSQL(sql);
         } catch (SQLException e) {
@@ -196,10 +200,33 @@ public class PlayerDatabase {
             return CODE_ERROR_UNKNOWN;
         }
 
-        closeDB();
+        if(dbOpened) closeDB();
 
         return CODE_SUCCESS;
     }
+
+    public int queryInt(String sql) {
+        boolean dbOpened = mDatabase == null;
+        int result = -1;
+
+        Cursor cur;
+        try {
+            cur = openDB().rawQuery(sql, null);
+
+        } catch (SQLException e){
+            if (BuildConfig.DEBUG)
+                Toast.makeText(mContext, e.getMessage(), Toast.LENGTH_LONG).show();
+
+            return result;
+        }
+
+        if (cur.moveToFirst()) result = cur.getInt(0);
+        cur.close();
+        if(dbOpened) closeDB();
+
+        return result;
+    }
+
 
     /** helper function for surrounding string in quotes for sql syntax */
     public String sqlText(String str) { return "'" + str + "'"; }
@@ -292,57 +319,81 @@ public class PlayerDatabase {
 
     /** save the game in gdata to the database. */
     public void saveGame(GameData gdata) {
-        // if there are no game throws dont save
+        // if there are no game throws don't save
         if(gdata.gthrows().isEmpty()) return;
 
-        // get players names and ids in current game
-        ArrayList<Integer> playersIds = new ArrayList<>();
-        ArrayList<Integer> playersIndexes = new ArrayList<>();
-        ArrayList<Boolean> isTeam = new ArrayList<>();
-        ArrayList<Boolean> isTeammate = new ArrayList<>();
+        String game_mode = gdata.flags().getGameMode().flagString();
+        String game_time = dateFromHours(0);
+        int game_id = saveGameInfo(game_mode, game_time);
+
+
         for(int i = 0; i < MAX_PLAYERS; i++) {
             if(!gdata.player(i).isActive() || gdata.player(i).isBot()) continue;
 
-            playersIds.add(getPlayerId(gdata.player(i).getName()));
-            playersIndexes.add(i);
-            isTeammate.add(false);
-            isTeam.add(gdata.player(i).isTeam());
+            int player_id = getPlayerId(gdata.player(i).getName());
+            boolean won   = gdata.getWinnerIndex() == i;
+            PlayerStats stats = gdata.stats(i);
 
-            if(gdata.player(i).isTeam()) {
-                playersIds.add(getPlayerId(gdata.player(i).getTeammateName()));
-                playersIndexes.add(i);
-                isTeammate.add(true);
-                isTeam.add(gdata.player(i).isTeam());
-            }
+            savePlayerStats(game_id, player_id, won, stats);
         }
 
-        if(playersIds.isEmpty()) return;
-
-        mLastSavedGameTime = dateFromHours(0);
-
-        for(int i = 0; i < playersIds.size(); i++) {
-            if(playersIds.get(i) == -1) continue;
-
-            if(gdata.isKiller() && isTeam.get(i))
-                continue;
-
-            execSQL("INSERT INTO " + TABLE_PLAYER_DATA + " VALUES (" +
-                    playersIds.get(i) + ", " +
-                    mLastSavedGameTime + ", " +
-                    sqlText(gdata.flags().getGameMode().flagString()) + ", " +
-                    (gdata.getWinnerIndex() == playersIndexes.get(i) ? 1 : 0) + ", " +
-                    sqlText(gdata.gthrows().getPlayerThrowList
-                            (playersIndexes.get(i),
-                                    isTeam.get(i) ? (isTeammate.get(i) ? 2 : 1) : 0).getThrowsString()) + ")");
-        }
+        mLastGameId = game_id;
     }
 
-    /** delete the last game saved to the database */
-    public void deleteLastGame() {
-        String sql2 = "DELETE FROM " + TABLE_PLAYER_DATA + " WHERE " +
-                COLUMN_TIME + "=" +  mLastSavedGameTime;
-        execSQL(sql2);
+    private int saveGameInfo(String mode, String time) {
+        openDB();
+
+        execSQL("INSERT INTO " + TABLE_GAMES + " (" + COLUMN_GAME_TIME + ", " + COLUMN_GAME_MODE +
+                ") VALUES (" + time + ", " + sqlText(mode) + ")");
+
+        int game_id = queryInt("SELECT last_insert_rowid()");
+
+        Toast.makeText(mContext, "SAVED GAME! ID=" + game_id, Toast.LENGTH_LONG).show();
+
+        closeDB();
+
+        return game_id;
     }
+
+    public void savePlayerStats(int game_id, int player_id, boolean win_loss, PlayerStats stats) {
+        String sql = "INSERT INTO " + TABLE_STATS + " VALUES (" +
+                game_id + ", " + player_id + ", " + (win_loss ? 1 : 0) + ", " +
+
+                stats.getTotalThrows() + ", " +
+                stats.getTotalHits()   + ", " +
+                stats.getTotalMarks()  + ", " +
+
+                stats.getTotalScore()  + ", " +
+                stats.getScore180s()   + ", " +
+                stats.getScore140s()   + ", " +
+                stats.getScore100s()   + ", " +
+                stats.getScore60s()    + ", " +
+                stats.getHighScoreRound() + ", " +
+
+                stats.getDubBulls()    + ", " +
+                stats.getSingleBulls() + ", " +
+                stats.getTriples()     + ", " +
+                stats.getDoubles()     + ", " +
+                stats.getSingles()     + ", " +
+
+                stats.getBestOut()     + ", " +
+                (stats.Shanghaied() ? 1 : 0)  + ", " +
+                stats.getKills()       + ", " +
+
+                stats.getBaseballInnings()     + ", " +
+                stats.getBaseballBestInning()  + ", " +
+                stats.getBaseballRuns()        + ", " +
+                stats.getBaseballBases()       + ", " +
+                stats.getGrandSlams()          + ", " +
+                stats.getHomeRuns()            + ", " +
+
+                stats.getBestNumber()          + ", " +
+                stats.getWorstNumber()         + //", " +
+                ")";
+
+        execSQL(sql);
+    }
+
 
     /** @return a list of all the players stats */
     public ArrayList<PlayerStats> getAllPlayerStats(int sinceHours, GameFlagSet flags) {
@@ -359,24 +410,108 @@ public class PlayerDatabase {
         return stats;
     }
 
+
     /** @return a single players stats */
-    public PlayerStats getPlayerStats(String playerName, int sinceHours, GameFlagSet flags) {
-        return new PlayerStats
-                (playerName, getPlayerThrows(getPlayerId(playerName), sinceHours, flags));
+    public PlayerStats getPlayerStats(String playerName, int sinceHours, GameFlagSet flags)
+    {
+        boolean dbOpened = mDatabase == null;
+        openDB();
+
+        int playerId = getPlayerId(playerName);
+
+        execSQL("PRAGMA foreign_keys = ON");
+
+        String sql_sub_set = "(SELECT * FROM " +
+                TABLE_STATS + " JOIN " + TABLE_GAMES +
+                " ON " + TABLE_STATS + "." + COLUMN_GAME_ID + "=" +
+                TABLE_GAMES + "." + COLUMN_ID  + " WHERE " +
+                COLUMN_PLAYER_ID + "=" + playerId + " AND " +
+                COLUMN_GAME_TIME + " BETWEEN " +
+                dateFromHours(sinceHours) + " AND " + dateFromHours(0) +
+                getGameFlagsLikeString(flags) + ") AS subset";
+
+        PlayerStats stats = new PlayerStats(playerName);
+        stats.setName(playerName);
+
+        stats.setGamesPlayed(queryInt
+                ("SELECT COUNT(*) FROM " + sql_sub_set));
+        stats.setWins(queryInt
+                ("SELECT SUM(" + COLUMN_WIN_LOSS + ") FROM " + sql_sub_set));
+        stats.setTotalThrows(queryInt
+                ("SELECT SUM(" + COLUMN_THROWS + ") FROM " + sql_sub_set));
+        stats.setTotalHits(queryInt
+                ("SELECT SUM(" + COLUMN_HITS + ") FROM " + sql_sub_set));
+        stats.setTotalMarks(queryInt
+                ("SELECT SUM(" + COLUMN_MARKS + ") FROM " + sql_sub_set));
+
+        stats.setTotalScore(queryInt
+                ("SELECT SUM(" + COLUMN_SCORE + ") FROM " + sql_sub_set));
+        stats.setScore180s(queryInt
+                ("SELECT SUM(" + COLUMN_SCORE_180S + ") FROM " + sql_sub_set));
+        stats.setScore140s(queryInt
+                ("SELECT SUM(" + COLUMN_SCORE_140 + ") FROM " + sql_sub_set));
+        stats.setScore100s(queryInt
+                ("SELECT SUM(" + COLUMN_SCORE_100 + ") FROM " + sql_sub_set));
+
+
+        stats.setDubBulls(queryInt
+                ("SELECT SUM(" + COLUMN_DUB_BULLS + ") FROM " + sql_sub_set));
+        stats.setSingleBulls(queryInt
+                ("SELECT SUM(" + COLUMN_SINGLE_BULLS + ") FROM " + sql_sub_set));
+        stats.setTriples(queryInt
+                ("SELECT SUM(" + COLUMN_TRIPLES + ") FROM " + sql_sub_set));
+        stats.setDoubles(queryInt
+                ("SELECT SUM(" + COLUMN_DOUBLES + ") FROM " + sql_sub_set));
+        stats.setSingles(queryInt
+                ("SELECT SUM(" + COLUMN_SINGLES + ") FROM " + sql_sub_set));
+
+        stats.setBestOut(queryInt
+                ("SELECT MAX(" + COLUMN_01_OUT + ") FROM " + sql_sub_set));
+        stats.setShanghais(queryInt
+                ("SELECT SUM(" + COLUMN_SHANGHAIED + ") FROM " + sql_sub_set));
+        stats.setKills(queryInt
+                ("SELECT SUM(" + COLUMN_KILLS + ") FROM " + sql_sub_set));
+
+        stats.setBaseballInnings(queryInt
+                ("SELECT SUM(" + COLUMN_BASEBALL_INNINGS + ") FROM " + sql_sub_set));
+        stats.setBaseballBestInning(queryInt
+                ("SELECT SUM(" + COLUMN_BASEBALL_BEST_INNING + ") FROM " + sql_sub_set));
+        stats.setBaseballRuns(queryInt
+                ("SELECT SUM(" + COLUMN_BASEBALL_RUNS + ") FROM " + sql_sub_set));
+        stats.setBaseballBases(queryInt
+                ("SELECT SUM(" + COLUMN_BASEBALL_BASES + ") FROM " + sql_sub_set));
+        stats.setGrandSlams(queryInt
+                ("SELECT SUM(" + COLUMN_GRAND_SLAMS + ") FROM " + sql_sub_set));
+        stats.setHomeRuns(queryInt
+                ("SELECT SUM(" + COLUMN_HOME_RUNS + ") FROM " + sql_sub_set));
+
+        stats.setHighScoreGame(queryInt
+                ("SELECT MAX(" + COLUMN_SCORE + ") FROM " + sql_sub_set));
+        stats.setHighScoreRound(queryInt
+                ("SELECT MAX(" + COLUMN_HIGH_ROUND + ") FROM " + sql_sub_set));
+        stats.setHighScoreCricket(queryInt
+                ("SELECT MAX(" + COLUMN_SCORE + ") FROM " + sql_sub_set +
+                        " WHERE " + COLUMN_GAME_MODE + " LIKE " + sqlText("%CRICKET%")));
+        stats.setHighScoreShanghai(queryInt
+                ("SELECT MAX(" + COLUMN_SCORE + ") FROM " + sql_sub_set +
+                        " WHERE " + COLUMN_GAME_MODE + " LIKE " + sqlText("%SHANGHAI%")));
+        stats.setHighScoreBaseball(queryInt
+                ("SELECT MAX(" + COLUMN_SCORE + ") FROM " + sql_sub_set +
+                        " WHERE " + COLUMN_GAME_MODE + " LIKE " + sqlText("%BASEBALL%")));
+
+        stats.setBestNumber(queryInt
+                ("SELECT " + COLUMN_BEST_NUMBER + ", COUNT(*) AS freq FROM " + sql_sub_set +
+                        " GROUP BY " + COLUMN_BEST_NUMBER + " ORDER BY freq DESC LIMIT 1"));
+        stats.setWorstNumber(queryInt
+                ("SELECT " + COLUMN_WORST_NUMBER + ", COUNT(*) AS freq FROM " + sql_sub_set +
+                        " GROUP BY " + COLUMN_WORST_NUMBER + " ORDER BY freq DESC LIMIT 1"));
+
+        if(dbOpened) closeDB();
+
+        return stats;
     }
 
-    /** @return a timestamp from a number of hours */
-    public String dateFromHours(int sinceHours) {
-        return sqlText(Helper.getTimeStamp(sinceHours));
-    }
-
-    /** @return a list of players game throws */
-    public GameThrowList getPlayerThrows(int playerId, int sinceHours, GameFlagSet flags) {
-        String sql = "SELECT * FROM " + TABLE_PLAYER_DATA + " WHERE "
-                + COLUMN_PLAYER_ID + "=" + playerId + " AND " +
-                COLUMN_TIME + " BETWEEN " +
-                dateFromHours(sinceHours) + " AND " + dateFromHours(0);
-
+    private String getGameFlagsLikeString(GameFlagSet flags) {
         GameFlagSet dbFlags = new GameFlagSet();
         if (flags != null) dbFlags = flags.getGameMode();
         String likeStr = "";
@@ -389,32 +524,23 @@ public class PlayerDatabase {
         likeStr = likeStr.isEmpty() ? "" : sqlText(likeStr);
 
         if(!likeStr.isEmpty())
-            sql += " AND " + COLUMN_GAME_MODE + " LIKE " + likeStr;
+            return " AND " + COLUMN_GAME_MODE + " LIKE " + likeStr;
 
-        Cursor c; boolean opened = false;
+        return "";
+    }
 
-        if(mDatabase == null) {
-            c = openDB().rawQuery(sql, null);
-            opened = true;
-        } else c = mDatabase.rawQuery(sql, null);
+    /** delete the last game saved to the database */
+    public void deleteLastGame() {
+        String sql = "DELETE FROM " + TABLE_GAMES + " WHERE " + COLUMN_ID + "=" +  mLastGameId;
+        execSQL(sql);
 
-        StringBuilder strThrows = new StringBuilder();
+        sql = "DELETE FROM " + TABLE_STATS + " WHERE " + COLUMN_GAME_ID + "=" +  mLastGameId;
+        execSQL(sql);
+    }
 
-        // "[CRICKET]-[7, 2, 14];[CRICKET][NORMAL]
-        GameThrowList throwList = new GameThrowList();
-        for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
-            long time = java.sql.Timestamp.valueOf(c.getString(1)).getTime();
-            GameFlagSet gameMode = GameFlagSet.fromString(c.getString(2));
-            boolean win = c.getInt(3) > 0;
-            throwList.append(new GameThrowList(time, gameMode, win, c.getString(4)));
-        }
-
-
-        c.close();
-
-        if(opened) closeDB();
-
-        return throwList;
+    /** @return a timestamp from a number of hours */
+    public String dateFromHours(int sinceHours) {
+        return sqlText(Helper.getTimeStamp(sinceHours));
     }
 
     /**
@@ -431,11 +557,52 @@ public class PlayerDatabase {
         private static final String SQL_CREATE_TABLE_PLAYER_DATA =
                 "CREATE TABLE " + TABLE_PLAYER_DATA + " (" +
                         COLUMN_PLAYER_ID   + " INTEGER,"   +
-                        COLUMN_TIME        + " TEXT, "     +
+                        COLUMN_GAME_TIME + " TEXT, "     +
                         COLUMN_GAME_MODE   + " TEXT, "     +
                         COLUMN_WIN_LOSS    + " BOOLEAN, "  +
                         COLUMN_GAME_THROWS + " TEXT)";
 
+        private static final String SQL_CREATE_TABLE_GAMES =
+                "CREATE TABLE " + TABLE_GAMES + " (" +
+                        COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"   +
+                        COLUMN_GAME_TIME + " TEXT, "     +
+                        COLUMN_GAME_MODE   + " TEXT)";
+
+        private static final String SQL_CREATE_TABLE_STATS =
+                "CREATE TABLE " + TABLE_STATS + " (" +
+                        COLUMN_GAME_ID              + " INTEGER, " +
+                        COLUMN_PLAYER_ID            + " INTEGER, " +
+                        COLUMN_WIN_LOSS             + " BOOLEAN, " +
+
+                        COLUMN_THROWS               + " INTEGER, " +
+                        COLUMN_HITS                 + " INTEGER, " +
+                        COLUMN_MARKS                + " INTEGER, " +
+
+                        COLUMN_SCORE                + " INTEGER, " +
+                        COLUMN_SCORE_180S           + " INTEGER, " +
+                        COLUMN_SCORE_140            + " INTEGER, " +
+                        COLUMN_SCORE_100            + " INTEGER, " +
+                        COLUMN_SCORE_60             + " INTEGER, " +
+                        COLUMN_HIGH_ROUND           + " INTEGER, " +
+
+                        COLUMN_DUB_BULLS            + " INTEGER, " +
+                        COLUMN_SINGLE_BULLS         + " INTEGER, " +
+                        COLUMN_TRIPLES              + " INTEGER, " +
+                        COLUMN_DOUBLES              + " INTEGER, " +
+                        COLUMN_SINGLES              + " INTEGER, " +
+                        COLUMN_01_OUT               + " INTEGER, " +
+                        COLUMN_SHANGHAIED           + " INTEGER, " +
+                        COLUMN_KILLS                + " INTEGER, " +
+                        COLUMN_BASEBALL_INNINGS     + " INTEGER, " +
+                        COLUMN_BASEBALL_BEST_INNING + " INTEGER, " +
+                        COLUMN_BASEBALL_RUNS        + " INTEGER, " +
+                        COLUMN_BASEBALL_BASES       + " INTEGER, " +
+                        COLUMN_GRAND_SLAMS          + " INTEGER, " +
+                        COLUMN_HOME_RUNS            + " INTEGER, " +
+                        COLUMN_BEST_NUMBER          + " INTEGER, " +
+                        COLUMN_WORST_NUMBER         + " INTEGER, " +
+                        "FOREIGN KEY(" + COLUMN_GAME_ID + ") REFERENCES " + TABLE_GAMES + "(" + COLUMN_ID + ")" +
+                        ")";
         public DBHelper(Context context) {
             super(context, DATABASE_NAME, null, DATABASE_VERSION);
         }
@@ -445,6 +612,8 @@ public class PlayerDatabase {
             // create tables
             db.execSQL(SQL_CREATE_TABLE_PLAYERS);
             db.execSQL(SQL_CREATE_TABLE_PLAYER_DATA);
+            db.execSQL(SQL_CREATE_TABLE_GAMES);
+            db.execSQL(SQL_CREATE_TABLE_STATS);
         }
 
         @Override

@@ -8,12 +8,15 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewStub;
 import android.widget.AdapterView;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.ViewStubCompat;
 import androidx.fragment.app.Fragment;
 
 import com.gworks.dartscape.R;
@@ -30,6 +33,7 @@ import java.util.ArrayList;
 public class HelpFragment extends Fragment {
     private static final float SCROLL_HELP_TO_WINDOW_HEIGHT = 3.5f;
 
+    private View mInflatedView;
     private SuperSpinner mSpinChapters;
     private ScrollView   mSvHelp;
     private LinearLayout mLContent;
@@ -55,7 +59,15 @@ public class HelpFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        initControls();
+
+
+        view.post(() -> {
+            ViewStub stub = view.findViewById(R.id.stubHelpContent); // Use the ViewStub's ID here
+            if (stub != null) {
+                mInflatedView = stub.inflate();
+                initControls();
+            }
+        });
     }
 
     @Override
@@ -82,30 +94,32 @@ public class HelpFragment extends Fragment {
 
     @SuppressLint({"DiscouragedApi", "ClickableViewAccessibility"})
     private void initControls() {
+
         mSpinChapters = requireView().findViewById(R.id.spinHelpChapters);
         mSpinChapters.init(getChapters() , 0.5f);
         mSpinChapters.setOnItemSelectedListener(mSpinChapterListener);
 
         mSvHelp       = requireView().findViewById(R.id.svHelp);
-        mLContent     = requireView().findViewById(R.id.lHelpContent);
+
+        mLContent     = mInflatedView.findViewById(R.id.lHelpContent);
 
         // init score buttons
-        mSb01 = requireView().findViewById(R.id.sbHelp01);
+        mSb01 = mLContent.findViewById(R.id.sbHelp01);
         mSb01.setGameMode(GameFlags.GameFlag.X01);
         mSb01.setNumber(20);
         mSb01.setScoreButtonListener(this::onScoreButton);
 
-        mSbCricket = requireView().findViewById(R.id.sbHelpCricket);
+        mSbCricket = mLContent.findViewById(R.id.sbHelpCricket);
         mSbCricket.setGameMode(GameFlags.GameFlag.CRICKET);
         mSbCricket.setNumber(15);
         mSbCricket.setScoreButtonListener(this::onScoreButton);
 
-        mSbShanghai = requireView().findViewById(R.id.sbHelpShanghai);
+        mSbShanghai = mLContent.findViewById(R.id.sbHelpShanghai);
         mSbShanghai.setGameMode(GameFlags.GameFlag.SHANGHAI);
         mSbShanghai.setNumber(1);
         mSbShanghai.setScoreButtonListener(this::onScoreButton);
 
-        mBaseball = requireView().findViewById(R.id.sbHelpBaseball);
+        mBaseball = mLContent.findViewById(R.id.sbHelpBaseball);
         mBaseball.setScoreButtonListener(this::onScoreButton);
 
         mBtnGotIt = requireView().findViewById(R.id.btnHelpGotIt);
@@ -116,7 +130,7 @@ public class HelpFragment extends Fragment {
 
         float height = (mSvHelp.getHeight())*(mLContent.getWeightSum());
 
-        mLContent.setLayoutParams(new LinearLayout.LayoutParams
+        mLContent.setLayoutParams(new FrameLayout.LayoutParams
                 (MATCH_PARENT, (int) height));
 
         mSpinChapters.setSelection(0);

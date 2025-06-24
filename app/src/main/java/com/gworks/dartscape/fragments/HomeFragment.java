@@ -26,7 +26,7 @@ import com.gworks.dartscape.dialogs.ConfirmDialog;
 import com.gworks.dartscape.fragments.FragManager.FragId;
 import com.gworks.dartscape.main.DartScapeActivity;
 import com.gworks.dartscape.ui.MultiView;
-import com.gworks.dartscape.ui.SpinIconAdapter;
+
 import com.gworks.dartscape.logic.GameBot;
 import com.gworks.dartscape.data.GameData;
 import com.gworks.dartscape.R;
@@ -123,7 +123,6 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemSelected
             refreshPlayerNames();
             uiSyncWithGameData(gdata());
             mSyncPlayers = false;
-            return;
         } else if (mSyncCurrentGame) {
             uiSyncWithGameData(gdata());
             mSyncCurrentGame = false;
@@ -743,10 +742,8 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemSelected
 
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
-        int index = 0;
         for (int i = 0; i < MAX_PLAYERS; i++) {
             if (seekBar.equals(mSeekBotDiffs[i])) {
-                index = i;
                 break;
             }
         }

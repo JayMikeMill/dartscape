@@ -71,16 +71,20 @@ public class PlayerStats {
     private int mGrandSlams         = 0;
     private int mHomeRuns           = 0;
 
+    private int mBestNumber         = 0;
+    private int mWorstNumber        = 0;
 
     public PlayerStats(GameThrowList gameThrows) {
-        init("", gameThrows);
+        initFromThrowlist("", gameThrows);
     }
-
     public PlayerStats(String name, GameThrowList gameThrows) {
-        init(name,  gameThrows);
+        initFromThrowlist(name,  gameThrows);
     }
 
-    private void init(String name, GameThrowList gameThrows) {
+    public PlayerStats(String name) {
+    }
+
+    private void initFromThrowlist(String name, GameThrowList gameThrows) {
         mThrows = gameThrows;
         mName = name;
 
@@ -188,6 +192,9 @@ public class PlayerStats {
                 gameScore = 0;
             }
         }
+
+        calculateBestNumber();
+        calculateWorstNumber();
     }
 
     private void getHighScoreStats(GameFlags.GameFlag gameMode, int gameScore) {
@@ -248,9 +255,26 @@ public class PlayerStats {
         return single && dub && triple;
     }
 
+    private void calculateBestNumber() {
+        int highest = 14;
+        for(int i = 14; i < 20; i++)
+            if(mNumberHits[i] > mNumberHits[highest]) highest = i;
+
+        mBestNumber = highest + 1;
+    }
+
+    private void calculateWorstNumber() {
+        int lowest = 14;
+        for(int i = 14; i < 20;  i++)
+            if(mNumberHits[i] < mNumberHits[lowest]) lowest = i;
+
+        mWorstNumber = lowest + 1;
+    }
+
     public String getName() {
         return mName;
     }
+
     public void setName(String name) {
         mName = name;
     }
@@ -259,8 +283,20 @@ public class PlayerStats {
         return mGames;
     }
 
+    public void setGamesPlayed(int value) {
+        mGames = value;
+    }
+
+    private float getRounds() {
+        return getTotalThrows() / 3f;
+    }
+
     public int getWins() {
         return mWins;
+    }
+
+    public void setWins(int value) {
+        mWins = value;
     }
 
     public float getWinPercent() {
@@ -268,32 +304,6 @@ public class PlayerStats {
         return ((float) getWins() / getGamesPlayed()) * 100f;
     }
 
-
-    public int getHighScoreGame() {
-        return mHighScoreGame;
-    }
-
-    public int getHighScoreCricket() {
-        return mHighScoreCrick;
-    }
-
-    public int getHighScoreShanghai() {
-        return mHighScoreShang;
-    }
-    public int getHighScoreBaseball() {
-        return mHighScoreBball;
-    }
-    public int getHighScoreRound() {
-        return mHighScoreRound;
-    }
-
-    public int getScorePlus(int index) {
-        return mScorePlus[index];
-    }
-
-    private float getRounds() {
-       return mThrows.size() / 3f;
-    }
 
     public float getScoreAvgRound() {
         if(mTotalScore == 0) return 0;
@@ -310,34 +320,200 @@ public class PlayerStats {
         return (float) mMarks / getRounds();
     }
 
+    public int getTotalThrows() {
+        return mTotalThrows;
+    }
+    public void setTotalThrows(int value) {
+        mTotalThrows = value;
+    }
+
+    public int getTotalHits() {
+        return mHits;
+    }
+
+    public void setTotalHits(int value) {
+        mHits = value;
+    }
+
+    public int getTotalMarks() {
+        return mMarks;
+    }
+
+    public void setTotalMarks(int value) {
+        mMarks = value;
+    }
+
+    public int getTotalScore() {
+        return mTotalScore;
+    }
+
+    public void setTotalScore(int value) {
+        mTotalScore = value;
+    }
+
+    public int getScorePlus(int index) {
+        return mScorePlus[index];
+    }
+
+    public void setScorePlus(int index, int value) {
+        mScorePlus[index] = value;
+    }
+
+    public int getScore180s() {
+        return getScorePlus(0);
+    }
+    public void setScore180s(int value) {
+        setScorePlus(0, value);
+    }
+    public int getScore140s() {
+        return getScorePlus(1);
+    }
+
+    public void setScore140s(int value) {
+        setScorePlus(1, value);
+    }
+
+    public int getScore100s() {
+        return getScorePlus(2);
+    }
+
+    public void setScore100s(int value) {
+        setScorePlus(2, value);
+    }
+
+    public int getScore60s() {
+        return  getScorePlus(3);
+    }
+
+    public void setScore60s(int value) {
+        setScorePlus(3, value);
+    }
+
+    public int getBestOut() {
+        return mBestOut;
+    }
+
+    public void setBestOut(int value) {
+        mBestOut = value;
+    }
+
     public int getShanghais() {
         return mShanghais;
     }
+
+    public void setShanghais(int value) {
+        mShanghais = value;
+    }
+
+    public boolean Shanghaied() { return mShanghais > 0; }
 
     public int getKills() {
         return mKills;
     }
 
+    public void setKills(int value) {
+        mKills = value;
+    }
+
     public int getBulls() {
         return (mDubBulls * 2) + mSingleBulls;
     }
+
     public int getDubBulls() {
         return mDubBulls;
     }
+
+    public void setDubBulls(int value) {
+        mDubBulls = value;
+    }
+
     public int getSingleBulls() {
         return mSingleBulls;
+    }
+
+    public void setSingleBulls(int value) {
+        mSingleBulls = value;
     }
 
     public int getTriples() {
         return mTriples;
     }
+
+    public void setTriples(int value) {
+        mTriples = value;
+    }
+
     public int getDoubles() {
         return mDoubles;
     }
+
+    public void setDoubles(int value) {
+        mDoubles = value;
+    }
+
     public int getSingles() {
         return mSingles;
     }
 
+    public void setSingles(int value) {
+        mSingles = value;
+    }
+
+    public int getHighScoreGame() {
+        return mHighScoreGame;
+    }
+    public void setHighScoreGame(int value) {
+        mHighScoreGame = value;
+    }
+
+    public int getHighScoreRound() {
+        return mHighScoreRound;
+    }
+
+    public void setHighScoreRound(int value) {
+        mHighScoreRound = value;
+    }
+
+    public int getHighScoreCricket() {
+        return mHighScoreCrick;
+    }
+
+    public void setHighScoreCricket(int value) {
+        mHighScoreCrick = value;
+    }
+
+    public int getHighScoreShanghai() {
+        return mHighScoreShang;
+    }
+
+    public void setHighScoreShanghai(int value) {
+        mHighScoreShang = value;
+    }
+
+    public int getHighScoreBaseball() {
+        return mHighScoreBball;
+    }
+
+    public void setHighScoreBaseball(int value) {
+        mHighScoreBball = value;
+    }
+
+
+    public int getBestNumber() {
+        return mBestNumber;
+    }
+
+    public void setBestNumber(int value) {
+        mBestNumber = value;
+    }
+
+    public int getWorstNumber() {
+        return mWorstNumber;
+    }
+
+    public void setWorstNumber(int value) {
+        mWorstNumber = value;
+    }
 
     public String getHighestMarksRoundString() {
         if(mHighestMarksRound[0] == null) return "---";
@@ -357,25 +533,6 @@ public class PlayerStats {
         return count;
     }
 
-    public int getBestOut() {
-        return mBestOut;
-    }
-
-    public int getBestNumber() {
-        int highest = 14;
-        for(int i = 14; i < 20; i++)
-            if(mNumberHits[i] > mNumberHits[highest]) highest = i;
-
-        return highest + 1;
-    }
-
-    public int getWorstNumber() {
-        int lowest = 14;
-        for(int i = 14; i < 20;  i++)
-            if(mNumberHits[i] < mNumberHits[lowest]) lowest = i;
-
-        return lowest + 1;
-    }
 
     public String getBestToWorstNumber() {
         int[][] order = new int[21][2];
@@ -402,8 +559,32 @@ public class PlayerStats {
         return mBaseballInnings;
     }
 
+    public void setBaseballInnings(int value) {
+        mBaseballInnings = value;
+    }
+
     public int getBaseballBestInning() {
         return mBaseballBestInning;
+    }
+
+    public void setBaseballBestInning(int value) {
+        mBaseballBestInning = value;
+    }
+
+    public int getBaseballRuns() {
+        return mBaseballRuns;
+    }
+
+    public void setBaseballRuns(int value) {
+        mBaseballRuns = value;
+    }
+
+    public int getBaseballBases() {
+        return mBaseballBases;
+    }
+
+    public void setBaseballBases(int value) {
+        mBaseballBases = value;
     }
 
     public float getBaseballRunsPerInning() {
@@ -419,12 +600,18 @@ public class PlayerStats {
     public int getGrandSlams() {
         return mGrandSlams;
     }
+
+    public void setGrandSlams(int value) {
+        mGrandSlams = value;
+    }
+
     public int getHomeRuns() {
         return mHomeRuns;
     }
 
-
-
+    public void setHomeRuns(int value) {
+        mHomeRuns = value;
+    }
 
     public String getStatString(StatId id) {
         int i = 0;

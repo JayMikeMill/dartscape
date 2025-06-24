@@ -4,6 +4,8 @@ import static com.gworks.dartscape.data.Stats.*;
 
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,12 +18,15 @@ import androidx.fragment.app.Fragment;
 import com.gworks.dartscape.R;
 import com.gworks.dartscape.data.GameFlagSet;
 import com.gworks.dartscape.data.GameFlags;
+import com.gworks.dartscape.data.PlayerStats;
 import com.gworks.dartscape.database.PlayerDatabase;
 import com.gworks.dartscape.main.DartScapeActivity;
 import com.gworks.dartscape.ui.StatsAllRecycleView;
 import com.gworks.dartscape.ui.SuperSpinner;
 
 import java.util.ArrayList;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /*
     PLAYERS DIALOG
@@ -118,17 +123,61 @@ public class StatsFragment extends Fragment  {
         mRvStats.setClickListener((view, position) -> showPlayerStats());
     }
 
+    private boolean isLoadingStats = false;
+
     private void uiSyncStatsList() {
-       mRvStats.fillWithAllPlayerStats(db().getAllPlayerStats(getSelectedStartHours(), getGameFlags()), getStat1());
+        if(isLoadingStats) return;
+        isLoadingStats = true;
+
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        Handler handler = new Handler(Looper.getMainLooper());
+
+        executor.execute(() -> {
+            // Load stats in background
+            ArrayList<PlayerStats> stats = db().getAllPlayerStats(getSelectedStartHours(), getGameFlags());
+
+            // Update UI on main thread
+            handler.post(() -> {
+                mRvStats.fillWithAllPlayerStats(stats, getStat1());
+                isLoadingStats = false;
+            });
+        });
     }
 
+
     private void showPlayerStats() {
-        ((DartScapeActivity)requireContext()).frags().show(FragManager.FragId.FRAG_STATS_PLAYER);
-        ((StatsPlayerFragment)((DartScapeActivity)requireContext()).frags()
-                .getFragFromId(FragManager.FragId.FRAG_STATS_PLAYER))
-                .setPlayerStats(db().getPlayerStats
-                                (mRvStats.getSelectedName(), getSelectedStartHours(), getGameFlags()),
-                        getSelectedStartHours(), mSpinStartTime.getSelectedItem().toString(), getGameFlags());
+        if(isLoadingStats) return;
+        isLoadingStats = true;
+
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        Handler handler = new Handler(Looper.getMainLooper());
+
+        executor.execute(() -> {
+            // Background thread: load stats
+            PlayerStats stats = db().getPlayerStats(
+                    mRvStats.getSelectedName(),
+                    getSelectedStartHours(),
+                    getGameFlags()
+            );
+
+
+            // Post back to UI thread
+            handler.post(() -> {
+                DartScapeActivity activity = (DartScapeActivity) requireContext();
+                FragManager manager = activity.frags();
+
+                manager.show(FragManager.FragId.FRAG_STATS_PLAYER);
+
+                ((StatsPlayerFragment) manager.getFragFromId(FragManager.FragId.FRAG_STATS_PLAYER))
+                        .setPlayerStats(
+                                stats,
+                                getSelectedStartHours(),
+                                mSpinStartTime.getSelectedItem().toString(),
+                                getGameFlags()
+                        );
+                isLoadingStats = false;
+            });
+        });
     }
 
     private void updateGameModeSpinners() {

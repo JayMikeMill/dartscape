@@ -118,6 +118,8 @@ public class MultiView extends androidx.appcompat.widget.AppCompatButton {
         setShadowColor(MyColors.themeShadow());
 
         setSelectedIndex(0);
+
+        setText(getText());
     }
 
     @SuppressLint("RtlHardcoded")
@@ -237,17 +239,11 @@ public class MultiView extends androidx.appcompat.widget.AppCompatButton {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        // don't let parent draw text
-        String text = getText().toString(); setText("");
-
-        super.onDraw(canvas); setText(text);
-
         drawTouchAnimation(canvas);
-        drawIcon(canvas);
         drawText(canvas);
+        drawIcon(canvas);
     }
 
-    @SuppressWarnings("deprecation")
     private void drawIcon(Canvas canvas) {
         if (mIcons.isEmpty()) return;
 
@@ -300,9 +296,7 @@ public class MultiView extends androidx.appcompat.widget.AppCompatButton {
             canvas.drawText(lines[i], centerTextX, centerTextY, paint);
 
             if(mOutLineText) {
-                // outlines dont work on older devices
-                if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.KITKAT) return;
-
+                // outlines don't work on older devices
                 Paint olPaint = new Paint(paint);
                 olPaint.setStrokeWidth(Helper.dpToPx(2));
                 olPaint.setStyle(Paint.Style.STROKE);
@@ -430,7 +424,6 @@ public class MultiView extends androidx.appcompat.widget.AppCompatButton {
         calculateTextSize();
         invalidate();
     }
-
 
     public int getColor() {
         return mColor;
