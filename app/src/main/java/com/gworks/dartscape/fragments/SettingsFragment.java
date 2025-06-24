@@ -335,6 +335,7 @@ public class SettingsFragment extends Fragment implements SeekBar.OnSeekBarChang
         UserPrefs.setShowShadows(mBtnShowShadows.isToggled());
 
         boolean themeChange = mSpinTheme.getSelectedItemPosition() != UserPrefs.getThemeIndex();
+
         if(themeChange) {
             if(UserPrefs.getOwnsPro())
                 UserPrefs.setThemeIndex(mSpinTheme.getSelectedItemPosition());
@@ -347,7 +348,6 @@ public class SettingsFragment extends Fragment implements SeekBar.OnSeekBarChang
 
         if(themeChange || shadowChange) {
             UserPrefs.setAppReset(true);
-            frags().showLast(FragManager.TRANS_ANIM_NONE);
             ((DartScapeActivity) requireContext()).restartApp();
         } else frags().goBack();
     }

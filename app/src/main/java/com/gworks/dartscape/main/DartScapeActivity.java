@@ -1,5 +1,6 @@
 package com.gworks.dartscape.main;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
@@ -7,7 +8,10 @@ import androidx.core.os.LocaleListCompat;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.view.View;
+import android.window.OnBackInvokedDispatcher;
 
 import com.gworks.dartscape.R;
 import com.gworks.dartscape.data.GameData;
@@ -73,6 +77,14 @@ public class DartScapeActivity extends AppCompatActivity {
         mPlayerDB    = new PlayerDatabase(this);
         mFragManager = new FragManager().init(this);
         Helper.initActivation(this);
+
+        final View rootView = getWindow().getDecorView().getRootView();
+        rootView.post(() -> {
+            rootView.requestLayout();
+            rootView.invalidate();
+        });
+
+        linkBackPress();
     }
 
     @Override
@@ -100,7 +112,9 @@ public class DartScapeActivity extends AppCompatActivity {
         startActivity(intent); // start same activity
         backupGameData();
         finish();
-        overridePendingTransition(R.anim.long_fade_in, R.anim.long_fade_out); // this is important for seamless transition
+
+        // this is important for seamless transition
+        overridePendingTransition(R.anim.long_fade_in, R.anim.long_fade_out);
     }
 
     @Override
@@ -114,10 +128,13 @@ public class DartScapeActivity extends AppCompatActivity {
         super.onDestroy();
     }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        frags().goBack();
+    public void linkBackPress() {
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                frags().goBack();
+            }
+        });
     }
 
     private void backupGameData() {

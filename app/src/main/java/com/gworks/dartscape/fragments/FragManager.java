@@ -247,34 +247,37 @@ public class FragManager  {
      * Shows the last fragment shown before current fragment.
      * Shows the home screen fragment if none.
      */
-    public void showLast() {
-        showLast(TRANS_ANIM_DEFAULT_OUT);
+    public boolean showLast() {
+        return showLast(TRANS_ANIM_DEFAULT_OUT);
     }
 
-    public void showLast(int animation) {
-        show(getLast(), animation);
+    public boolean showLast(int animation) {
+        boolean result = show(getLast(), animation);
 
         if (mFragList.size() > 1) mFragList.remove(mFragList.size()-1);
         if (mFragList.size() > 1) mFragList.remove(mFragList.size()-1);
 
         mTitleBar.setBackButtonActive(mFragList.size() > 1);
+
+        return result;
     }
 
-    public void show(FragId fragId) {
-         show(getFragFromId(fragId));
+    public boolean show(FragId fragId) {
+         return show(getFragFromId(fragId));
     }
-    public void show(FragId fragId, int animation) {
-        show(getFragFromId(fragId), animation);
+
+    public boolean show(FragId fragId, int animation) {
+        return show(getFragFromId(fragId), animation);
     }
     /* shows a fragment with default animation */
-    private void show(Fragment fragment) {
-        show(fragment, TRANS_ANIM_DEFAULT_IN);
+    private boolean show(Fragment fragment) {
+        return show(fragment, TRANS_ANIM_DEFAULT_IN);
     }
 
     /* shows a fragment with specified animation */
-    private void show(Fragment fragment, int transAnim) {
-        if(!isFragmentManagerActive()) return;
-        if(mIsTransitioning) return;
+    private boolean show(Fragment fragment, int transAnim) {
+        if(!isFragmentManagerActive()) return false;
+        if(mIsTransitioning) return false;
 
         // replace the screen content add it to stack
         FragmentTransaction ft;
@@ -298,6 +301,8 @@ public class FragManager  {
                 mIsTransitioning = false;
             }, TRANSITION_TIME);
         }).commitAllowingStateLoss();
+
+        return true;
     }
 
     /** adds the fragment to the stack. should remain here the
@@ -380,20 +385,19 @@ public class FragManager  {
         }
     }
 
-    public void goBack() {
-        if(isLoading() || mIsTransitioning) return;
+    public boolean goBack() {
+        if(isLoading() || mIsTransitioning) return false;
 
         if(showing().equals(getFragFromId(FragManager.FragId.FRAG_GAME))) {
             mFragHome.syncGameDataOnShow();
-            show(FragId.FRAG_HOME, TRANS_ANIM_SLIDE_LEFT);
-            return;
+            return show(FragId.FRAG_HOME, TRANS_ANIM_SLIDE_LEFT);
         } else if(showing().equals(getFragFromId(FragId.FRAG_GAME_RESULTS))) {
-            show(FragId.FRAG_GAME, TRANS_ANIM_FADE_OUT);
-            return;
+            return show(FragId.FRAG_GAME, TRANS_ANIM_FADE_OUT);
         } if(showing().equals(getFragFromId(FragId.FRAG_HOME))) {
-            if(!gdata().isGameGoing()) return;
+            if(!gdata().isGameGoing()) return false;
         }
-        showLast();
+
+        return showLast();
     }
 
     public TitleBar titleBar() { return  mTitleBar; }

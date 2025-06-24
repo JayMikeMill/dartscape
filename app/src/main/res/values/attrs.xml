@@ -28,6 +28,8 @@
 
         <attr name="textSizeRatio" format="float" />
         <attr name="toggleButton" format="boolean" />
+        <attr name="longPressLoop" format="boolean" />
+        <attr name="longPressLoopDelayMs" format="integer" />
     </declare-styleable>
 
     <declare-styleable name="IconSpinner">

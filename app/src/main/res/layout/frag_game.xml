@@ -869,6 +869,8 @@
                 android:paddingTop="4dp"
                 android:text="@string/undo"
                 app:iconColorTint="?attr/titleTextColor"
+                app:longPressLoop="true"
+                app:longPressLoopDelayMs="150"
                 app:textSizeRatio=".7"
                 custom:icon1="@drawable/ic_arrow_left" />
 
@@ -884,6 +886,8 @@
                 android:paddingTop="4dp"
                 android:text="@string/end_turn"
                 app:iconColorTint="?attr/titleTextColor"
+                app:longPressLoop="true"
+                app:longPressLoopDelayMs="150"
                 custom:icon1="@drawable/ic_arrow_right" />
 
             <view

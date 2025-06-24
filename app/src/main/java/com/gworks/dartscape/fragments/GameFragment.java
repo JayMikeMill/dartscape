@@ -156,7 +156,7 @@ public class GameFragment extends Fragment implements GameLogic.GameLogicListene
 
         // undo button
         MultiView btnUndo = requireView().findViewById(R.id.btnGameUndo);
-        btnUndo.setOnTouchListener(mLoopTouchListener);
+        btnUndo.setOnClickListener(v -> onUndo());
 
         // bot button
         MultiView btnPause = requireView().findViewById(R.id.btnGameBot);
@@ -164,7 +164,7 @@ public class GameFragment extends Fragment implements GameLogic.GameLogicListene
 
         // end turn button
         MultiView btnEndTurn = requireView().findViewById(R.id.btnGameEndTurn);
-        btnEndTurn.setOnTouchListener(mLoopTouchListener);
+        btnEndTurn.setOnClickListener(v -> endTurn());
 
         // new game button
         MultiView btnGameResults = requireView().findViewById(R.id.btnGameGameResults);
@@ -1074,67 +1074,6 @@ public class GameFragment extends Fragment implements GameLogic.GameLogicListene
             getKillButton(playerIndex).popSoundAnimate(SB_CODE_FATALITY, 0, false);
     }
 
-    /** Undo touch listener for looping undo method when button
-     * is held down.
-     */
-    View.OnTouchListener mLoopTouchListener = new View.OnTouchListener() {
-        long mLastDown = 0;
-        long mLastDuration;
-        private static final int mBeginLoopDelay = 1000;
-        private static final int mLoopDelay = 200;
-
-        private final Handler mLoopHandler = new Handler(Looper.myLooper());
-        private Runnable mAction = null;
-        private boolean mIsUndo;
-
-        private final Runnable mLoopAction = new Runnable() {
-            @Override
-            public void run() {
-                boolean mLooping = true;
-                if(mIsUndo) mLooping = requireView().findViewById(R.id.btnGameUndo).getVisibility() == View.VISIBLE;
-                if(!mLooping) { mLoopHandler.removeCallbacksAndMessages(null); return; }
-
-                requireView().playSoundEffect(SoundEffectConstants.CLICK);
-
-                mAction.run();
-
-                mLastDuration = System.currentTimeMillis() - mLastDown;
-
-                mLoopHandler.postDelayed(this, Math.max(mLoopDelay / (int) ((mLastDuration - (mLastDuration%1000)) *.001f), mLoopDelay / 8));
-            }
-        };
-
-        @Override
-        public boolean onTouch(View v, MotionEvent event) {
-            v.onTouchEvent(event);
-
-            mIsUndo = false;
-            if(v.equals(requireView().findViewById(R.id.btnGameUndo))) {
-                mAction = GameFragment.this::onUndo; mIsUndo = true;
-            }
-
-            if(v.equals(requireView().findViewById(R.id.btnGameEndTurn))) {
-                mAction = GameFragment.this::endTurn;
-            }
-
-            // this goes somewhere in your class:
-            if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                mLastDown = System.currentTimeMillis();
-                mLoopHandler.postDelayed(mLoopAction, mBeginLoopDelay);
-
-            } else if (event.getAction() == MotionEvent.ACTION_UP) {
-                mLastDuration = System.currentTimeMillis() - mLastDown;
-                mLoopHandler.removeCallbacksAndMessages(null);
-                if(mLastDuration < mBeginLoopDelay) {
-                    v.performClick();
-                    requireView().playSoundEffect(SoundEffectConstants.CLICK);
-                    mAction.run();
-                }
-            }
-
-            return true;
-        }
-    };
 
     /** @return the current form fill mode. */
     private boolean isOpenScoring() {

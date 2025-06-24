@@ -50,6 +50,14 @@ public class MultiView extends androidx.appcompat.widget.AppCompatButton {
     private boolean mIsToggleButton;
     private boolean mIsToggled;
 
+    private static final int mLongPressDelayMs = 500;
+    private final Handler mHandler = new Handler(Looper.getMainLooper());
+    private boolean mLongPressLoop;
+    private int mLongPressLoopDelayMs;
+
+    private boolean mIsPressed = false;
+    private Runnable mLoopRunnable;
+
     private float mCenterX;
     private float mCenterY;
     private float mTextOffSetX;
@@ -108,6 +116,21 @@ public class MultiView extends androidx.appcompat.widget.AppCompatButton {
             mOutLineText = a.getBoolean(R.styleable.MultiView_outlineText, false);
 
             mIsToggleButton = a.getBoolean(R.styleable.MultiView_toggleButton, false);
+
+            mLongPressLoop  = a.getBoolean(R.styleable.MultiView_longPressLoop, false);
+            mLongPressLoopDelayMs = a.getInt(R.styleable.MultiView_longPressLoopDelayMs, 300);
+
+            if(mLongPressLoop) {
+                mLoopRunnable = new Runnable() {
+                    @Override
+                    public void run() {
+                        if (!mIsPressed) return;
+                        performClick();
+                        // Schedule next repeat
+                        mHandler.postDelayed(this, mLongPressLoopDelayMs);
+                    }
+                };
+            }
 
             a.recycle();
         }
@@ -493,6 +516,9 @@ public class MultiView extends androidx.appcompat.widget.AppCompatButton {
 
                 animate(ANI_STYLE_LIGHT_UP);
                 mTouchIsInBounds = true;
+                mIsPressed = true;
+                mHandler.postDelayed(mLoopRunnable, mLongPressDelayMs);
+
                 return true;
 
             case MotionEvent.ACTION_MOVE:
@@ -505,14 +531,22 @@ public class MultiView extends androidx.appcompat.widget.AppCompatButton {
 
                 mTouchIsInBounds = isInBounds;
 
-                if (justLeft) animate(ANI_STYLE_LIGHT_DOWN);
-                if (justEntered) animate(ANI_STYLE_LIGHT_UP);
+                if (justLeft) {
+                    mIsPressed = false;
+                    mHandler.removeCallbacks(mLoopRunnable);
+                    animate(ANI_STYLE_LIGHT_DOWN);
+                }
+
+                if (justEntered)
+                    animate(ANI_STYLE_LIGHT_UP);
 
                 return true;
 
             case MotionEvent.ACTION_UP:
                 if (mTouchIsInBounds) {
                     performClick();
+                    mIsPressed = false;
+                    mHandler.removeCallbacks(mLoopRunnable);
                     animate(ANI_STYLE_LIGHT_DOWN);
                     return true;
                 }
@@ -520,6 +554,8 @@ public class MultiView extends androidx.appcompat.widget.AppCompatButton {
                 break;
 
             case MotionEvent.ACTION_CANCEL:
+                mIsPressed = false;
+                mHandler.removeCallbacks(mLoopRunnable);
                 break;
         }
 
