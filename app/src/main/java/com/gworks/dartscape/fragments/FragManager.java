@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.Stack;
 
 public class FragManager  {
 
@@ -84,7 +85,7 @@ public class FragManager  {
     /**
      * Previous shown fragments for "go back"
      */
-    private ArrayList<Fragment> mFragList;
+    private Stack<Fragment> mFragStack;
 
     private DartScapeActivity mActivity;
 
@@ -101,7 +102,7 @@ public class FragManager  {
         mTitleBar = new TitleBar(mActivity);
 
         // init fragments shown list
-        mFragList = new ArrayList<>();
+        mFragStack = new Stack<>();
 
         // init all fragments
         mFragHome = new HomeFragment();
@@ -155,6 +156,7 @@ public class FragManager  {
 
         //measureFragments();
 
+        mFragStack.push(mFragHome);
         show(mFragHome, TRANS_ANIM_LONG_FADE_OUT);
 
         // only on fist app run
@@ -170,13 +172,6 @@ public class FragManager  {
             new Handler(Objects.requireNonNull(Looper.myLooper())).postDelayed(() ->
                     Helper.dialogs().showRating(), 240000);
         }
-
-        if (gdata().flags().get(GameFlags.GameFlag.GAME_DATA_RESTORED)) {
-            mFragList.add(0, mFragGame);
-            mFragList.add(0, mFragHome);
-            titleBar().setBackButtonActive(true);
-        }
-        // show home screen in case show splash is off
 
         // close splash screen
         mIsFinishedLoading = true;
@@ -222,8 +217,7 @@ public class FragManager  {
      * @return The currently showing fragment
      */
     public Fragment showing() {
-        if (mFragList.isEmpty()) return mFragHome;
-        return mFragList.get(mFragList.size() - 1);
+        return mFragStack.get(mFragStack.size() - 1);
     }
 
     /**
@@ -231,8 +225,7 @@ public class FragManager  {
      * Returns the home screen fragment if none.
      */
     public Fragment getLast() {
-        if (mFragList.size() < 2) return mFragHome;
-        return mFragList.get(mFragList.size() - 2);
+        return mFragStack.get(mFragStack.size() - 2);
     }
 
     /**
@@ -252,30 +245,33 @@ public class FragManager  {
     }
 
     public boolean showLast(int animation) {
-        boolean result = show(getLast(), animation);
+        if(mFragStack.size() < 2) return false;
 
-        if (mFragList.size() > 1) mFragList.remove(mFragList.size()-1);
-        if (mFragList.size() > 1) mFragList.remove(mFragList.size()-1);
-
-        mTitleBar.setBackButtonActive(mFragList.size() > 1);
-
-        return result;
+        show(mFragStack.get(mFragStack.size() - 2), animation, false);
+        mFragStack.remove(mFragStack.size() - 1);
+        return true;
     }
+
 
     public boolean show(FragId fragId) {
          return show(getFragFromId(fragId));
     }
 
     public boolean show(FragId fragId, int animation) {
-        return show(getFragFromId(fragId), animation);
+        return show(getFragFromId(fragId), animation, true);
     }
     /* shows a fragment with default animation */
     private boolean show(Fragment fragment) {
-        return show(fragment, TRANS_ANIM_DEFAULT_IN);
+        return show(fragment, TRANS_ANIM_DEFAULT_IN, true);
+    }
+
+    /* shows a fragment with default animation */
+    private boolean show(Fragment fragment, int transAnim) {
+        return show(fragment, transAnim, true);
     }
 
     /* shows a fragment with specified animation */
-    private boolean show(Fragment fragment, int transAnim) {
+    private boolean show(Fragment fragment, int transAnim, boolean stack) {
         if(!isFragmentManagerActive()) return false;
         if(mIsTransitioning) return false;
 
@@ -287,19 +283,24 @@ public class FragManager  {
         if(transAnim != TRANS_ANIM_NONE)
             ft.setCustomAnimations(TRANS_ANIMATION_IDS[transAnim][0],
                                    TRANS_ANIMATION_IDS[transAnim][1]);
-
+        Fragment shownF = showing() ;
         // hide current fragment and show new one
         ft.hide(showing()).show(fragment).runOnCommit(() -> {
+            boolean isHomeFrag = fragment == mFragHome;
+
             // add to fragment list for showLast
-            mFragList.add(fragment);
-            mTitleBar.setBackButtonActive(mFragList.size() > 1);
+            if(!isHomeFrag && stack) mFragStack.push(fragment);
 
             mIsTransitioning = true;
             new Handler(Objects.requireNonNull(Looper.myLooper())).postDelayed(() -> {
-                mTitleBar.setTitleText(getFragTitle(getIdFromFrag(fragment)));
-                mTitleBar.setWindowIcon(getFragWindowIcon(getIdFromFrag(fragment)));
                 mIsTransitioning = false;
             }, TRANSITION_TIME);
+
+            mTitleBar.setTitleText(getFragTitle(getIdFromFrag(fragment)));
+            mTitleBar.setWindowIcon(getFragWindowIcon(getIdFromFrag(fragment)));
+            mTitleBar.setBackButtonActive(mFragStack.size() > 1
+                    || (isHomeFrag && gdata().isGameGoing()));
+
         }).commitAllowingStateLoss();
 
         return true;
@@ -390,11 +391,13 @@ public class FragManager  {
 
         if(showing().equals(getFragFromId(FragManager.FragId.FRAG_GAME))) {
             mFragHome.syncGameDataOnShow();
-            return show(FragId.FRAG_HOME, TRANS_ANIM_SLIDE_LEFT);
+            return showLast(TRANS_ANIM_SLIDE_RIGHT);
+
+        }  else if(showing().equals(getFragFromId(FragId.FRAG_HOME))) {
+            if(gdata().isGameGoing()) show(FragId.FRAG_GAME, TRANS_ANIM_SLIDE_RIGHT);
+
         } else if(showing().equals(getFragFromId(FragId.FRAG_GAME_RESULTS))) {
-            return show(FragId.FRAG_GAME, TRANS_ANIM_FADE_OUT);
-        } if(showing().equals(getFragFromId(FragId.FRAG_HOME))) {
-            if(!gdata().isGameGoing()) return false;
+            return showLast(TRANS_ANIM_FADE_OUT);
         }
 
         return showLast();

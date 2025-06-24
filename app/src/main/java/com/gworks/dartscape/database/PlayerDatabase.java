@@ -53,8 +53,6 @@ public class PlayerDatabase {
     private static final String TABLE_PLAYERS = "players";
     private static final String COLUMN_ID = "_id";
     private static final String COLUMN_NAME = "name";
-    private static final String TABLE_PLAYER_DATA = "player_data";
-    private static final String COLUMN_GAME_THROWS = "game_throws";
 
 
     private static final String TABLE_GAMES        = "games";
@@ -62,7 +60,6 @@ public class PlayerDatabase {
     private static final String COLUMN_GAME_TIME = "game_time";
 
     private static final String TABLE_STATS = "stats";
-
     private static final String COLUMN_GAME_ID              = "game_id";
     private static final String COLUMN_PLAYER_ID            = "player_id";
     private static final String COLUMN_WIN_LOSS             = "win_loss";
@@ -98,6 +95,8 @@ public class PlayerDatabase {
 
     private static final String COLUMN_BEST_NUMBER          = "best_number";
     private static final String COLUMN_WORST_NUMBER         = "worst_number";
+
+    private static final String COLUMN_GAME_THROWS          = "game_throws";
 
     /** helper class for sqlite */
     private DBHelper mHelper;
@@ -308,7 +307,7 @@ public class PlayerDatabase {
 
         String sql1 = "DELETE FROM " + TABLE_PLAYERS + " WHERE " +
                 COLUMN_NAME + "=" +  sqlText(name);
-        String sql2 = "DELETE FROM " + TABLE_PLAYER_DATA + " WHERE " +
+        String sql2 = "DELETE FROM " + TABLE_STATS + " WHERE " +
                 COLUMN_PLAYER_ID + "=" +  playerId;
 
         SQLiteDatabase db = openDB();
@@ -347,8 +346,6 @@ public class PlayerDatabase {
                 ") VALUES (" + time + ", " + sqlText(mode) + ")");
 
         int game_id = queryInt("SELECT last_insert_rowid()");
-
-        Toast.makeText(mContext, "SAVED GAME! ID=" + game_id, Toast.LENGTH_LONG).show();
 
         closeDB();
 
@@ -554,14 +551,6 @@ public class PlayerDatabase {
                         COLUMN_ID + " INTEGER PRIMARY KEY," +
                         COLUMN_NAME + " TEXT UNIQUE)";
 
-        private static final String SQL_CREATE_TABLE_PLAYER_DATA =
-                "CREATE TABLE " + TABLE_PLAYER_DATA + " (" +
-                        COLUMN_PLAYER_ID   + " INTEGER,"   +
-                        COLUMN_GAME_TIME + " TEXT, "     +
-                        COLUMN_GAME_MODE   + " TEXT, "     +
-                        COLUMN_WIN_LOSS    + " BOOLEAN, "  +
-                        COLUMN_GAME_THROWS + " TEXT)";
-
         private static final String SQL_CREATE_TABLE_GAMES =
                 "CREATE TABLE " + TABLE_GAMES + " (" +
                         COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"   +
@@ -611,19 +600,18 @@ public class PlayerDatabase {
         public void onCreate(SQLiteDatabase db) {
             // create tables
             db.execSQL(SQL_CREATE_TABLE_PLAYERS);
-            db.execSQL(SQL_CREATE_TABLE_PLAYER_DATA);
             db.execSQL(SQL_CREATE_TABLE_GAMES);
             db.execSQL(SQL_CREATE_TABLE_STATS);
         }
 
         @Override
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-            if(oldVersion == 11) upgradeV11toV12(db);
+            //if(oldVersion == 11) upgradeV11toV12(db);
         }
 
         private void upgradeV11toV12(SQLiteDatabase db) {
-            db.execSQL("UPDATE " + TABLE_PLAYER_DATA + " SET " + COLUMN_GAME_MODE + " = REPLACE(" +
-                    COLUMN_GAME_MODE + ", '_01', 'X01')");
+           // db.execSQL("UPDATE " + TABLE_PLAYER_DATA + " SET " + COLUMN_GAME_MODE + " = REPLACE(" +
+           //         COLUMN_GAME_MODE + ", '_01', 'X01')");
         }
     }
 

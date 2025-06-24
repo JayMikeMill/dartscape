@@ -9,487 +9,629 @@
     android:orientation="vertical"
     android:padding="0dp">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:orientation="vertical"
-        android:padding="@dimen/frag_padding"
-        android:splitMotionEvents="false"
-        app:layout_constraintBottom_toTopOf="@+id/glHome"
+        app:layout_constraintBottom_toTopOf="@+id/naviBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2.25"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginBottom="@dimen/control_padding"
-                android:layout_weight="1"
-                android:splitMotionEvents="false">
-
-                <view
-                    android:id="@+id/spinHomeGame"
-                    style="@style/SpinnerDefault"
-                    class="com.gworks.dartscape.ui.SuperSpinner"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    tools:ignore="DuplicateSpeakableTextCheck"
-                    tools:listitem="@layout/item_spinner" />
-
-                <Space
-                    android:id="@+id/spaceHome1"
-                    android:layout_width="@dimen/control_padding"
-                    android:layout_height="match_parent" />
-
-                <view
-                    android:id="@+id/spinHomeGameMode"
-                    style="@style/SpinnerDefault"
-                    class="com.gworks.dartscape.ui.SuperSpinner"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    tools:ignore="DuplicateSpeakableTextCheck"
-                    tools:listitem="@layout/item_spinner" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/lHomeVariant"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginBottom="@dimen/control_padding"
-                android:layout_weight="1"
-                android:splitMotionEvents="false">
-
-                <view
-                    android:id="@+id/spinHomeGameVariant"
-                    style="@style/SpinnerDefault"
-                    class="com.gworks.dartscape.ui.SuperSpinner"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    tools:ignore="DuplicateSpeakableTextCheck"
-                    tools:listitem="@layout/item_spinner" />
-
-                <Space
-                    android:id="@+id/spaceHome2"
-                    android:layout_width="@dimen/control_padding"
-                    android:layout_height="match_parent" />
-
-                <view
-                    android:id="@+id/spinHomeGameVariant2"
-                    style="@style/SpinnerDefault"
-                    class="com.gworks.dartscape.ui.SuperSpinner"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    tools:listitem="@layout/item_spinner" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginBottom="@dimen/control_padding"
-                android:layout_weight="1"
-                android:splitMotionEvents="false">
-
-                <view
-                    android:id="@+id/spinHomeLegs"
-                    style="@style/SpinnerDefault"
-                    class="com.gworks.dartscape.ui.SuperSpinner"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    tools:ignore="DuplicateSpeakableTextCheck"
-                    tools:listitem="@layout/item_spinner" />
-
-                <Space
-                    android:id="@+id/spaceHomeLegsSets"
-                    android:layout_width="@dimen/control_padding"
-                    android:layout_height="match_parent" />
-
-                <view
-                    android:id="@+id/spinHomeSets"
-                    style="@style/SpinnerDefault"
-                    class="com.gworks.dartscape.ui.SuperSpinner"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    tools:ignore="DuplicateSpeakableTextCheck"
-                    tools:listitem="@layout/item_spinner" />
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="4"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:padding="@dimen/frag_padding"
             android:splitMotionEvents="false">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <LinearLayout
+                android:id="@+id/lHomeGameSessionSettings"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginBottom="@dimen/control_padding"
-                android:layout_weight="1">
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-                <view
-                    android:id="@+id/spinHomeSlot1"
-                    style="@style/SpinnerDefault"
-                    class="com.gworks.dartscape.ui.SuperSpinner"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight=".3"
-                    android:dropDownWidth="match_parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintDimensionRatio="1:1"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:listitem="@layout/item_spinner_icon" />
+                <com.gworks.dartscape.ui.MultiView
+                    android:id="@+id/mvHomeGameLabel4"
+                    style="@style/MultiViewLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:paddingBottom="4dp"
+                    android:text="GAME MODE" />
 
                 <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:orientation="horizontal"
-                    android:splitMotionEvents="false"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/spinHomeSlot1"
-                    app:layout_constraintTop_toTopOf="parent">
+                    android:id="@+id/lHomeGameType"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginBottom="@dimen/control_padding"
+                    android:layout_weight="0"
+                    android:splitMotionEvents="false">
 
                     <view
-                        android:id="@+id/spinHomePlayerSlot1"
+                        android:id="@+id/spinHomeGame"
                         style="@style/SpinnerDefault"
                         class="com.gworks.dartscape.ui.SuperSpinner"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_marginStart="@dimen/control_padding"
-                        android:layout_weight="1"
-                        android:visibility="visible"
-                        tools:ignore="DuplicateSpeakableTextCheck"
-                        tools:listitem="@layout/item_spinner" />
-
-                    <view
-                        android:id="@+id/spinHomeTeammateSlot1"
-                        style="@style/SpinnerDefault"
-                        class="com.gworks.dartscape.ui.SuperSpinner"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="6dp"
-                        android:layout_weight="1"
-                        android:visibility="gone" />
-
-                    <LinearLayout
-                        android:id="@+id/spinHomeBotSlot1"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="@dimen/control_padding"
-                        android:layout_weight="1"
-                        android:background="@drawable/drw_control_bg"
-                        android:orientation="vertical"
-                        android:visibility="gone">
-
-                        <SeekBar
-                            android:id="@+id/seekHomeBot1"
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:max="1000"
-                            android:progress="0"
-                            android:progressDrawable="@drawable/drw_seek_bar"
-                            android:thumb="@drawable/drw_seek_thumb" />
-
-                        <com.gworks.dartscape.ui.MultiView
-                            android:id="@+id/mvHomeBotLabel1"
-                            style="@style/MultiViewLabel"
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1.5"
-                            android:text="NORMAL\n(1.4)" />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginBottom="@dimen/control_padding"
-                android:layout_weight="1">
-
-                <view
-                    android:id="@+id/spinHomeSlot2"
-                    style="@style/SpinnerDefault"
-                    class="com.gworks.dartscape.ui.SuperSpinner"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight=".3"
-                    android:dropDownWidth="match_parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintDimensionRatio="1:1"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:listitem="@layout/item_spinner_icon" />
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:orientation="horizontal"
-                    android:splitMotionEvents="false"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/spinHomeSlot2"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <view
-                        android:id="@+id/spinHomePlayerSlot2"
-                        style="@style/SpinnerDefault"
-                        class="com.gworks.dartscape.ui.SuperSpinner"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="@dimen/control_padding"
                         android:layout_weight="1"
                         tools:ignore="DuplicateSpeakableTextCheck"
                         tools:listitem="@layout/item_spinner" />
 
+                    <Space
+                        android:id="@+id/spaceHome1"
+                        android:layout_width="@dimen/control_padding"
+                        android:layout_height="match_parent" />
+
                     <view
-                        android:id="@+id/spinHomeTeammateSlot2"
+                        android:id="@+id/spinHomeGameMode"
                         style="@style/SpinnerDefault"
                         class="com.gworks.dartscape.ui.SuperSpinner"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_marginStart="6dp"
-                        android:layout_weight="1"
-                        android:visibility="gone" />
-
-                    <LinearLayout
-                        android:id="@+id/spinHomeBotSlot2"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="@dimen/control_padding"
-                        android:layout_weight="1"
-                        android:background="@drawable/drw_control_bg"
-                        android:orientation="vertical"
-                        android:visibility="gone">
-
-                        <SeekBar
-                            android:id="@+id/seekHomeBot2"
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:max="1000"
-                            android:progress="0"
-                            android:progressDrawable="@drawable/drw_seek_bar"
-                            android:thumb="@drawable/drw_seek_thumb" />
-
-                        <com.gworks.dartscape.ui.MultiView
-                            android:id="@+id/mvHomeBotLabel2"
-                            style="@style/MultiViewLabel"
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1.5"
-                            android:text="NORMAL\n(1.4)" />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginBottom="@dimen/control_padding"
-                android:layout_weight="1">
-
-                <view
-                    android:id="@+id/spinHomeSlot3"
-                    style="@style/SpinnerDefault"
-                    class="com.gworks.dartscape.ui.SuperSpinner"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight=".3"
-                    android:dropDownWidth="match_parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintDimensionRatio="1:1"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:listitem="@layout/item_spinner_icon" />
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:orientation="horizontal"
-                    android:splitMotionEvents="false"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/spinHomeSlot3"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <view
-                        android:id="@+id/spinHomePlayerSlot3"
-                        style="@style/SpinnerDefault"
-                        class="com.gworks.dartscape.ui.SuperSpinner"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="@dimen/control_padding"
                         android:layout_weight="1"
                         tools:ignore="DuplicateSpeakableTextCheck"
                         tools:listitem="@layout/item_spinner" />
 
-                    <view
-                        android:id="@+id/spinHomeTeammateSlot3"
-                        style="@style/SpinnerDefault"
-                        class="com.gworks.dartscape.ui.SuperSpinner"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="6dp"
-                        android:layout_weight="1"
-                        android:visibility="gone" />
-
-                    <LinearLayout
-                        android:id="@+id/spinHomeBotSlot3"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="@dimen/control_padding"
-                        android:layout_weight="1"
-                        android:background="@drawable/drw_control_bg"
-                        android:orientation="vertical"
-                        android:visibility="gone">
-
-                        <SeekBar
-                            android:id="@+id/seekHomeBot3"
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:max="1000"
-                            android:progress="0"
-                            android:progressDrawable="@drawable/drw_seek_bar"
-                            android:thumb="@drawable/drw_seek_thumb" />
-
-                        <com.gworks.dartscape.ui.MultiView
-                            android:id="@+id/mvHomeBotLabel3"
-                            style="@style/MultiViewLabel"
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1.5"
-                            android:text="NORMAL\n(1.4)" />
-
-                    </LinearLayout>
-
                 </LinearLayout>
-            </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginBottom="@dimen/control_padding"
-                android:layout_weight="1">
-
-                <view
-                    android:id="@+id/spinHomeSlot4"
-                    style="@style/SpinnerDefault"
-                    class="com.gworks.dartscape.ui.SuperSpinner"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight=".3"
-                    android:dropDownWidth="match_parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintDimensionRatio="1:1"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:listitem="@layout/item_spinner_icon" />
+                <com.gworks.dartscape.ui.MultiView
+                    android:id="@+id/mvHomeGameLabel2"
+                    style="@style/MultiViewLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:paddingBottom="4dp"
+                    android:text="GAME OPTIONS" />
 
                 <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:orientation="horizontal"
-                    android:splitMotionEvents="false"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/spinHomeSlot4"
-                    app:layout_constraintTop_toTopOf="parent">
+                    android:id="@+id/lHomeVariant"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginBottom="@dimen/control_padding"
+                    android:layout_weight="0"
+                    android:splitMotionEvents="false">
 
                     <view
-                        android:id="@+id/spinHomePlayerSlot4"
+                        android:id="@+id/spinHomeGameVariant"
                         style="@style/SpinnerDefault"
                         class="com.gworks.dartscape.ui.SuperSpinner"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_marginStart="@dimen/control_padding"
                         android:layout_weight="1"
                         tools:ignore="DuplicateSpeakableTextCheck"
                         tools:listitem="@layout/item_spinner" />
 
+                    <Space
+                        android:id="@+id/spaceHome2"
+                        android:layout_width="@dimen/control_padding"
+                        android:layout_height="match_parent" />
+
                     <view
-                        android:id="@+id/spinHomeTeammateSlot4"
+                        android:id="@+id/spinHomeGameVariant2"
                         style="@style/SpinnerDefault"
                         class="com.gworks.dartscape.ui.SuperSpinner"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_marginStart="6dp"
                         android:layout_weight="1"
-                        android:visibility="gone" />
-
-                    <LinearLayout
-                        android:id="@+id/spinHomeBotSlot4"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="@dimen/control_padding"
-                        android:layout_weight="1"
-                        android:background="@drawable/drw_control_bg"
-                        android:orientation="vertical"
-                        android:visibility="gone">
-
-                        <SeekBar
-                            android:id="@+id/seekHomeBot4"
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:max="1000"
-                            android:progress="0"
-                            android:progressDrawable="@drawable/drw_seek_bar"
-                            android:thumb="@drawable/drw_seek_thumb" />
-
-                        <com.gworks.dartscape.ui.MultiView
-                            android:id="@+id/mvHomeBotLabel4"
-                            style="@style/MultiViewLabel"
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1.5"
-                            android:text="NORMAL\n(1.4)" />
-
-                    </LinearLayout>
+                        tools:listitem="@layout/item_spinner" />
 
                 </LinearLayout>
-            </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <com.gworks.dartscape.ui.MultiView
+                    android:id="@+id/mvHomeGameLabel"
+                    style="@style/MultiViewLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:paddingBottom="4dp"
+                    android:text="LEGS/SETS" />
+
+                <LinearLayout
+                    android:id="@+id/lHomeLegs"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginBottom="@dimen/control_padding"
+                    android:layout_weight="0"
+                    android:splitMotionEvents="false">
+
+                    <view
+                        android:id="@+id/spinHomeLegs"
+                        style="@style/SpinnerDefault"
+                        class="com.gworks.dartscape.ui.SuperSpinner"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        tools:ignore="DuplicateSpeakableTextCheck"
+                        tools:listitem="@layout/item_spinner" />
+
+                    <Space
+                        android:id="@+id/spaceHomeLegsSets"
+                        android:layout_width="@dimen/control_padding"
+                        android:layout_height="match_parent" />
+
+                    <view
+                        android:id="@+id/spinHomeSets"
+                        style="@style/SpinnerDefault"
+                        class="com.gworks.dartscape.ui.SuperSpinner"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        tools:ignore="DuplicateSpeakableTextCheck"
+                        tools:listitem="@layout/item_spinner" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="32dp" />
+
+            <LinearLayout
+                android:id="@+id/lHomePlayers"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:splitMotionEvents="false">
+
+                <com.gworks.dartscape.ui.MultiView
+                    android:id="@+id/mvHomeGameLabel5"
+                    style="@style/MultiViewLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:paddingBottom="4dp"
+                    android:text="PLAYERS" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/lHomePlayerRow1"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginBottom="@dimen/control_padding"
+                    android:visibility="visible">
+
+                    <view
+                        android:id="@+id/spinHomeSlot1"
+                        style="@style/SpinnerDefault"
+                        class="com.gworks.dartscape.ui.SuperSpinner"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".3"
+                        android:dropDownWidth="match_parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintDimensionRatio="1:1"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:listitem="@layout/item_spinner_icon" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:splitMotionEvents="false"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/spinHomeSlot1"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <view
+                            android:id="@+id/spinHomePlayerSlot1"
+                            style="@style/SpinnerDefault"
+                            class="com.gworks.dartscape.ui.SuperSpinner"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="@dimen/control_padding"
+                            android:layout_weight="1"
+                            android:visibility="visible"
+                            tools:ignore="DuplicateSpeakableTextCheck"
+                            tools:listitem="@layout/item_spinner" />
+
+                        <view
+                            android:id="@+id/spinHomeTeammateSlot1"
+                            style="@style/SpinnerDefault"
+                            class="com.gworks.dartscape.ui.SuperSpinner"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="6dp"
+                            android:layout_weight="1"
+                            android:visibility="gone" />
+
+                        <LinearLayout
+                            android:id="@+id/spinHomeBotSlot1"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="@dimen/control_padding"
+                            android:layout_weight="1"
+                            android:background="@drawable/drw_control_bg"
+                            android:orientation="vertical"
+                            android:visibility="gone">
+
+                            <SeekBar
+                                android:id="@+id/seekHomeBot1"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:max="1000"
+                                android:progress="0"
+                                android:progressDrawable="@drawable/drw_seek_bar"
+                                android:thumb="@drawable/drw_seek_thumb" />
+
+                            <com.gworks.dartscape.ui.MultiView
+                                android:id="@+id/mvHomeBotLabel1"
+                                style="@style/MultiViewLabel"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1.5"
+                                android:text="NORMAL\n(1.4)" />
+
+                        </LinearLayout>
+
+                        <view
+                            android:id="@+id/btnHomeRemovePlayer1"
+                            style="@style/MultiViewTransparent"
+                            class="com.gworks.dartscape.ui.MultiView"
+                            android:layout_width="45dp"
+                            android:layout_height="35dp"
+                            android:gravity="center"
+                            android:paddingLeft="4dp"
+                            android:textAlignment="center"
+                            custom:icon1="@drawable/ic_cancel" />
+
+                    </LinearLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/lHomePlayerRow2"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginBottom="@dimen/control_padding">
+
+                    <view
+                        android:id="@+id/spinHomeSlot2"
+                        style="@style/SpinnerDefault"
+                        class="com.gworks.dartscape.ui.SuperSpinner"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".3"
+                        android:dropDownWidth="match_parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintDimensionRatio="1:1"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:listitem="@layout/item_spinner_icon" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:splitMotionEvents="false"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/spinHomeSlot2"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <view
+                            android:id="@+id/spinHomePlayerSlot2"
+                            style="@style/SpinnerDefault"
+                            class="com.gworks.dartscape.ui.SuperSpinner"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="@dimen/control_padding"
+                            android:layout_weight="1"
+                            tools:ignore="DuplicateSpeakableTextCheck"
+                            tools:listitem="@layout/item_spinner" />
+
+                        <view
+                            android:id="@+id/spinHomeTeammateSlot2"
+                            style="@style/SpinnerDefault"
+                            class="com.gworks.dartscape.ui.SuperSpinner"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="6dp"
+                            android:layout_weight="1"
+                            android:visibility="gone" />
+
+                        <LinearLayout
+                            android:id="@+id/spinHomeBotSlot2"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="@dimen/control_padding"
+                            android:layout_weight="1"
+                            android:background="@drawable/drw_control_bg"
+                            android:orientation="vertical"
+                            android:visibility="gone">
+
+                            <SeekBar
+                                android:id="@+id/seekHomeBot2"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:max="1000"
+                                android:progress="0"
+                                android:progressDrawable="@drawable/drw_seek_bar"
+                                android:thumb="@drawable/drw_seek_thumb" />
+
+                            <com.gworks.dartscape.ui.MultiView
+                                android:id="@+id/mvHomeBotLabel2"
+                                style="@style/MultiViewLabel"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1.5"
+                                android:text="NORMAL\n(1.4)" />
+
+                        </LinearLayout>
+
+                        <view
+                            android:id="@+id/btnHomeRemovePlayer2"
+                            style="@style/MultiViewTransparent"
+                            class="com.gworks.dartscape.ui.MultiView"
+                            android:layout_width="45dp"
+                            android:layout_height="35dp"
+                            android:gravity="center"
+                            android:paddingLeft="4dp"
+                            android:textAlignment="center"
+                            custom:icon1="@drawable/ic_cancel" />
+
+                    </LinearLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/lHomePlayerRow3"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginBottom="@dimen/control_padding">
+
+                    <view
+                        android:id="@+id/spinHomeSlot3"
+                        style="@style/SpinnerDefault"
+                        class="com.gworks.dartscape.ui.SuperSpinner"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".3"
+                        android:dropDownWidth="match_parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintDimensionRatio="1:1"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:listitem="@layout/item_spinner_icon" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:splitMotionEvents="false"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/spinHomeSlot3"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <view
+                            android:id="@+id/spinHomeTeammateSlot3"
+                            style="@style/SpinnerDefault"
+                            class="com.gworks.dartscape.ui.SuperSpinner"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="6dp"
+                            android:layout_weight="1"
+                            android:visibility="gone" />
+
+                        <view
+                            android:id="@+id/spinHomePlayerSlot3"
+                            style="@style/SpinnerDefault"
+                            class="com.gworks.dartscape.ui.SuperSpinner"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="@dimen/control_padding"
+                            android:layout_weight="1"
+                            tools:ignore="DuplicateSpeakableTextCheck"
+                            tools:listitem="@layout/item_spinner" />
+
+                        <LinearLayout
+                            android:id="@+id/spinHomeBotSlot3"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="@dimen/control_padding"
+                            android:layout_weight="1"
+                            android:background="@drawable/drw_control_bg"
+                            android:orientation="vertical"
+                            android:visibility="gone">
+
+                            <SeekBar
+                                android:id="@+id/seekHomeBot3"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:max="1000"
+                                android:progress="0"
+                                android:progressDrawable="@drawable/drw_seek_bar"
+                                android:thumb="@drawable/drw_seek_thumb" />
+
+                            <com.gworks.dartscape.ui.MultiView
+                                android:id="@+id/mvHomeBotLabel3"
+                                style="@style/MultiViewLabel"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1.5"
+                                android:text="NORMAL\n(1.4)" />
+
+                        </LinearLayout>
+
+                        <view
+                            android:id="@+id/btnHomeRemovePlayer3"
+                            style="@style/MultiViewTransparent"
+                            class="com.gworks.dartscape.ui.MultiView"
+                            android:layout_width="45dp"
+                            android:layout_height="35dp"
+                            android:gravity="center"
+                            android:paddingLeft="4dp"
+                            android:textAlignment="center"
+                            custom:icon1="@drawable/ic_cancel" />
+
+                    </LinearLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/lHomePlayerRow4"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginBottom="@dimen/control_padding">
+
+                    <view
+                        android:id="@+id/spinHomeSlot4"
+                        style="@style/SpinnerDefault"
+                        class="com.gworks.dartscape.ui.SuperSpinner"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".3"
+                        android:dropDownWidth="match_parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintDimensionRatio="1:1"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:listitem="@layout/item_spinner_icon" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:splitMotionEvents="false"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/spinHomeSlot4"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <view
+                            android:id="@+id/spinHomePlayerSlot4"
+                            style="@style/SpinnerDefault"
+                            class="com.gworks.dartscape.ui.SuperSpinner"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="@dimen/control_padding"
+                            android:layout_weight="1"
+                            tools:ignore="DuplicateSpeakableTextCheck"
+                            tools:listitem="@layout/item_spinner" />
+
+                        <view
+                            android:id="@+id/spinHomeTeammateSlot4"
+                            style="@style/SpinnerDefault"
+                            class="com.gworks.dartscape.ui.SuperSpinner"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="6dp"
+                            android:layout_weight="1"
+                            android:visibility="gone" />
+
+                        <LinearLayout
+                            android:id="@+id/spinHomeBotSlot4"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="@dimen/control_padding"
+                            android:layout_weight="1"
+                            android:background="@drawable/drw_control_bg"
+                            android:orientation="vertical"
+                            android:visibility="gone">
+
+                            <SeekBar
+                                android:id="@+id/seekHomeBot4"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:max="1000"
+                                android:progress="0"
+                                android:progressDrawable="@drawable/drw_seek_bar"
+                                android:thumb="@drawable/drw_seek_thumb" />
+
+                            <com.gworks.dartscape.ui.MultiView
+                                android:id="@+id/mvHomeBotLabel4"
+                                style="@style/MultiViewLabel"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1.5"
+                                android:text="NORMAL\n(1.4)" />
+
+                        </LinearLayout>
+
+                        <view
+                            android:id="@+id/btnHomeRemovePlayer4"
+                            style="@style/MultiViewTransparent"
+                            class="com.gworks.dartscape.ui.MultiView"
+                            android:layout_width="45dp"
+                            android:layout_height="35dp"
+                            android:gravity="center"
+                            android:paddingLeft="4dp"
+                            android:textAlignment="center"
+                            custom:icon1="@drawable/ic_cancel" />
+
+                    </LinearLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="16dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <view
+                        android:id="@+id/btnHomeNewPlayer"
+                        style="@style/MultiViewDefault"
+                        class="com.gworks.dartscape.ui.MultiView"
+                        android:layout_width="80dp"
+                        android:layout_height="match_parent"
+                        android:gravity="bottom"
+                        android:paddingBottom="@dimen/control_padding"
+                        android:text="ADD"
+                        app:icon1="@drawable/ic_user_add" />
+
+                    <Space
+                        android:layout_width="32dp"
+                        android:layout_height="match_parent" />
+
+                    <view
+                        android:id="@+id/btnHomePlayers2"
+                        style="@style/MultiViewDefault"
+                        class="com.gworks.dartscape.ui.MultiView"
+                        android:layout_width="80dp"
+                        android:layout_height="match_parent"
+                        android:gravity="bottom"
+                        android:paddingBottom="@dimen/control_padding"
+                        android:text="REMOVE"
+                        app:icon1="@drawable/ic_user_remove" />
+
+                </LinearLayout>
+
+            </LinearLayout>
 
         </LinearLayout>
+    </ScrollView>
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+    <LinearLayout
+        android:id="@+id/naviBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorButtonNormal"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/control_padding"
+        app:layout_constraintBottom_toBottomOf="parent"
+        custom:layout_constraintEnd_toEndOf="parent"
+        custom:layout_constraintStart_toStartOf="parent">
 
         <LinearLayout
             android:id="@+id/lHomeGameStart"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight=".7"
+            android:layout_height="80dp"
             android:orientation="vertical"
+            android:paddingStart="8dp"
+            android:paddingTop="8dp"
+            android:paddingEnd="8dp"
+            android:paddingBottom="8dp"
             android:splitMotionEvents="false">
 
             <LinearLayout
@@ -527,31 +669,14 @@
 
         </LinearLayout>
 
-    </LinearLayout>
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/glHome"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent=".85" />
-
-    <LinearLayout
-        android:id="@+id/linearLayout3"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:background="?attr/colorButtonNormal"
-        android:orientation="vertical"
-        android:paddingTop="@dimen/control_padding"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/glHome"
-        custom:layout_constraintEnd_toEndOf="parent"
-        custom:layout_constraintStart_toStartOf="parent">
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="8dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_height="120dp"
+            android:layout_weight="0"
             android:gravity="center"
             android:orientation="horizontal">
 
