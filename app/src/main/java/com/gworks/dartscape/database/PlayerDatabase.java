@@ -11,6 +11,8 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.os.Handler;
+import android.os.Looper;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -32,6 +34,10 @@ import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.function.Consumer;
 
 /**
  * Database class for saving and retrieving players and game data, for stats.
@@ -100,6 +106,9 @@ public class PlayerDatabase {
 
     /** helper class for sqlite */
     private DBHelper mHelper;
+
+
+
 
     /** sqlite database */
     private SQLiteDatabase mDatabase;
@@ -543,7 +552,7 @@ public class PlayerDatabase {
     /**
      * a helper class for interacting with a sqlite database
      */
-    private static class DBHelper extends SQLiteOpenHelper {
+    public static class DBHelper extends SQLiteOpenHelper {
         // create table SQL command strings
         private static final int DATABASE_VERSION = 12;
         private static final String SQL_CREATE_TABLE_PLAYERS =
@@ -592,6 +601,10 @@ public class PlayerDatabase {
                         COLUMN_WORST_NUMBER         + " INTEGER, " +
                         "FOREIGN KEY(" + COLUMN_GAME_ID + ") REFERENCES " + TABLE_GAMES + "(" + COLUMN_ID + ")" +
                         ")";
+
+        private static final Object dbLock = new Object();
+        private static final ExecutorService dbExecutor = Executors.newSingleThreadExecutor();
+
         public DBHelper(Context context) {
             super(context, DATABASE_NAME, null, DATABASE_VERSION);
         }
@@ -613,7 +626,43 @@ public class PlayerDatabase {
            // db.execSQL("UPDATE " + TABLE_PLAYER_DATA + " SET " + COLUMN_GAME_MODE + " = REPLACE(" +
            //         COLUMN_GAME_MODE + ", '_01', 'X01')");
         }
+
+
+        public static void runAsync(Runnable task) {
+            dbExecutor.execute(() -> {
+                synchronized (dbLock) {
+                    task.run();
+                }
+            });
+        }
+
+        public static <T> T runSync(Callable<T> task) {
+            synchronized (dbLock) {
+                try {
+                    return task.call();
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        }
+
+        public static <T> void runAsyncResult(Callable<T> task, Consumer<T> callback) {
+            dbExecutor.execute(() -> {
+                T result;
+                synchronized (dbLock) {
+                    try {
+                        result = task.call();
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+                // Post result to main thread
+                new Handler(Looper.getMainLooper()).post(() -> callback.accept(result));
+            });
+        }
     }
+
+
 
     @NonNull
     @Override

@@ -210,9 +210,13 @@ public class PlayersRecycleView extends RecyclerView {
 
         @SuppressLint("NotifyDataSetChanged")
         public void fillWithNames() {
-            mData = new ArrayList<>();
-            mData = db().getAllPlayerNames();
-            notifyDataSetChanged();
+            PlayerDatabase.DBHelper.runAsyncResult(() -> {
+                // Load stats in background thread
+                return db().getAllPlayerNames();
+            }, stats -> {
+                mData = stats;
+                notifyDataSetChanged();
+            });
         }
 
 

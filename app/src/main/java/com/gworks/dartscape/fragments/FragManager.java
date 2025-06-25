@@ -283,13 +283,14 @@ public class FragManager  {
         if(transAnim != TRANS_ANIM_NONE)
             ft.setCustomAnimations(TRANS_ANIMATION_IDS[transAnim][0],
                                    TRANS_ANIMATION_IDS[transAnim][1]);
-        Fragment shownF = showing() ;
+
         // hide current fragment and show new one
         ft.hide(showing()).show(fragment).runOnCommit(() -> {
             boolean isHomeFrag = fragment == mFragHome;
 
             // add to fragment list for showLast
-            if(!isHomeFrag && stack) mFragStack.push(fragment);
+            if(!isHomeFrag && stack)
+                mFragStack.push(fragment);
 
             mIsTransitioning = true;
             new Handler(Objects.requireNonNull(Looper.myLooper())).postDelayed(() -> {
@@ -390,11 +391,13 @@ public class FragManager  {
         if(isLoading() || mIsTransitioning) return false;
 
         if(showing().equals(getFragFromId(FragManager.FragId.FRAG_GAME))) {
-            mFragHome.syncGameDataOnShow();
             return showLast(TRANS_ANIM_SLIDE_RIGHT);
 
         }  else if(showing().equals(getFragFromId(FragId.FRAG_HOME))) {
-            if(gdata().isGameGoing()) show(FragId.FRAG_GAME, TRANS_ANIM_SLIDE_RIGHT);
+            if(gdata().isGameGoing()) {
+                show(FragId.FRAG_GAME, TRANS_ANIM_SLIDE_RIGHT);
+                ((HomeFragment) getFragFromId(FragId.FRAG_HOME)).updateUiAfterTransition();
+            }
 
         } else if(showing().equals(getFragFromId(FragId.FRAG_GAME_RESULTS))) {
             return showLast(TRANS_ANIM_FADE_OUT);

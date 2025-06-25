@@ -32,6 +32,7 @@ public class PlayersFragment extends Fragment {
     MultiView mBtnEditSave;
     MultiView mBtnDelete;
 
+    boolean mPlayersEdited = false;
 
     /** creates the view one time to save time. */
     @Override
@@ -63,7 +64,15 @@ public class PlayersFragment extends Fragment {
     @Override
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
-        if (hidden) return;
+
+        if (hidden) {
+            if (mPlayersEdited)
+                ((HomeFragment) frags().getFragFromId
+                        (FragManager.FragId.FRAG_HOME)).syncPlayersOnShow();
+            return;
+        }
+
+        mPlayersEdited = false;
 
         // initialize player fields
         mRvPlayers.refill();
@@ -101,6 +110,8 @@ public class PlayersFragment extends Fragment {
         }
 
         mRvPlayers.addPlayer();
+        mPlayersEdited = true;
+
         setLayoutEditing(true);
     }
 
@@ -109,6 +120,7 @@ public class PlayersFragment extends Fragment {
 
         if (mRvPlayers.isEditing()) {
             mRvPlayers.savePlayers();
+            mPlayersEdited = true;
             if (!mRvPlayers.isEditing())
                 setLayoutEditing(false);
         } else {
@@ -129,7 +141,11 @@ public class PlayersFragment extends Fragment {
             return;
         }
 
-        if (itemSelected) mRvPlayers.deleteSelected();
+        if (itemSelected) {
+            mRvPlayers.deleteSelected();
+            mPlayersEdited = true;
+        }
+
     }
 
     private void setLayoutEditing(boolean editing) {
@@ -147,8 +163,6 @@ public class PlayersFragment extends Fragment {
 
         ((DartScapeActivity) requireContext()).frags().titleBar().setBackButtonActive(!editing);
     }
-
-
 
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
@@ -171,19 +185,11 @@ public class PlayersFragment extends Fragment {
     };
 
 
-    private void onBack() {
-        // must be at least one player
-        if (db().getAllPlayers().size() == 0) {
-            // make sure there are player
-            mRvPlayers.refill();
-        } else {
-            ((DartScapeActivity) requireContext()).frags().goBack();
-        }
-    }
-
     /** grab the global player database */
     private PlayerDatabase db() {
         return ((DartScapeActivity)requireContext()).playerDB();
     }
-
+    private FragManager frags() {
+        return ((DartScapeActivity) requireContext()).frags();
+    }
 }

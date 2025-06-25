@@ -121,6 +121,8 @@ public class StatsFragment extends Fragment  {
 
         mRvStats = requireView().findViewById(R.id.rvAllStats);
         mRvStats.setClickListener((view, position) -> showPlayerStats());
+
+        updateGameModeSpinners();
     }
 
     private boolean isLoadingStats = false;
@@ -129,55 +131,46 @@ public class StatsFragment extends Fragment  {
         if(isLoadingStats) return;
         isLoadingStats = true;
 
-        ExecutorService executor = Executors.newSingleThreadExecutor();
-        Handler handler = new Handler(Looper.getMainLooper());
-
-        executor.execute(() -> {
-            // Load stats in background
-            ArrayList<PlayerStats> stats = db().getAllPlayerStats(getSelectedStartHours(), getGameFlags());
-
+        PlayerDatabase.DBHelper.runAsyncResult(() -> {
+            // Load stats in background thread
+            return db().getAllPlayerStats(getSelectedStartHours(), getGameFlags());
+        }, stats -> {
             // Update UI on main thread
-            handler.post(() -> {
-                mRvStats.fillWithAllPlayerStats(stats, getStat1());
-                isLoadingStats = false;
-            });
+            mRvStats.fillWithAllPlayerStats(stats, getStat1());
+            isLoadingStats = false;
         });
     }
-
 
     private void showPlayerStats() {
         if(isLoadingStats) return;
         isLoadingStats = true;
 
-        ExecutorService executor = Executors.newSingleThreadExecutor();
-        Handler handler = new Handler(Looper.getMainLooper());
-
-        executor.execute(() -> {
-            // Background thread: load stats
-            PlayerStats stats = db().getPlayerStats(
+        PlayerDatabase.DBHelper.runAsyncResult(() -> {
+            // background thread, DB-safe
+            return db().getPlayerStats(
                     mRvStats.getSelectedName(),
                     getSelectedStartHours(),
                     getGameFlags()
             );
+        }, stats -> {
+            // UI thread here with result (PlayerStats stats)
+            DartScapeActivity activity = (DartScapeActivity) requireContext();
+            FragManager manager = activity.frags();
 
+            manager.show(FragManager.FragId.FRAG_STATS_PLAYER);
 
-            // Post back to UI thread
-            handler.post(() -> {
-                DartScapeActivity activity = (DartScapeActivity) requireContext();
-                FragManager manager = activity.frags();
+            ((StatsPlayerFragment) manager.getFragFromId(FragManager.FragId.FRAG_STATS_PLAYER))
+                    .setPlayerStats(
+                            stats,
+                            getSelectedStartHours(),
+                            mSpinStartTime.getSelectedItem().toString(),
+                            getGameFlags()
+                    );
 
-                manager.show(FragManager.FragId.FRAG_STATS_PLAYER);
-
-                ((StatsPlayerFragment) manager.getFragFromId(FragManager.FragId.FRAG_STATS_PLAYER))
-                        .setPlayerStats(
-                                stats,
-                                getSelectedStartHours(),
-                                mSpinStartTime.getSelectedItem().toString(),
-                                getGameFlags()
-                        );
-                isLoadingStats = false;
-            });
+            isLoadingStats = false;
         });
+
+
     }
 
     private void updateGameModeSpinners() {
