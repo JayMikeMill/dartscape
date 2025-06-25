@@ -479,7 +479,8 @@ public class GameFragment extends Fragment implements GameLogic.GameLogicListene
         Sound.play(Sound.TRUMPET);
 
         // save the game to the database
-        if(!isOpenScoring()) db().saveGame(gdata());
+        if(!isOpenScoring() && UserPrefs.getRecordStats())
+            db().saveGame(gdata());
     }
 
     private void loadGameResults() {

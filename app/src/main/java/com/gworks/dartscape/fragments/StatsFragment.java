@@ -4,8 +4,6 @@ import static com.gworks.dartscape.data.Stats.*;
 
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,15 +16,12 @@ import androidx.fragment.app.Fragment;
 import com.gworks.dartscape.R;
 import com.gworks.dartscape.data.GameFlagSet;
 import com.gworks.dartscape.data.GameFlags;
-import com.gworks.dartscape.data.PlayerStats;
 import com.gworks.dartscape.database.PlayerDatabase;
 import com.gworks.dartscape.main.DartScapeActivity;
 import com.gworks.dartscape.ui.StatsAllRecycleView;
 import com.gworks.dartscape.ui.SuperSpinner;
 
 import java.util.ArrayList;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 /*
     PLAYERS DIALOG

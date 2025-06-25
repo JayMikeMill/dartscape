@@ -5,6 +5,7 @@
     <string name="team">TEAM</string>
     <string name="player">PLAYER</string>
     <string name="players">PLAYERS</string>
+    <string name="add_players">ADD PLAYERS</string>
     <string name="player_1">PLAYER 1</string>
     <string name="player_2">PLAYER 2</string>
     <string name="player_3">PLAYER 3</string>
@@ -298,7 +299,7 @@
     <string name="dartscape_pro">DARTSCAPE PRO</string>
     <string name="add">ADD</string>
     <string name="return_to_game">RETURN\nTO GAME</string>
-    <string name="start_game">START/nGAME</string>
+    <string name="start_game">START\nGAME</string>
     <string name="stats">STATS</string>
     <string name="settings">SETTINGS</string>
     <string name="help">HELP</string>
@@ -332,4 +333,11 @@
     <string name="black_and_yellow">BLACK AND YELLOW</string>
     <string name="neon_lights">NEON LIGHTS</string>
     <string name="playstore_url">market://details?id=com.gworks.dartscape</string>
+    <string name="game_mode">GAME MODE</string>
+    <string name="game_options">GAME OPTIONS</string>
+    <string name="legs_sets">LEGS/SETS</string>
+    <string name="bot">BOT</string>
+    <string name="record_stats">RECORD STATS</string>
+    <string name="user_data">USER DATA</string>
+    <string name="about_dartscape">ABOUT DARTSCAPE</string>
 </resources>

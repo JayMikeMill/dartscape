@@ -63,8 +63,9 @@ public class SettingsFragment extends Fragment implements SeekBar.OnSeekBarChang
 
     private ThemeSpinner mSpinTheme;
 
-    MultiView mBtnRestoreGameData;
-    MultiView mBtnBackupGameData;
+    private MultiView mBtnRecordStats;
+    private MultiView mBtnRestoreGameData;
+    private MultiView mBtnBackupGameData;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -140,6 +141,8 @@ public class SettingsFragment extends Fragment implements SeekBar.OnSeekBarChang
         mSpinTheme = requireView().findViewById(R.id.spinSettingsTheme);
         mSpinTheme.init(0.5f);
         mSpinTheme.setSelection(0, false, true);
+
+        mBtnRecordStats = requireView().findViewById(R.id.btnSettingsRecordStats);
 
         mBtnBackupGameData = requireView().findViewById(R.id.btnSettingsBackupData);
         mBtnBackupGameData.setOnClickListener(v -> onBackupGameData());
@@ -304,6 +307,7 @@ public class SettingsFragment extends Fragment implements SeekBar.OnSeekBarChang
         mBtnShowCurPlayer.setToggled(UserPrefs.getShowGameInfo());
 
         mBtnShowShadows.setToggled(UserPrefs.getShowShadows());
+        mBtnRecordStats.setToggled(UserPrefs.getRecordStats());
 
         mSpinTheme.setSelection(UserPrefs.getThemeIndex(), false, true);
     }
@@ -333,6 +337,8 @@ public class SettingsFragment extends Fragment implements SeekBar.OnSeekBarChang
 
         boolean shadowChange = mBtnShowShadows.isToggled() != UserPrefs.getShowShadows();
         UserPrefs.setShowShadows(mBtnShowShadows.isToggled());
+
+        UserPrefs.setRecordStats(mBtnRecordStats.isToggled());
 
         boolean themeChange = mSpinTheme.getSelectedItemPosition() != UserPrefs.getThemeIndex();
 

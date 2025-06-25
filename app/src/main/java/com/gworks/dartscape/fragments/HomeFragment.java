@@ -1,7 +1,6 @@
 package com.gworks.dartscape.fragments;
 
 import static com.gworks.dartscape.main.Globals.MAX_PLAYERS;
-import static com.gworks.dartscape.util.Helper.getResIdByName;
 
 import android.annotation.SuppressLint;
 import android.content.res.Configuration;
@@ -14,12 +13,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.SeekBar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.content.res.AppCompatResources;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
 import com.gworks.dartscape.data.GameFlagSet;
@@ -41,8 +40,6 @@ import com.gworks.dartscape.util.UserPrefs;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 public class HomeFragment extends Fragment implements AdapterView.OnItemSelectedListener {
     // init custom spinner adapter with icons
@@ -57,10 +54,11 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemSelected
         private final LinearLayout mSpinBotSlot;
         private final MultiView mMvBotLabel;
         private final SeekBar mSeekBotDiff;
+
         @SuppressLint("DiscouragedApi")
 
         public PlayerRow(@NonNull ViewGroup container,
-                         @NonNull ArrayList<String> playerNames) {
+                         @NonNull ArrayList<String> playerNames, int type) {
 
             // Inflate layout, do NOT attach to container yet
             mView = LayoutInflater.from(container.getContext())
@@ -77,12 +75,13 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemSelected
             // init custom spinner adapter with icons
             if(player_type_icons.isEmpty()) {
                 player_type_icons.add(AppCompatResources.getDrawable(requireContext(), R.drawable.ic_users_duo));
-                player_type_icons.add(AppCompatResources.getDrawable(requireContext(), R.drawable.ic_user));;
+                player_type_icons.add(AppCompatResources.getDrawable(requireContext(), R.drawable.ic_user));
                 player_type_icons.add(AppCompatResources.getDrawable(requireContext(), R.drawable.ic_bot));
             }
 
             mSpinTypeSlot.init(player_type_icons);
-            mSpinTypeSlot.setSelection(TOG_PLAYER);
+            mSpinTypeSlot.setSelection(type);
+            toggleSlot();
 
             // update player layout on slot toggle selected
             mSpinTypeSlot.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -100,6 +99,8 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemSelected
 
             mSeekBotDiff.setOnSeekBarChangeListener(this);
             mSeekBotDiff.setProgress(0);
+
+
 
             uiSyncBot();
 
@@ -121,10 +122,10 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemSelected
             int togState = mSpinTypeSlot.getSelectedItemPosition();
 
             mSpinPlayerSlot.setVisibility
-                    (togState == TOG_PLAYER || togState == TOG_TEAMMATE ? View.VISIBLE : View.GONE);
+                    (togState == TOG_PLAYER || togState == TOG_TEAM ? View.VISIBLE : View.GONE);
 
             mSpinTeammateSlot.setVisibility
-                    (togState == TOG_TEAMMATE ? View.VISIBLE : View.GONE);
+                    (togState == TOG_TEAM ? View.VISIBLE : View.GONE);
 
             ((View)mSpinPlayerSlot.getParent()).invalidate();
             ((View)mSpinTeammateSlot.getParent()).invalidate();
@@ -132,6 +133,10 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemSelected
 
             mSpinBotSlot.setVisibility
                     (togState == TOG_BOT ? View.VISIBLE : View.GONE);
+        }
+
+        public boolean isTeam() {
+            return mSpinTypeSlot.getSelectedItemPosition() == TOG_TEAM;
         }
 
         private void uiSyncBot() {
@@ -189,9 +194,11 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemSelected
         }
     }
 
-    private static final int TOG_TEAMMATE = 0;
+    private static final int TOG_TEAM   = 0;
     private static final int TOG_PLAYER = 1;
-    private static final int TOG_BOT = 2;
+    private static final int TOG_BOT    = 2;
+
+    private ScrollView mScrollView;
 
     private SuperSpinner mSpinGame;
     private SuperSpinner mSpinGameMode;
@@ -199,10 +206,13 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemSelected
     private SuperSpinner mSpinGameVariants2;
 
 
-    private ArrayList<PlayerRow> mPlayerRows = new ArrayList<>();
+    private final ArrayList<PlayerRow> mPlayerRows = new ArrayList<>();
+
     private LinearLayout mlPlayerLayout;
+    private LinearLayout mlAddPlayerType;
     private MultiView mBtnAddPlayer;
-    private MultiView mBtnRemovePlayer;
+    private MultiView mBtnAddTeam;
+    private MultiView mBtnAddBot;
 
     private MultiView mBtnStartGame;
     private MultiView mBtnReturnToGame;
@@ -264,7 +274,8 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemSelected
         super.onHiddenChanged(hidden);
 
         if (hidden) return;
-        uiSyncStartGameLayout(gdata(), false);
+
+        uiSyncReturnToGameButton();
 
         int animDuration = getResources().getInteger(android.R.integer.config_shortAnimTime) + 50;
 
@@ -310,6 +321,7 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemSelected
 
     @SuppressLint("DiscouragedApi")
     protected void initControls() {
+        mScrollView = requireView().findViewById(R.id.svHomeScrollMain);
         mSpinGame = requireView().findViewById(R.id.spinHomeGame);
         mSpinGameMode  = requireView().findViewById(R.id.spinHomeGameMode);
         mSpinGameVariants  = requireView().findViewById(R.id.spinHomeGameVariant);
@@ -320,9 +332,10 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemSelected
         mSpinSets = requireView().findViewById(R.id.spinHomeSets);
 
         mlPlayerLayout = requireView().findViewById(R.id.lHomePlayers);
-
+        mlAddPlayerType = requireView().findViewById(R.id.lHomeAddPlayerType);
         mBtnAddPlayer = requireView().findViewById(R.id.btnHomeNewPlayer);
-        mBtnRemovePlayer = requireView().findViewById(R.id.btnHomeRemovePlayer);
+        mBtnAddTeam = requireView().findViewById(R.id.btnHomeNewTeam);
+        mBtnAddBot = requireView().findViewById(R.id.btnHomeNewBot);
 
         mSpinGame.init(GameFlags.getGames(false), 0.6f);
         mSpinGameMode.init(GameFlags.getGameModes(GameFlags.GameFlag.ALL_GAMES, false), 0.6f);
@@ -356,8 +369,9 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemSelected
         mSpinLegs.setSelection(0, false, true);
         mSpinSets.setSelection(0, false, true);
 
-        mBtnAddPlayer.setOnClickListener(v -> addNewPlayer());
-        mBtnRemovePlayer.setOnClickListener(v -> removeLastPlayer());
+        mBtnAddPlayer.setOnClickListener(v -> addNewPlayer(TOG_PLAYER));
+        mBtnAddTeam.setOnClickListener(v -> addNewPlayer(TOG_TEAM));
+        mBtnAddBot.setOnClickListener(v -> addNewPlayer(TOG_BOT));
 
         // bottom navigation bar
         requireView().findViewById(R.id.btnHomePlayers).setOnClickListener(v -> onShowPlayers());
@@ -386,15 +400,20 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemSelected
 
     }
 
-    public void addNewPlayer() {
+    public void addNewPlayer(int type) {
         if(mPlayerRows.size() >= MAX_PLAYERS) return;
-        PlayerRow newRow = new PlayerRow(mlPlayerLayout, mAllPlayerNames);
+        PlayerRow newRow = new PlayerRow(mlPlayerLayout, mAllPlayerNames, type);
 
         newRow.setRemoveListener(v -> removePlayer(newRow));
+
         mPlayerRows.add(newRow);
+        setUnselectedName(newRow);
 
         updateAddRemovePlayerButtons();
+
+        mScrollView.post(() -> mScrollView.fullScroll(View.FOCUS_DOWN));
     }
+
 
     public void removePlayer(PlayerRow row) {
         ViewGroup container = (ViewGroup) row.getView().getParent();
@@ -408,18 +427,9 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemSelected
         updateAddRemovePlayerButtons();
     }
 
-    public void removeLastPlayer() {
-        if(mPlayerRows.isEmpty()) return;
-        removePlayer(mPlayerRows.get(mPlayerRows.size() - 1));
-    }
-
     public void updateAddRemovePlayerButtons() {
         int playerCount = mPlayerRows.size();
-        mBtnAddPlayer.setVisibility(playerCount < MAX_PLAYERS ? View.VISIBLE : View.GONE);
-        mBtnRemovePlayer.setVisibility(playerCount > 0 ? View.VISIBLE : View.GONE);
-
-        requireView().findViewById(R.id.spacerHomePlayerAddRemove)
-                .setVisibility(playerCount > 0 && playerCount < MAX_PLAYERS ? View.VISIBLE : View.GONE);;
+        mlAddPlayerType.setVisibility(playerCount < MAX_PLAYERS ? View.VISIBLE : View.GONE);
     }
 
     public void uiSyncWithGameData(GameData data) {
@@ -431,16 +441,17 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemSelected
         int active_players = data.getActivePlayerCount();
         if(mPlayerRows.size() < active_players) {
             int need_to_add = active_players - mPlayerRows.size();
-            for(int i = 0; i < need_to_add; i++) addNewPlayer();
+            for(int i = 0; i < need_to_add; i++) addNewPlayer(TOG_PLAYER);
         } else if (mPlayerRows.size() > active_players) {
             int need_to_remove = mPlayerRows.size() - active_players;
-            for(int i = 0; i < need_to_remove; i++) removeLastPlayer();
+            for(int i = 0; i < need_to_remove; i++)
+                removePlayer(mPlayerRows.get(mPlayerRows.size() - 1));
         }
 
         // init toggle buttons
         int index = 0;
         for (PlayerRow row : mPlayerRows) {
-            int togState =  data.player(index).isTeam() ? TOG_TEAMMATE :
+            int togState =  data.player(index).isTeam() ? TOG_TEAM :
                             data.player(index).isBot()  ? TOG_BOT : TOG_PLAYER;
             row.mSpinTypeSlot.setSelection(togState);
             index++;
@@ -576,14 +587,16 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemSelected
             mSpinLegs.setSelection(Math.min(sel, mSpinLegs.getCount() - 1));
         }
 
-        mBtnReturnToGame.setVisibility(gdata().isGameGoing() ? View.VISIBLE : View.GONE);
-        requireView().findViewById(R.id.spaceHomeReturnStart)
-                .setVisibility(gdata().isGameGoing() ? View.VISIBLE : View.GONE);
-
+        uiSyncReturnToGameButton();
         mBtnStartGame.setText(getString(R.string.start) + "\n" + (data.isLegs() ?
                 getString(R.string.match) : getString(R.string.game)));
     }
 
+    private void uiSyncReturnToGameButton() {
+        mBtnReturnToGame.setVisibility(gdata().isGameGoing() ? View.VISIBLE : View.GONE);
+        requireView().findViewById(R.id.spaceHomeReturnStart)
+                .setVisibility(gdata().isGameGoing() ? View.VISIBLE : View.GONE);
+    }
 
     public void onStartGame() {
         GameData gameData = getGameDataFromUI();
@@ -655,6 +668,39 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemSelected
     }
 
     private void switchNameDuplicate(PlayerRow row) {
+    }
+
+    private void setUnselectedName(PlayerRow prow) {
+        if(prow.isTeam())
+            setUnselectedName(prow, true);
+
+        setUnselectedName(prow, false);
+    }
+    private void setUnselectedName(PlayerRow prow, boolean team) {
+        ArrayList<String> selNames = new ArrayList<>();
+        for (PlayerRow row : mPlayerRows) {
+
+            if(row == prow) {
+                if(team) {
+                    selNames.add(prow.mSpinPlayerSlot.getSelectedItem().toString());
+                } else if (prow.isTeam()) {
+                    selNames.add(prow.mSpinTeammateSlot.getSelectedItem().toString());
+                }
+                continue;
+            }
+
+            selNames.add(row.mSpinPlayerSlot.getSelectedItem().toString());
+
+            if(row.isTeam())
+                selNames.add(row.mSpinTeammateSlot.getSelectedItem().toString());
+        }
+
+        SuperSpinner spin = team ? prow.mSpinTeammateSlot : prow.mSpinPlayerSlot;
+        for(int i = 0; i < spin.getCount(); i++) {
+            if(!selNames.contains((String) spin.getItemAtPosition(i))) {
+                spin.setSelection(i); break;
+            }
+        }
     }
 
    /* private void switchNameDuplicate2(SuperSpinner spinner) {
@@ -756,7 +802,7 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemSelected
                     if(update) gdata().player(player_index).setTeammateName("");
                     if(update) gdata().player(player_index).setBotDiff(0);
                     break;
-                case TOG_TEAMMATE:
+                case TOG_TEAM:
                     data.player(player_index).setName(row.mSpinPlayerSlot.getSelectedItem().toString());
                     data.player(player_index).setTeammateName(row.mSpinTeammateSlot.getSelectedItem().toString());
                     data.player(player_index).setBotDiff(0);
@@ -847,12 +893,14 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemSelected
             updateGameVariantSpinners(); return; }
 
         if(spinner.equals(mSpinLegs)) {
-            uiSyncStartGameLayout(getGameDataFromUI(), false); return; }
+            uiSyncStartGameLayout(getGameDataFromUI(), false);
+        }
         else if(spinner.equals(mSpinSets)) {
             uiSyncStartGameLayout
                     (getGameDataFromUI(),
                             spinner.getPreviousSelectedPosition() == 0 ||
-                                    spinner.getSelectedItemPosition() == 0); return; }
+                                    spinner.getSelectedItemPosition() == 0);
+        }
     }
 
 

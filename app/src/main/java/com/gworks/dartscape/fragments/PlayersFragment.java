@@ -71,13 +71,14 @@ public class PlayersFragment extends Fragment {
                         (FragManager.FragId.FRAG_HOME)).syncPlayersOnShow();
             return;
         }
+        setLayoutEditing(false);
 
         mPlayersEdited = false;
 
         // initialize player fields
         mRvPlayers.refill();
         mRvPlayers.setSelectedIndex(NO_POSITION);
-        setLayoutEditing(false);
+
     }
 
 
@@ -109,23 +110,26 @@ public class PlayersFragment extends Fragment {
             return;
         }
 
+        setLayoutEditing(true);
+
         mRvPlayers.addPlayer();
         mPlayersEdited = true;
 
-        setLayoutEditing(true);
+
     }
 
     private void editSavePlayer() {
         if (mRvPlayers.getSelectedIndex() == NO_POSITION) return;
 
         if (mRvPlayers.isEditing()) {
-            mRvPlayers.savePlayers();
-            mPlayersEdited = true;
             if (!mRvPlayers.isEditing())
                 setLayoutEditing(false);
+            mRvPlayers.savePlayers();
+            mPlayersEdited = true;
         } else {
-            mRvPlayers.editSelected();
             setLayoutEditing(true);
+            mRvPlayers.editSelected();
+
         }
     }
 
@@ -133,11 +137,13 @@ public class PlayersFragment extends Fragment {
         boolean itemSelected = mRvPlayers.getSelectedIndex() != NO_POSITION;
 
         if (mRvPlayers.isEditing() & itemSelected) {
+            setLayoutEditing(false);
+
             if (mRvPlayers.isAddingPlayer())
                 mRvPlayers.deleteSelected();
 
             mRvPlayers.stopEditing();
-            setLayoutEditing(false);
+
             return;
         }
 
@@ -150,6 +156,7 @@ public class PlayersFragment extends Fragment {
 
     private void setLayoutEditing(boolean editing) {
         boolean itemSelected = mRvPlayers.getSelectedIndex() != NO_POSITION;
+        ((DartScapeActivity) requireContext()).frags().titleBar().setBackButtonActive(!editing);
 
         mBtnNew.setEnabled(!(editing && itemSelected));
 
@@ -161,7 +168,7 @@ public class PlayersFragment extends Fragment {
         mBtnEditSave.setText(editing & itemSelected ?
                 getString(R.string.save) : getString(R.string.edit));
 
-        ((DartScapeActivity) requireContext()).frags().titleBar().setBackButtonActive(!editing);
+
     }
 
     @Override

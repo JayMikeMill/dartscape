@@ -303,7 +303,10 @@ public class PlayersRecycleView extends RecyclerView {
         /** Save a new player to database or update existing player */
         public void savePlayer() {
             if(!mEditing) return;
-            if(mSelectedPos == NO_POSITION) return;
+            if(mSelectedPos == NO_POSITION || mSelectedPos >= mData.size()) {
+                mAdding = false;
+                return;
+            }
 
             String newName =  mEditingText.getText().toString();
 
@@ -319,6 +322,7 @@ public class PlayersRecycleView extends RecyclerView {
             if(isAddingPlayer()) {
                 // try to add player to the database
                 int code = db().createPlayer(newName);int i = 0;
+
                 while(code != PlayerDatabase.CODE_SUCCESS)
                     code = db().createPlayer(newName + ++i);
                 if(i > 0) newName = newName + i;
@@ -342,7 +346,12 @@ public class PlayersRecycleView extends RecyclerView {
 
 
         public void removePlayer(int position) {
-            if(mSelectedPos == NO_POSITION) return;
+            if(position == NO_POSITION || position >= mData.size()) {
+                // stop editing and adding
+                mEditing = false;
+                mAdding = false;
+                return;
+            }
 
             // close keyboard if it is open in adding mode
             if(isAddingPlayer()) Helper.closeKeyboard(mEditingText);

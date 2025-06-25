@@ -29,6 +29,7 @@ public class UserPrefs {
     private static final String PREF_BOOL_SHOW_GAME_INFO       = PREF_STR_NAME + ".show_cur_player";
     private static final String PREF_BOOL_SHOW_SHADOWS         = PREF_STR_NAME + ".show_shadows";
     private static final String PREF_INT_THEME_INDEX           = PREF_STR_NAME + ".theme_index";
+    private static final String PREF_BOOL_RECORD_STATS         = PREF_STR_NAME + ".record_stats";
     private static final String PREF_BOOL_APP_RESET            = PREF_STR_NAME + ".app_reset";
 
     // User Preference storage  Default User Preference Values
@@ -41,6 +42,7 @@ public class UserPrefs {
     private static final boolean DEFAULT_SHOW_GAME_INFO         = true;
     private static final boolean DEFAULT_SHOW_SHADOWS           = true;
     private static final int     DEFAULT_THEME_INDEX            = 0;
+    private static final boolean DEFAULT_RECORD_STATS           = true;
 
     private static boolean mIsFirstRun;
 
@@ -188,6 +190,14 @@ public class UserPrefs {
 
     public static void setThemeIndex(int index) {
         mPrefs.edit().putInt(PREF_INT_THEME_INDEX, index).apply();
+    }
+
+    public static boolean getRecordStats() {
+        return mPrefs.getBoolean(PREF_BOOL_RECORD_STATS, DEFAULT_RECORD_STATS);
+    }
+
+    public static void setRecordStats(boolean value) {
+        mPrefs.edit().putBoolean(PREF_BOOL_RECORD_STATS, value).apply();
     }
 
     public static boolean getAppReset() {

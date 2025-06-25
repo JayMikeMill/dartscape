@@ -42,7 +42,7 @@
             android:layout_height="match_parent"
             android:layout_marginStart="@dimen/control_padding"
             android:layout_weight="1"
-            android:visibility="visible"
+            android:visibility="gone"
             tools:ignore="DuplicateSpeakableTextCheck"
             tools:listitem="@layout/item_spinner" />
 
@@ -64,14 +64,17 @@
             android:layout_weight="1"
             android:background="@drawable/drw_control_bg"
             android:orientation="vertical"
-            android:visibility="gone">
+            android:visibility="visible">
 
             <SeekBar
                 android:id="@+id/seekPlayerRowBot"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
+                android:layout_height="34dp"
                 android:max="1000"
+                android:paddingStart="24dp"
+                android:paddingTop="0dp"
+                android:paddingEnd="24dp"
+                android:paddingBottom="0dp"
                 android:progress="0"
                 android:progressDrawable="@drawable/drw_seek_bar"
                 android:thumb="@drawable/drw_seek_thumb" />
@@ -80,9 +83,9 @@
                 android:id="@+id/mvPlayerRowBotLabel"
                 style="@style/MultiViewLabel"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1.5"
-                android:text="NORMAL\n(1.4)" />
+                android:layout_height="match_parent"
+                android:text="NORMAL (1.4)"
+                app:textSizeRatio="1.5" />
 
         </LinearLayout>
 

@@ -32,14 +32,13 @@
             android:id="@+id/lSettingsContent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:orientation="vertical"
             android:splitMotionEvents="false">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/lSettingsDartscapePro"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginBottom="@dimen/control_padding"
                 android:soundEffectsEnabled="false"
                 android:splitMotionEvents="true">
@@ -102,7 +101,8 @@
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:layout_height="100dp">
+                        android:layout_height="100dp"
+                        android:paddingTop="8dp">
 
                         <com.gworks.dartscape.ui.MultiView
                             android:id="@+id/mvSettingsVolumeIcon"
@@ -200,7 +200,7 @@
                     style="@style/MultiViewHeader"
                     android:layout_width="0dp"
                     android:layout_height="50dp"
-                    android:gravity="right"
+                    android:gravity="start"
                     android:text="@string/bot_throw_speed"
                     android:textAlignment="center"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -260,7 +260,7 @@
                     style="@style/MultiViewHeader"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:gravity="right"
+                    android:gravity="start"
                     android:text="@string/new_game_order"
                     android:textAlignment="center"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -275,7 +275,7 @@
                     android:layout_height="60dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
-                    android:layout_marginEnd="8dp"
+                    android:layout_marginEnd="16dp"
                     android:layout_marginBottom="8dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -436,7 +436,7 @@
                     style="@style/MultiViewHeader"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:text="@string/player_data"
+                    android:text="@string/user_data"
                     android:textAlignment="center"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -444,43 +444,63 @@
 
                 <LinearLayout
                     android:layout_width="0dp"
-                    android:layout_height="100dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
                     android:layout_marginEnd="16dp"
                     android:layout_marginBottom="8dp"
-                    android:orientation="horizontal"
+                    android:orientation="vertical"
                     android:splitMotionEvents="false"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/labSettingsData">
+                    custom:layout_constraintBottom_toBottomOf="parent"
+                    custom:layout_constraintEnd_toEndOf="parent"
+                    custom:layout_constraintStart_toStartOf="parent"
+                    custom:layout_constraintTop_toBottomOf="@+id/labSettingsData">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:orientation="horizontal"
+                        android:splitMotionEvents="false">
+
+                        <com.gworks.dartscape.ui.MultiView
+                            android:id="@+id/btnSettingsBackupData"
+                            style="@style/MultiViewDefault"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="bottom"
+                            android:text="@string/back_up"
+                            android:textAlignment="center"
+                            app:icon1="@drawable/ic_upload" />
+
+                        <Space
+                            android:layout_width="@dimen/control_padding"
+                            android:layout_height="match_parent" />
+
+                        <com.gworks.dartscape.ui.MultiView
+                            android:id="@+id/btnSettingsRestoreData"
+                            style="@style/MultiViewDefault"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="bottom"
+                            android:text="@string/restore"
+                            android:textAlignment="center"
+                            custom:icon1="@drawable/ic_download" />
+
+                    </LinearLayout>
 
                     <com.gworks.dartscape.ui.MultiView
-                        android:id="@+id/btnSettingsBackupData"
+                        android:id="@+id/btnSettingsRecordStats"
                         style="@style/MultiViewDefault"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:gravity="bottom"
-                        android:text="@string/back_up"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:gravity="center"
+                        android:text="@string/record_stats"
                         android:textAlignment="center"
-                        app:icon1="@drawable/ic_upload" />
-
-                    <Space
-                        android:layout_width="@dimen/control_padding"
-                        android:layout_height="match_parent" />
-
-                    <com.gworks.dartscape.ui.MultiView
-                        android:id="@+id/btnSettingsRestoreData"
-                        style="@style/MultiViewDefault"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:gravity="bottom"
-                        android:text="@string/restore"
-                        android:textAlignment="center"
-                        custom:icon1="@drawable/ic_download" />
+                        app:textSizeRatio=".7"
+                        app:toggleButton="true" />
 
                 </LinearLayout>
 
@@ -497,8 +517,8 @@
                     style="@style/MultiViewHeader"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:gravity="right"
-                    android:text="ABOUT DARTSCAPE"
+                    android:gravity="start"
+                    android:text="@string/about_dartscape"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -529,7 +549,7 @@
         style="@style/MultiViewDefault"
         android:layout_width="0dp"
         android:layout_height="100dp"
-        android:gravity="right"
+        android:gravity="start"
         android:text="@string/save_settings"
         android:textAlignment="textEnd"
         app:icon1="@drawable/ic_floppy_disc"

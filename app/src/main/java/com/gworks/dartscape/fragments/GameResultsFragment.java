@@ -218,7 +218,7 @@ public class GameResultsFragment extends Fragment {
     private void onStartGame() {
         ((GameFragment)frags().getFragFromId(FragManager.FragId.FRAG_GAME))
                 .onStartGame();
-        frags().show(FragManager.FragId.FRAG_GAME, FragManager.TRANS_ANIM_FADE_OUT);
+        frags().goBack();
     }
 
 

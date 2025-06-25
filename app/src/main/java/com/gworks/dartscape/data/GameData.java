@@ -186,7 +186,7 @@ public class GameData {
 
     /** @return true if there is a game in progress */
     public boolean isGameGoing() {
-        return mIsGameStarted && !gthrows().isEmpty();
+        return mIsGameStarted && (!gthrows().isEmpty() || isLegs());
     }
 
     /** initializes Cricket game sheet and data */
