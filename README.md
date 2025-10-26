@@ -1,6 +1,6 @@
 # Dartscape - Professional Darts Scoring Application
 
-A comprehensive Android darts scoring application featuring multiple game modes, advanced statistics tracking, and professional tournament support. **Now available on the Google Play Store** as a complete, finished product.
+A comprehensive Android darts scoring application featuring multiple game modes, advanced statistics tracking, and professional tournament support. **Was available on the Google Play Store** as a complete, finished product.
 
 ---
 
