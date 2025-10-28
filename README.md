@@ -3,6 +3,20 @@
 A comprehensive Android darts scoring application featuring multiple game modes, advanced statistics tracking, and professional tournament support. **Was available on the Google Play Store** as a complete, finished product.
 
 ---
+## 🖼️ Screenshots
+<p align="center">
+  <img src="./screenshots/Screenshot_6.jpg" width="22%">
+  <img src="./screenshots/Screenshot_5.jpg" width="22%">
+	<img src="./screenshots/Screenshot_8.jpg" width="22%">
+  <img src="./screenshots/Screenshot_7.jpg" width="22%">
+</p>
+<p align="center">
+	<img src="./screenshots/Screenshot_1.jpg" width="22%">
+  <img src="./screenshots/Screenshot_2.jpg" width="22%">
+  <img src="./screenshots/Screenshot_3.jpg" width="22%">
+  <img src="./screenshots/Screenshot_4.jpg" width="22%">
+</p>
+
 
 ## 🚀 Project Overview
 
